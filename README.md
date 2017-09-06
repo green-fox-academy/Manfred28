@@ -1,2 +1,2 @@
-(https://github.com/greenfox-academy/rabbit-syllabus "Syllabus")
+https://github.com/greenfox-academy/rabbit-syllabus - Syllabus
 
