@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.asteroid {
+    width: 240px;
+}
+
+.container > div {
+    border: 1px solid #008000;
+    font-weight: bold;
+}
+
+div.big {
+    font-weight: bold; 
+}
+
+p.asteroid {
+    background-color: #FFFF00;
+}
+
+.big {
+    margin: 15px 0;
+    color: #0000FF;
+}
