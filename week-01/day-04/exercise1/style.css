@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div {
+    width: 350px;
+    height: 135px;
+    font-size: 36px;
+    color: #005566;
+    background-color: #0E91A1;
+    margin: 5px 5px 15px 5px;
+    border: 5px solid #7DCE94;
+    padding: 15px;
+}
+
