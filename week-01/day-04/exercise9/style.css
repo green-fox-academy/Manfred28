@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div {
+    margin: 20px;
+}
+
+div > h1 {
+    margin-bottom: 10px;
+}
+
+div > p {
+    width: 250px;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: black;
+    padding: 10px;
+}
+
+
+div > p:last-child { 
+    border-bottom: 0px;
+}
+
+p:hover {
+    background-color: #EC6842;
+}
