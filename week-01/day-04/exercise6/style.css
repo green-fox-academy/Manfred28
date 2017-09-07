@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body > div {
+    width: 480px;
+}
+
+div > div {
+    display: inline-block;
+    width: 135px;
+    height: 135px;
+    margin: 5px;
+    border-radius: 100%;
+    padding-top: 45px;
+    background-color: #0CEBDE;
+    text-align: center;
+    font-size: 36px;
+    color: #FFFFFF;
+}
+
+div > div:first-child {
+    background-color: #B90CEB;
+}
+
+div > div:last-child {
+    background-color:#EBBE0C;
+}
