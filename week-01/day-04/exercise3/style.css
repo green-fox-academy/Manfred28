@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body > div > div {
+    display: inline-block;
+    
+}
+
+div > div > div {
+    width: 348px;
+    height: 127px; 
+}
+*/
+
+
+body > div > div {
+    display: inline-block;
+    margin: 5px;
+    border: 15px solid #4485F0;
+}
+
+.red-pill > div {
+    background-color: #E67878;
+}
+
+.blue-pill > div {
+    background-color: #A9E6E6;
+} 
+
+.red-pill > div, .blue-pill > div {
+    width: 348px;
+    height: 127px; 
+    padding-top: 40px;
+    color: #FFFFFF;
+    font-size: 36px;
+    text-align: center;
+}
