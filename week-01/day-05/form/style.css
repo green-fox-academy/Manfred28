@@ -90,6 +90,13 @@ label > span {
     height: 55px;
 }
 
+.user-agreement {
+    align-self: center;
+}
+
+.user-agreement a {
+    color: #ABA8A2;
+}
 
 /* .age.block-label-input input {
     width: 75px;
@@ -124,5 +131,5 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type='file'] {
     color: transparent;
-    width: 200px;
+
   }
