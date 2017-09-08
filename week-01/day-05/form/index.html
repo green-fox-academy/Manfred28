@@ -1,10 +1,10 @@
 <!--
     TODO:
     
-    -"Születési éved" text should be longer, likely diff font family -- this part is not pixel perfect
-    -Use of section tags in this manner is .... questionable at best
+    - "Születési éved" text should be longer, likely diff font family -- this part is not pixel perfect
+    - Use of section tags in this manner is .... questionable at best
     -remove !important from sections 
-
+    - input[type=file] can't be styled further, it has to be hidden and a label used for styling
 
 -->
 
@@ -79,10 +79,14 @@
             <label>Bemutatkozás<span>*</span></label>
             <textarea name="introduction" cols="86" rows="12" placeholder="Írj magadról pár mondatot"></textarea>
         </div>
-        <div class="grid-row-1 grid-col-2"></div>
-        <div class="grid-row-1 grid-col-2"></div>
-        <div class="grid-row-1 grid-col-1"></div>
-        <div class="grid-row-1 grid-col-1"></div>
+        <div class="grid-row-1 grid-col-2 block-label-input">
+            <label>CV feltöltése<span>*</span></label>
+            <input type="file" placeholder="Válassz fájlt">
+            
+        </div>
+        <div class="grid-row-1 grid-col-2 block-label-input"></div>
+        <div class="grid-row-1 grid-col-1 block-label-input"></div>
+        <div class="grid-row-1 grid-col-1 block-label-input"></div>
     </form>
 </body>
 </html>
