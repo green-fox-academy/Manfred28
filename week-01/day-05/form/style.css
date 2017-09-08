@@ -58,6 +58,10 @@ form > section {
     letter-spacing: 1px;
 }
 
+.block-label-input > input {
+    width: 100%;
+}
+
 .block-label-input > label {
     font-size: 12px;
     font-weight: bold;
