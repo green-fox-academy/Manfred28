@@ -32,17 +32,8 @@ form > section {
     padding: 10px;
     font-size: 16px;
     color: #fff;
-    background-color: #938C97 !important; 
-    /* remove important */
+    background-color: #938C97; 
 }
-
-
-
-.brand {
-    
-}
-
-
 
 .block-label-input > label, 
 .block-label-input > input
@@ -103,10 +94,6 @@ label > span {
     color: #ABA8A2;
 }
 
-/* .age.block-label-input input {
-    width: 75px;
-} */
-
 .grid-col-1 {
     grid-column: span 1;
     background-color: tomato; 
@@ -124,7 +111,6 @@ label > span {
 .grid-row-3 {
     grid-row: span 3;
 }
-
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {
