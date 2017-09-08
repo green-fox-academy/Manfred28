@@ -1,8 +1,9 @@
 <!--
     TODO:
     
-    -"Születési éved" text should be longer, likely diff font family 
+    -"Születési éved" text should be longer, likely diff font family -- this part is not pixel perfect
     -Use of section tags in this manner is .... questionable at best
+    -remove !important from sections 
 
 
 -->
@@ -38,6 +39,15 @@
             <div class="age block-label-input">
                 <label>Születési éved</label>
                 <input type="number" placeholder="pl. 1984">
+            </div>
+            <div class="gender block-label-input">
+                <label>Nemed</label>
+                <div>
+                    <input type="radio" name="gender">
+                    <label>nő</label>   
+                    <input type="radio" name="gender">
+                    <label>férfi</label>   
+                </div>
             </div>
         </div>
         <div class="grid-row-1 grid-col-1 block-label-input">

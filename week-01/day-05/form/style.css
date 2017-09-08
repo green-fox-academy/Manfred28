@@ -12,6 +12,7 @@ form {
     grid-column-gap: 20px;
     padding: 60px 100px;
     width: 820px;
+    background-color: #DCD6CD;
 }
 
 
@@ -41,6 +42,8 @@ form > section {
     
 }
 
+
+
 .block-label-input > label, 
 .block-label-input > input {
     display: block;
@@ -65,9 +68,20 @@ label > span {
     margin-left: 2px;
 }
 
+.age, .gender {
+    display: inline-block;
+}
+
 .age {
     width: 100px;
+    margin-right: 60px;
 }
+
+.gender {
+    vertical-align: top;
+    height: 55px;
+}
+
 
 /* .age.block-label-input input {
     width: 75px;
