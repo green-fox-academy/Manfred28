@@ -48,13 +48,19 @@ form > section {
 
 .block-label-input > input {
     width: 100%;
-    height: 35px;
+    height: 36px;
 }
 
 .block-label-input > label {
     font-size: 12px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
+    margin-right: 2px;
+}
+
+label > span {
+    color: red;
+    margin-left: 2px;
 }
 
 
