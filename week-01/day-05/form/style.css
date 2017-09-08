@@ -69,7 +69,12 @@ form > section {
     margin-right: 2px;
 }
 
-
+.button {
+    width: 215px;
+    height: 55px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
 
 label > span {
     color: red;
@@ -131,5 +136,19 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type='file'] {
     color: transparent;
-
   }
+
+  input[type=submit] {
+      background-color: #473F5D;
+      color: #fff;
+  }
+
+.clear-input {
+    display: flex;
+}
+
+input.button {
+    color: black;
+    margin-left: auto;
+    text-align: center;
+}
