@@ -65,7 +65,13 @@ label > span {
     margin-left: 2px;
 }
 
+.age {
+    width: 100px;
+}
 
+/* .age.block-label-input input {
+    width: 75px;
+} */
 
 .grid-col-1 {
     grid-column: span 1;
@@ -83,4 +89,13 @@ label > span {
 
 .grid-row-3 {
     grid-row: span 3;
+}
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    appearance: none; 
+    margin: 0;
 }
