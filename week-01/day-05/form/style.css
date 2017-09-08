@@ -27,7 +27,8 @@ header > h1 {
     font-weight: 400;
 }
 
-form > section {
+form > h2 {
+    display: block;
     height: 38px;
     padding: 10px;
     font-size: 16px;
