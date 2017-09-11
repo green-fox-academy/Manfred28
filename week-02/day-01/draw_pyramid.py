@@ -8,3 +8,8 @@
 # *******
 #
 # The pyramid should have as many lines as the number was
+
+pyramid_height = int(input("Enter an integer: "))
+
+for i in range(pyramid_height):
+    print(" " * (pyramid_height-i) + "*" * (i*2) + "*")
