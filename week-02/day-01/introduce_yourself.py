@@ -8,3 +8,5 @@
 #  John Doe
 #  31
 #  1.87
+
+print("István Kozma\n25\n1.87")
