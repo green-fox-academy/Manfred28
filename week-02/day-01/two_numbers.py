@@ -12,3 +12,12 @@
 
 # Print the reminder of 22 divided by 13
 
+num1 = 13
+num2= 22
+
+print(num1 + num2)
+print(num2 - num1)
+print(num1 * num2)
+print(num2 / num1)
+print(num2 // num1)
+print(num2 % num1)
