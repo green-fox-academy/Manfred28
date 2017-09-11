@@ -17,5 +17,5 @@ hours_coded_in_semester =  avg_working_hours * semester_length_in_weeks
 total_hours_in_semester = total_hours_in_week * semester_length_in_weeks
 
 
-print(hours_coded_per_week * semester_length_in_weeks)
-print(hours_coded_in_semester / total_hours_in_semester)
+print("hours spent coding in semester: " + str(hours_coded_per_week * semester_length_in_weeks))
+print("average hours spent coding per week: " + str(hours_coded_in_semester / total_hours_in_semester))
