@@ -15,9 +15,10 @@ accounts = [
 # Print "404 - account not found" if any of the account numbers don't exist
 
 def client_info(account_number):
-    for client in accounts:
-        if client["account_number"] == account_number:
-            print("name: " + client["client_name"] + "| balance: " + str(client["balance"]))
+    if is_existing_account(account_number):
+        for client in accounts:
+            if client["account_number"] == account_number:
+                print("name: " + client["client_name"] + "| balance: " + str(client["balance"]))
 
 def transfer_amount(source, destination, amount):
     if is_existing_account(source) and is_existing_account(destination):
