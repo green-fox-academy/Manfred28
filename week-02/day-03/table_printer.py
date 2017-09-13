@@ -46,7 +46,8 @@ def print_ingredients():
                 col3_offset = col_widths[2] - len(str(stock))
 
         print("| " + ingredient +  " " * col1_offset  + "| " + 
-        cooling + " " * col2_offset + "| " + str(stock) + " " * col3_offset + "|")
+        cooling + " " * col2_offset + "| " + 
+        str(stock) + " " * col3_offset + "|")
 
 def get_col_widths():
     col1 = 0
@@ -57,7 +58,6 @@ def get_col_widths():
         for key in item.keys():
             if len(key) > col1:
                 col1 = len(key) + 1
-    
     return [col1, col2, col3]
 
 
