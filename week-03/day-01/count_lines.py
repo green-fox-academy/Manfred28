@@ -11,7 +11,7 @@ def count_lines(file_name):
                 counter += 1
         return counter
     except FileNotFoundError:
-        return "File not found"
+        return 0
 
 file_name = input("Enter the name of a file: ")
 print(count_lines(file_name))
