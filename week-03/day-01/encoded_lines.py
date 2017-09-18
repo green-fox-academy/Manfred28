@@ -7,6 +7,7 @@ def decrypt(file_name):
                 decoded_text += char if char.isspace() else decrypt_char(char)
         print(decoded_text)
 
+
 def decrypt_char(char):
     return chr(ord(char)-1)
 
