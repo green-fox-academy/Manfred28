@@ -10,8 +10,9 @@ def draw_square(x0,y0, width, filler=None):
 
 
 def draw_steps(square_width, margin, steps):
+    offset = margin
     for i in range(steps):
-        offset = i * square_width + margin
+        offset = i * square_width
         draw_square(offset, offset, square_width, filler="purple")
 
 
