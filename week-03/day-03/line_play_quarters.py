@@ -25,7 +25,7 @@ def line_play_quarter(start, end, step, color1, color2, x_offset=0, y_offset=0):
 line_play_quarter(0, 150, 10, "green", "purple") # top-left
 line_play_quarter(0, 150, 10, "green", "purple", x_offset=150) # top-right
 line_play_quarter(0, 150, 10, "green", "purple", y_offset=150) # bottom-left
-line_play_quarter(150, 300, 10, "green", "purple") # bottom-right
+line_play_quarter(0, 150, 10, "green", "purple", x_offset=150, y_offset=150) # bottom-right
 
 
 root.mainloop()
