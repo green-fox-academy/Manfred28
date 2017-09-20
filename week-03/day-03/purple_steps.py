@@ -15,5 +15,5 @@ def draw_steps(square_width, margin, steps):
         draw_square(offset, offset, square_width, filler="purple")
 
 
-draw_steps(square_width = 15, margin = 10, steps= 11)
+draw_steps(square_width=15, margin=10, steps=11)
 root.mainloop()
