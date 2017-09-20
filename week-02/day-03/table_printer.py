@@ -23,41 +23,52 @@ ingredients = [
 	{ 'soda': 100, 'needs_cooling': True }
 ]
 
+
+
 def print_section_separator():
-    print("+--------------------+---------------+----------+")
+    print("+" + "-" * (col_widths[0] + 1) + 
+        "+" + "-" * (col_widths[1] + 1) + 
+        "+" + "-" * (col_widths[2] + 1) + "+")
 
 def print_first_line():
     print("| Ingredient" + " " * (col_widths[0] - len("Ingredient")) + "|" + 
     " Needs cooling " + "|" + " In stock " + "|")
 
 def print_ingredients():
-    for ing in ingredients:
-        ingredient = ""
-        cooling = "Yes" if ing["needs_cooling"] else "No"
-        stock = 0
-        col1_offset = ""
-        col2_offset = col_widths[1] - len(cooling)
-        col3_offset = 0
-        for keys in ing.keys():
-            if not keys == "needs_cooling":
-                ingredient = keys
-                col1_offset = col_widths[0] - len(ingredient)
-                stock = ing[ingredient]
-                col3_offset = col_widths[2] - len(str(stock))
+    for ingredient in ingredients:
+        ingredient_name, cooling, stock = get_ingredient_info(ingredient)
+        col1_offset, col2_offset, col3_offset = get_offsets(ingredient_name, cooling, stock)
+        print("| " +
+            ingredient_name + col1_offset + 
+            cooling + col2_offset + 
+            str(stock) + col3_offset)
 
-        print("| " + ingredient +  " " * col1_offset  + "| " + 
-        cooling + " " * col2_offset + "| " + 
-        str(stock) + " " * col3_offset + "|")
+
+def get_ingredient_info(ingredient):
+    for key in ingredient:
+        if not key == "needs_cooling":
+            ingredient_name = key
+            needs_cooling = "Yes" if ingredient["needs_cooling"] else "No"
+            stock = str(ingredient[key]) if ingredient[key] else "-"
+        return ingredient_name, needs_cooling, stock
+
+
+def get_offsets(ingredient, cooling, stock):
+    col1_offset = " " * (col_widths[0] - len(ingredient)) + "| "
+    col2_offset = " " * (col_widths[1] - len(cooling)) + "| "
+    col3_offset = " " * (col_widths[2] - len(stock)) + "|"
+    return col1_offset, col2_offset, col3_offset
+
 
 def get_col_widths():
     col1 = 0
-    col2 = len("Needs cooling") + 1
-    col3 = len("In stock") + 1
+    col2 = len(" Needs cooling")
+    col3 = len(" In stock")
 
     for item in ingredients:
-        for key in item.keys():
-            if len(key) > col1:
-                col1 = len(key) + 1
+        key = list(item.keys())[0]
+        if len(key) > col1:
+            col1 = len(key) + 1 # +1 forthe space before the word
     return [col1, col2, col3]
 
 
