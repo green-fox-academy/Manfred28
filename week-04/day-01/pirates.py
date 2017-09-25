@@ -48,15 +48,13 @@ class Pirate(object):
 class PirateShip(object):
     def __init__(self):
         self.crew = []
-        self.alive_crew_count = 0
 
     def __str__(self):
-        self.update_alive_crew_count()
         captain = self.crew[0]
         captain_state = captain.get_state()
         out = ("Captain consumed " + str(captain.drink_counter) + " rum(s). \n" +
                "Captain is " + captain_state + ".\n" +
-               "Number of crew alive: " + str(self.alive_crew_count))
+               "Number of crew alive: " + str(self.get_alive_crew_count()))
         return out
 
     def fill_ship(self, Pirate):
@@ -65,12 +63,12 @@ class PirateShip(object):
             is_captain = True if i == 0 else False
             self.crew.append(Pirate(is_captain))
 
-    def update_alive_crew_count(self):
+    def get_alive_crew_count(self):
         count = 0
         for pirate in self.crew:
             if pirate.is_alive:
                 count += 1
-        self.alive_crew_count = count
+        return count
 
     def battle(self, enemy_ship):
         pass
@@ -78,4 +76,3 @@ class PirateShip(object):
     def party(self):
         for i in range(randint(1, 3)):
             self.crew[0].drink_some_rum()
-
