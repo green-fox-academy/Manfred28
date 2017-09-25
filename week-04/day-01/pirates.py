@@ -38,6 +38,11 @@ class Pirate(object):
                 self.is_conscious = False
                 enemy.is_conscious = False
 
+    def get_state(self):
+        return ("alive and well" if self.is_alive and self.is_conscious else
+                "sadly deceased" if not self.is_alive else
+                "passed out")
+
 
 class PirateShip(object):
     def __init__(self):
@@ -48,4 +53,4 @@ class PirateShip(object):
         for i in range(number_of_pirates):
             is_captain = True if i == 0 else False
             self.crew.append(Pirate(is_captain))
-
+        
