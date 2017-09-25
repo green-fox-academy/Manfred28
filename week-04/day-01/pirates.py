@@ -37,3 +37,15 @@ class Pirate(object):
             else:
                 self.is_conscious = False
                 enemy.is_conscious = False
+
+
+class PirateShip(object):
+    def __init__(self):
+        self.crew = []
+
+    def fill_ship(self, Pirate):
+        number_of_pirates = randint(1,10)
+        for i in range(number_of_pirates):
+            is_captain = True if i == 0 else False
+            self.crew.append(Pirate(is_captain))
+
