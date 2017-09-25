@@ -49,13 +49,22 @@ class PirateShip(object):
         self.crew = []
         self.alive_crew_count = 0
 
+    def __str__(self):
+        self.update_alive_crew_count()
+        captain = self.crew[0]
+        captain_state = captain.get_state()
+        out = ("Captain consumed " + str(captain.drink_counter) + " rums. \n" +
+               "Captain is " + captain_state + ".\n" +
+               "Number of crew alive: " + str(self.alive_crew_count))
+        return out
+
     def fill_ship(self, Pirate):
-        number_of_pirates = randint(1,10)
+        number_of_pirates = randint(1, 10)
         for i in range(number_of_pirates):
             is_captain = True if i == 0 else False
             self.crew.append(Pirate(is_captain))
 
-    def get_alive_crew_count(self):
+    def update_alive_crew_count(self):
         count = 0
         for pirate in self.crew:
             if pirate.is_alive:
