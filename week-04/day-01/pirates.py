@@ -47,10 +47,17 @@ class Pirate(object):
 class PirateShip(object):
     def __init__(self):
         self.crew = []
+        self.alive_crew_count = 0
 
     def fill_ship(self, Pirate):
         number_of_pirates = randint(1,10)
         for i in range(number_of_pirates):
             is_captain = True if i == 0 else False
             self.crew.append(Pirate(is_captain))
-        
+
+    def get_alive_crew_count(self):
+        count = 0
+        for pirate in self.crew:
+            if pirate.is_alive:
+                count += 1
+        self.alive_crew_count = count
