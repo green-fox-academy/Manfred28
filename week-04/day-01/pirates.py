@@ -1,14 +1,15 @@
 from random import randint
 
 class Pirate(object):
-    def __init__(self, parrot):
+    def __init__(self, parrot=False):
         self.drink_counter = 0
         self.is_conscious = True
         self.is_alive = True
         self.is_captain = parrot
 
     def drink_some_rum(self):
-        self.drink_counter += 1
+        if self.is_alive and self.is_conscious:
+            self.drink_counter += 1
 
     def hows_it_going_mate(self):
         if self.is_alive and self.is_conscious:
@@ -31,9 +32,9 @@ class Pirate(object):
         if enemy.is_alive and self.is_alive:
             roll = randint(1,3)
             if roll == 1:
-                self.is_alive = False
+                self.die()
             elif roll == 2:
-                enemy.is_alive = False
+                enemy.die()
             else:
                 self.is_conscious = False
                 enemy.is_conscious = False
@@ -53,7 +54,7 @@ class PirateShip(object):
         self.update_alive_crew_count()
         captain = self.crew[0]
         captain_state = captain.get_state()
-        out = ("Captain consumed " + str(captain.drink_counter) + " rums. \n" +
+        out = ("Captain consumed " + str(captain.drink_counter) + " rum(s). \n" +
                "Captain is " + captain_state + ".\n" +
                "Number of crew alive: " + str(self.alive_crew_count))
         return out
@@ -70,3 +71,11 @@ class PirateShip(object):
             if pirate.is_alive:
                 count += 1
         self.alive_crew_count = count
+
+    def battle(self, enemy_ship):
+        pass
+
+    def party(self):
+        for i in range(randint(1, 3)):
+            self.crew[0].drink_some_rum()
+
