@@ -76,3 +76,6 @@ class PirateShip(object):
     def party(self):
         for i in range(randint(1, 3)):
             self.crew[0].drink_some_rum()
+
+    def calculate_score(self):
+        return self.get_alive_crew_count() + self.crew[0].drink_counter
