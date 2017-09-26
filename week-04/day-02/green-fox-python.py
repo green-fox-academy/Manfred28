@@ -5,7 +5,8 @@ class Person(object):
         self.gender = gender
 
     def introduce(self):
-        print("Hi, I'm {}, a {} year old {}.".format(self.name, self.age, self.gender))
+        params = [self.name, self.age, self.gender]
+        print("Hi, I'm {}, a {} year old {}.".format(params))
 
     def get_goal(self):
         print("My goal is: Live for the moment!")
@@ -23,6 +24,14 @@ class Student(Person):
     def skip_days(self, number_of_days):
         self.skipped_days += number_of_days
 
+class Mentor(Person):
+    def __init__(self, name="Jane Doe", age=30, gender="female", level="intermediate"):
+        super().__init__(name, age, gender)
+        self.level = level
 
-ayy = Student("hallo")
-ayy.introduce()
+    def get_goal(self):
+        print("Educate brilliant junior software developers.")
+
+    def introduce(self):
+        params = [self.name, self.age, self.gender, self.level]
+        print("Hi, I'm {}, a {} year old {} {} mentor.".format(*params))
