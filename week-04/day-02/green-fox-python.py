@@ -25,6 +25,9 @@ class Student(Person):
     def skip_days(self, number_of_days):
         self.skipped_days += number_of_days
 
+    def get_goal(self):
+        print("My goal is: Be a junior software developer.")
+
 
 class Mentor(Person):
     def __init__(self, name="Jane Doe", age=30, gender="female", level="intermediate"):
@@ -32,7 +35,7 @@ class Mentor(Person):
         self.level = level
 
     def get_goal(self):
-        print("Educate brilliant junior software developers.")
+        print("My goal is: Educate brilliant junior software developers.")
 
     def introduce(self):
         params = [self.name, self.age, self.gender, self.level]
@@ -53,7 +56,7 @@ class Sponsor(Person):
         self.hired_students += 1
 
     def get_goal(self):
-        print("Hire brilliant junior software developers.")
+        print("My goal is: Hire brilliant junior software developers.")
 
 
 class PallidaClass():
