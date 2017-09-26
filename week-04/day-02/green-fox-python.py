@@ -6,7 +6,7 @@ class Person(object):
 
     def introduce(self):
         params = [self.name, self.age, self.gender]
-        print("Hi, I'm {}, a {} year old {}.".format(params))
+        print("Hi, I'm {}, a {} year old {}.".format(*params))
 
     def get_goal(self):
         print("My goal is: Live for the moment!")
@@ -54,3 +54,20 @@ class Sponsor(Person):
 
     def get_goal(self):
         print("Hire brilliant junior software developers.")
+
+
+class PallidaClass():
+    def __init__(self, class_name):
+        self.class_name = class_name
+        self.students = []
+        self.mentors = []
+
+    def add_student(self, Student):
+        self.students.append(Student)
+
+    def add_mentor(self, Mentor):
+        self.mentors.append(Mentor)
+
+    def info(self):
+        params = [self.class_name, len(self.students), len(self.mentors)]
+        print("Pallida {} class has {} students and {} mentors.".format(*params))
