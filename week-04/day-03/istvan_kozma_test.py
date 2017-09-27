@@ -10,7 +10,7 @@ class MyObjectTests(unittest.TestCase):
 
 
     def test_sum_returns_None_if_empty_list(self):
-        self.assertEqual(self.object.sum_numbers([]), None)
+        self.assertRaises(TypeError, self.object.sum_numbers)
 
     def test_sum_returns_correct_value_with_one_number(self):
         self.assertEqual(self.object.sum_numbers([1]), 1)
@@ -19,9 +19,6 @@ class MyObjectTests(unittest.TestCase):
         self.assertEqual(self.object.sum_numbers([1, 1]), 2)
         self.assertEqual(self.object.sum_numbers([10.1, 1.5]), 11.6)
         self.assertEqual(self.object.sum_numbers([1, -1]), 0)
-
-    def test_sum_returns_None_if_null(self):
-        self.assertEqual(self.object.sum_numbers([]), None)
 
 
     def test_word_count_returns_empty_dict_for_empty_string(self):
