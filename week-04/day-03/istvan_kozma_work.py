@@ -15,6 +15,12 @@ class MyObject(object):
             return word == word[::-1]
         return
 
+    def anagram_checker(self, word1, word2):
+        if word1 == "" and word2 == "":
+            return True
+        if word1 and word2:
+            return sorted(word1)== sorted(word2)
+
     def count_letters(self, word):
         out = {}
         if word:

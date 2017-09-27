@@ -35,7 +35,17 @@ class MyObjectTests(unittest.TestCase):
     def test_palindrome_returns_true_correct_result_for_palindrome(self):
         self.assertTrue(self.object.palindrome_checker("aba"))
         self.assertFalse(self.object.palindrome_checker("abab"))
-        
+
+
+    def test_anagram_return_true_for_empty_string(self):
+        self.assertTrue(self.object.anagram_checker("", ""))        
+
+    def test_anagram_correct_result_for_single_word(self):
+        self.assertTrue(self.object.anagram_checker("asd", "dsa"))        
+        self.assertFalse(self.object.anagram_checker("add", "dsa"))        
+
+    def test_anagram_correct_result_for_string_with_equal_spaces(self):
+        self.assertTrue(self.object.anagram_checker("asd ", "a sd"))      
 
 
     def test_word_count_returns_empty_dict_for_empty_string(self):
