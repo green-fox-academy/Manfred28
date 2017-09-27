@@ -9,3 +9,13 @@ class MyObject(object):
                 number_sum += num
             return number_sum
         return
+
+    def count_letters(self, word):
+        out = {}
+        if word:
+            for letter in word:
+                if not letter in out:
+                    out[letter] = 1
+                else:
+                    out[letter] += 1
+        return out

@@ -24,5 +24,22 @@ class MyObjectTests(unittest.TestCase):
         self.assertEqual(self.object.sum_numbers([]), None)
 
 
+    def test_word_count_returns_empty_dict_for_empty_string(self):
+        self.assertEqual(self.object.count_letters(""), {})
+
+    def test_word_count_returns_count_for_1_letter(self):
+        self.assertEqual(self.object.count_letters("a"), {"a": 1})
+        self.assertEqual(self.object.count_letters("b"), {"b": 1})
+
+    def test_word_count_returns_count_for_2_letters(self):
+        self.assertEqual(self.object.count_letters("ab"), {"a": 1, "b": 1})
+
+    def test_word_count_returns_count_for_2_same_letters(self):
+        self.assertEqual(self.object.count_letters("aa"), {"a": 2})
+
+    def test_word_count_returns_count_for_simple_string(self):
+        self.assertEqual(self.object.count_letters("habba"), {"a": 2, "b": 2, "h": 1})
+
+
 if __name__ == "__main__":
     unittest.main()
