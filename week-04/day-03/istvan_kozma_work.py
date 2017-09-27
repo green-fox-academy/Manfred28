@@ -10,6 +10,11 @@ class MyObject(object):
             return number_sum
         return
 
+    def palindrome_checker(self, word):
+        if word:
+            return word == word[::-1]
+        return
+
     def count_letters(self, word):
         out = {}
         if word:
@@ -19,3 +24,10 @@ class MyObject(object):
                 else:
                     out[letter] += 1
         return out
+
+    def fibonacci(self, fibonacci_index):
+        if fibonacci_index == 0:
+            return None
+        if fibonacci_index <= 2:
+            return 1
+        return self.fibonacci(fibonacci_index - 1) + self.fibonacci(fibonacci_index - 2)

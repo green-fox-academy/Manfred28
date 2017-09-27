@@ -19,6 +19,23 @@ class MyObjectTests(unittest.TestCase):
         self.assertEqual(self.object.sum_numbers([1, 1]), 2)
         self.assertEqual(self.object.sum_numbers([10.1, 1.5]), 11.6)
         self.assertEqual(self.object.sum_numbers([1, -1]), 0)
+        self.assertNotEqual(self.object.sum_numbers([1, 2]), 4)
+
+
+    def test_palindrome_returns_none_for_empty_string(self):
+        self.assertEqual(self.object.palindrome_checker(""), None)
+
+    def test_palindrome_returns_true_for_single_letter(self):
+        self.assertTrue(self.object.palindrome_checker("a"))
+
+    def test_palindrome_returns_correct_result_for_two_letters(self):
+        self.assertTrue(self.object.palindrome_checker("aa"))
+        self.assertFalse(self.object.palindrome_checker("cb"))
+
+    def test_palindrome_returns_true_correct_result_for_palindrome(self):
+        self.assertTrue(self.object.palindrome_checker("aba"))
+        self.assertFalse(self.object.palindrome_checker("abab"))
+        
 
 
     def test_word_count_returns_empty_dict_for_empty_string(self):
@@ -36,6 +53,19 @@ class MyObjectTests(unittest.TestCase):
 
     def test_word_count_returns_count_for_simple_string(self):
         self.assertEqual(self.object.count_letters("habba"), {"a": 2, "b": 2, "h": 1})
+
+
+    def test_fibonacci_correct_result_for_0(self):
+        self.assertEqual(self.object.fibonacci(0), None)
+
+    def test_fibonacci_correct_result_for_1(self):
+        self.assertEqual(self.object.fibonacci(1), 1)
+
+    def test_fibonacci_correct_result_for_2(self):
+        self.assertEqual(self.object.fibonacci(2), 1)
+
+    def test_fibonacci_correct_result_for_4(self):
+        self.assertEqual(self.object.fibonacci(4), 3)
 
 
 if __name__ == "__main__":
