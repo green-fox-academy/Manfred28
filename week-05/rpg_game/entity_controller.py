@@ -12,9 +12,10 @@ class EntityController(object):
 
     def entity_lifecycle(self):
         self.move_player()
+        self.player_strike()
         self.view.delete_entities()
         self.view.draw_entities(self.game_map.entities)
-        self.view.root.after(100, self.entity_lifecycle)
+        self.view.root.after(1, self.entity_lifecycle)
 
     def move_player(self):
         if self.view.player_move_direction != None:
@@ -24,3 +25,8 @@ class EntityController(object):
     def move_enemies(self):
         self.game_map.move_enemies()
         self.view.root.after(500, self.move_enemies)
+
+    def player_strike(self):
+        if self.view.player_strike and self.game_map.entities[0].fighting_enemy:
+            self.game_map.entities[0].strike()
+        self.view.player_strike = False
