@@ -18,25 +18,23 @@ class GameMap(object):
     def is_wall(self, pos_x, pos_y):
         return self.game_map[pos_y][pos_x] == "X"
 
-    def is_occupied(self, moving_entity, pos_x, pos_y):
+    def find_entity_at_position(self, pos_x, pos_y):
         for entity in self.entities:
-            if entity.pos_x == pos_x and entity.pos_y == pos_y and entity != moving_entity:
-                if not entity.evil == moving_entity.evil and not entity.fighting_enemy and not moving_entity.fighting_enemy:
-                    moving_entity.fighting_enemy = entity
-                    moving_entity.can_strike = True
-                    entity.fighting_enemy = moving_entity
-                return True
-        return False
+            if entity.pos_x == pos_x and entity.pos_y == pos_y:
+                return entity
+        return 0
 
     def move_entity(self, entity, direction):
-        pos_x, pos_y = self.get_coords_from_direction(entity.pos_x, entity.pos_y, direction)
-        if self.is_valid_move(pos_x, pos_y) and not self.is_occupied(entity, pos_x, pos_y) and entity.fighting_enemy == None:
+        pos_x, pos_y = self.get_new_pos_from_direction(entity.pos_x, entity.pos_y, direction)
+        if self.find_entity_at_position(pos_x, pos_y):
+            self.initiate_fight(entity, self.find_entity_at_position(pos_x, pos_y))
+        elif self.is_valid_move(pos_x, pos_y) and not entity.fighting_enemy:
             entity.pos_x = pos_x
             entity.pos_y = pos_y
         if isinstance(entity, entities.Hero):
             entity.change_model(direction)
 
-    def get_coords_from_direction(self, pos_x, pos_y, direction):
+    def get_new_pos_from_direction(self, pos_x, pos_y, direction):
         if direction == "up":
             pos_y -= 1
         elif direction == "down":
@@ -60,6 +58,12 @@ class GameMap(object):
         for i in range(3):
             self.entities.append(entities.Skeleton(self.get_random_tile()))
         self.entities.append(entities.Boss(self.get_random_tile()))
+
+    def initiate_fight(self, attacker, defender):
+        if not attacker.evil == defender.evil and not defender.fighting_enemy:
+            attacker.fighting_enemy = defender
+            attacker.can_strike = True
+            defender.fighting_enemy = attacker
 
     def enemy_strike(self):
         for enemy in self.entities[1:]:
