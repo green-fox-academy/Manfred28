@@ -14,12 +14,13 @@ class View(object):
                              }
         self.draw_map(game_map)
         self.player_move_direction = None
+        self.player_strike = False
         self.entity_ids = []
 
     def create_canvas(self):
         self.root = tkinter.Tk()
         self.canvas = tkinter.Canvas(self.root, width=700, height=700)
-        self.root.bind("<KeyPress>", self.player_move_on_keypress)
+        self.root.bind("<KeyPress>", self.player_keypress)
         self.canvas.pack()
 
     def draw_image(self, pos_x, pos_y, image_name):
@@ -31,7 +32,7 @@ class View(object):
     def start(self):
         self.root.mainloop()
 
-    def player_move_on_keypress(self, e):
+    def player_keypress(self, e):
         if e.keycode == 37:
             self.player_move_direction = "left"
         elif e.keycode == 38:
@@ -40,6 +41,9 @@ class View(object):
             self.player_move_direction = "right"
         elif e.keycode == 40:
             self.player_move_direction = "down"
+        elif e.keycode == 32:
+            self.player_strike = True
+
 
     def draw_map(self, game_map):
         for y, row in enumerate(game_map):
