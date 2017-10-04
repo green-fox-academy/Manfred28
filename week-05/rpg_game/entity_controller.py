@@ -12,17 +12,9 @@ class EntityController(object):
 
     def entity_lifecycle(self):
         self.move_player()
-        self.delete_entities()
-        self.draw_entities()
+        self.view.delete_entities()
+        self.view.draw_entities(self.game_map.entities)
         self.view.root.after(100, self.entity_lifecycle)
-
-    def draw_entities(self):
-        for entity in self.game_map.entities:
-            self.entity_image_ids.append(self.view.create_entity(entity))
-
-    def delete_entities(self):
-        for entity in self.entity_image_ids:
-            self.view.canvas.delete(entity)
 
     def move_player(self):
         if self.view.player_move_direction != None:

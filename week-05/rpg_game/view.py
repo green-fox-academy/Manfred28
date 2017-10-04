@@ -13,12 +13,19 @@ class View(object):
                              }
         self.draw_map(game_map)
         self.player_move_direction = ""
+        self.entity_ids = []
 
     def create_canvas(self):
         self.root = tkinter.Tk()
         self.canvas = tkinter.Canvas(self.root, width=700, height=700)
         self.root.bind("<KeyPress>", self.player_move_on_keypress)
         self.canvas.pack()
+
+    def draw_image(self, pos_x, pos_y, image_name):
+        return self.canvas.create_image(pos_x, pos_y, image=self.photo_images[image_name])
+
+    def pos_to_pixel(self, position):
+        return 36 + 71 * position
 
     def start(self):
         self.root.mainloop()
@@ -37,14 +44,17 @@ class View(object):
         for y, row in enumerate(game_map):
             for x, tile in enumerate(row):
                 if tile == "_":
-                    self.canvas.create_image(self.pos_to_pixel(x), self.pos_to_pixel(y), image=self.photo_images["floor"])
+                    self.draw_image(self.pos_to_pixel(x), self.pos_to_pixel(y), "floor")
                 elif tile == "X":
-                    self.canvas.create_image(self.pos_to_pixel(x), self.pos_to_pixel(y), image=self.photo_images["wall"])
+                    self.draw_image(self.pos_to_pixel(x), self.pos_to_pixel(y), "wall")
 
-    def create_entity(self, entity):
-        pos_x = self.pos_to_pixel(entity.pos_x)
-        pos_y = self.pos_to_pixel(entity.pos_y)
-        return self.canvas.create_image(pos_x, pos_y, image=self.photo_images[entity.current_image])
+    def draw_entities(self, entities):
+        for entity in entities:
+            pos_x = self.pos_to_pixel(entity.pos_x)
+            pos_y = self.pos_to_pixel(entity.pos_y)
+            self.entity_ids.append(self.draw_image(pos_x, pos_y, entity.current_image))
 
-    def pos_to_pixel(self, position):
-        return 36 + 71 * position
+    def delete_entities(self):
+        for entity in self.entity_ids:
+            self.canvas.delete(entity)
+            
