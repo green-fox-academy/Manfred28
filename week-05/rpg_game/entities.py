@@ -16,7 +16,6 @@ class Entity(object):
             self.fighting_enemy.current_hp -= sv - self.fighting_enemy.dp
         if self.fighting_enemy.current_hp <= 0:
             self.fighting_enemy.die()
-            self.fighting_enemy.can_strike = False
             self.fighting_enemy = None
         else:
             self.fighting_enemy.can_strike = True
@@ -24,6 +23,7 @@ class Entity(object):
     def die(self):
         self.pos_x = -1
         self.pos_y = -1
+        self.can_strike = False
 
 class Hero(Entity):
     def __init__(self, position):
