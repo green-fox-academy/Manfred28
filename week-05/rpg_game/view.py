@@ -13,7 +13,7 @@ class View(object):
                              "boss": tkinter.PhotoImage(file="assets/boss.png"),
                              }
         self.draw_map(game_map)
-        self.player_move_direction = ""
+        self.player_move_direction = None
         self.entity_ids = []
 
     def create_canvas(self):

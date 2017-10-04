@@ -19,18 +19,28 @@ class GameMap(object):
         return self.game_map[pos_y][pos_x] == "X"
 
     def move_entity(self, entity, direction):
+        pos_x, pos_y = self.get_coords_from_direction(entity.pos_x, entity.pos_y, direction)
+        if self.is_valid_move(pos_x, pos_y):
+            entity.pos_x = pos_x
+            entity.pos_y = pos_y
+        if isinstance(entity, entities.Hero):
+            entity.change_model(direction)
+
+    def get_coords_from_direction(self, pos_x, pos_y, direction):
         if direction == "up":
-            if entity.pos_y - 1 >= 0 and not self.is_wall(entity.pos_x, entity.pos_y - 1):
-                entity.move("up")
+            pos_y -= 1
         elif direction == "down":
-            if entity.pos_y + 1 < 10 and not self.is_wall(entity.pos_x, entity.pos_y + 1):
-                entity.move("down")
+            pos_y += 1
         elif direction == "left":
-            if entity.pos_x - 1 >= 0 and not self.is_wall(entity.pos_x - 1, entity.pos_y):
-                entity.move("left")
+            pos_x -= 1
         elif direction == "right":
-            if entity.pos_x + 1 < 10 and not self.is_wall(entity.pos_x + 1, entity.pos_y):
-                entity.move("right")
+            pos_x += 1  
+        return pos_x, pos_y
+
+    def is_valid_move(self, pos_x, pos_y):
+        return (pos_x >= 0 and pos_x < 10 and
+                pos_y >= 0 and pos_y < 10 and
+                not self.is_wall(pos_x, pos_y))
 
     def move_enemies(self):
         for enemy in self.entities[1:]:
@@ -48,4 +58,3 @@ class GameMap(object):
             pos_x = randint(0, 9)
             pos_y = randint(0, 9)
         return [pos_x, pos_y]
-    

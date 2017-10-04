@@ -3,16 +3,6 @@ from random import choice, randint
 class Entity(object):
     def __init__(self, position):
         self.pos_x, self.pos_y = position
-
-    def move(self, direction):
-        if direction == "up":
-            self.pos_y -= 1
-        elif direction == "down":
-            self.pos_y += 1
-        elif direction == "left":
-            self.pos_x -= 1
-        elif direction == "right":
-            self.pos_x += 1
     
 
 class Hero(Entity):
@@ -23,11 +13,10 @@ class Hero(Entity):
         self.dp = 2 * d6()
         self.sp = 5 + d6()
         self.current_hp = self.max_hp
-
-    def move(self, direction):
-        super().move(direction)
-        self.current_image = "hero-" + direction
     
+    def change_model(self, direction):
+        self.current_image = "hero-" + direction
+
 
 class Skeleton(Entity):
     def __init__(self, position):
