@@ -18,6 +18,8 @@ class Entity(object):
             self.fighting_enemy.die()
             self.fighting_enemy.can_strike = False
             self.fighting_enemy = None
+        else:
+            self.fighting_enemy.can_strike = True
 
     def die(self):
         self.pos_x = -1
