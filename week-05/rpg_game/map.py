@@ -6,6 +6,7 @@ class GameMap(object):
         self.game_map = []
         self.read_map_from_file()
         self.entities = [entities.Hero([0, 0])]
+        self.hero = self.entities[0]
         self.generate_enemies()
 
     def read_map_from_file(self):
@@ -31,7 +32,7 @@ class GameMap(object):
         elif self.is_valid_move(pos_x, pos_y) and not entity.fighting_enemy:
             entity.pos_x = pos_x
             entity.pos_y = pos_y
-        if isinstance(entity, entities.Hero):
+        if entity == self.hero:
             entity.change_model(direction)
 
     def get_new_pos_from_direction(self, pos_x, pos_y, direction):

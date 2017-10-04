@@ -34,7 +34,7 @@ class Hero(Entity):
         self.dp = 2 * d6()
         self.sp = 5 + d6()
         self.current_hp = self.max_hp
-    
+
     def change_model(self, direction):
         self.current_image = "hero-" + direction
 
@@ -53,7 +53,7 @@ class Skeleton(Entity):
     def get_move_direction(self):
         directions = ("up", "down", "left", "right")
         return choice(directions)
-    
+
 
 class Boss(Skeleton):
     def __init__(self, position):

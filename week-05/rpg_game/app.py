@@ -18,7 +18,7 @@ class App(object):
 
     def move_player(self):
         if self.view.player_move_direction != None:
-            self.game_map.move_entity(self.game_map.entities[0], self.view.player_move_direction)
+            self.game_map.move_entity(self.game_map.hero, self.view.player_move_direction)
             self.view.player_move_direction = None
 
     def move_enemies(self):
@@ -26,8 +26,8 @@ class App(object):
         self.view.root.after(500, self.move_enemies)
 
     def player_strike(self):
-        if self.view.player_strike and self.game_map.entities[0].fighting_enemy and self.game_map.entities[0].can_strike:
-            self.game_map.entities[0].strike()
+        if self.view.player_strike and self.game_map.hero.can_strike:
+            self.game_map.hero.strike()
         self.view.player_strike = False
 
 
