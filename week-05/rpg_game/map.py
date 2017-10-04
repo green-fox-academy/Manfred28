@@ -18,9 +18,18 @@ class GameMap(object):
     def is_wall(self, pos_x, pos_y):
         return self.game_map[pos_y][pos_x] == "X"
 
+    def is_occupied(self, moving_entity, pos_x, pos_y):
+        for entity in self.entities:
+            if entity.pos_x == pos_x and entity.pos_y == pos_y and entity != moving_entity:
+                if not entity.evil == moving_entity.evil:
+                    moving_entity.fighting_enemy = entity
+                    entity.fighting_enemy = moving_entity
+                return True
+        return False
+
     def move_entity(self, entity, direction):
         pos_x, pos_y = self.get_coords_from_direction(entity.pos_x, entity.pos_y, direction)
-        if self.is_valid_move(pos_x, pos_y):
+        if self.is_valid_move(pos_x, pos_y) and not self.is_occupied(entity, pos_x, pos_y) and entity.fighting_enemy == None:
             entity.pos_x = pos_x
             entity.pos_y = pos_y
         if isinstance(entity, entities.Hero):
