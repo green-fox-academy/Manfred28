@@ -4,10 +4,10 @@ class EntityController(object):
     def __init__(self, game_map, view):
         self.game_map = game_map
         self.view = view
-        self.entities = [game_map.hero]
         self.entity_image_ids = []
 
         self.entity_lifecycle()
+        self.move_enemies()
 
 
     def entity_lifecycle(self):
@@ -17,7 +17,7 @@ class EntityController(object):
         self.view.root.after(100, self.entity_lifecycle)
 
     def draw_entities(self):
-        for entity in self.entities:
+        for entity in self.game_map.entities:
             self.entity_image_ids.append(self.view.create_entity(entity))
 
     def delete_entities(self):
@@ -26,5 +26,9 @@ class EntityController(object):
 
     def move_player(self):
         if self.view.player_move_direction != None:
-            self.game_map.move_entity(self.game_map.hero, self.view.player_move_direction)
+            self.game_map.move_entity(self.game_map.entities[0], self.view.player_move_direction)
             self.view.player_move_direction = None
+
+    def move_enemies(self):
+        self.game_map.move_enemies()
+        self.view.root.after(500, self.move_enemies)
