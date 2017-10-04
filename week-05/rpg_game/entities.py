@@ -3,12 +3,28 @@ from random import choice, randint
 class Entity(object):
     def __init__(self, position):
         self.pos_x, self.pos_y = position
-    
+        self.fighting_enemy = None
+        self.max_hp = 0
+        self.dp = 0
+        self.sp = 0
+
+    def strike(self):
+        sv = self.sp + 2 * d6()
+        if self.fighting_enemy.dp < sv:
+            self.fighting_enemy.current_hp -= sv - self.fighting_enemy.dp
+        if self.fighting_enemy.current_hp <= 0:
+            self.fighting_enemy.die()
+            self.fighting_enemy = None
+
+    def die(self):
+        self.pos_x = -1
+        self.pos_y = -1
 
 class Hero(Entity):
     def __init__(self, position):
         super().__init__(position)
         self.current_image = "hero-down"
+        self.evil = False
         self.max_hp = 20 + 3 * d6()
         self.dp = 2 * d6()
         self.sp = 5 + d6()
@@ -22,6 +38,7 @@ class Skeleton(Entity):
     def __init__(self, position):
         super().__init__(position)
         self.current_image = "skeleton"
+        self.evil = True
         self.level = 1
         self.max_hp = 2 * self.level * d6()
         self.dp = self.level / 2 * d6()
