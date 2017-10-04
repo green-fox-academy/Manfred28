@@ -48,3 +48,4 @@ class GameMap(object):
             pos_x = randint(0, 9)
             pos_y = randint(0, 9)
         return [pos_x, pos_y]
+    
