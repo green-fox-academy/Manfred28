@@ -1,10 +1,9 @@
 from random import choice
 
 class Entity(object):
-    def __init__(self, pos_x, pos_y, image):
+    def __init__(self, pos_x, pos_y):
         self.pos_x = pos_x
         self.pos_y = pos_y
-        self.current_image = image
 
     def move(self, direction):
         if direction == "up":
@@ -19,7 +18,9 @@ class Entity(object):
 
 class Hero(Entity):
     def __init__(self, pos_x, pos_y):
-        super().__init__(pos_x, pos_y, "hero-down")
+        super().__init__(pos_x, pos_y)
+        self.current_image = "hero-down"
+        
 
     def move(self, direction):
         super().move(direction)
@@ -27,10 +28,17 @@ class Hero(Entity):
     
 
 class Skeleton(Entity):
-    def __init__(self, pos_x, pos_y, image):
-        super().__init__(pos_x, pos_y, image)
+    def __init__(self, pos_x, pos_y):
+        super().__init__(pos_x, pos_y)
+        self.current_image = "skeleton"
+        
 
     def get_move_direction(self):
         directions = ("up", "down", "left", "right")
         return choice(directions)
     
+class Boss(Skeleton):
+    def __init__(self, pos_x, pos_y):
+        super().__init__(pos_x, pos_y)
+        self.current_image = "boss"
+        

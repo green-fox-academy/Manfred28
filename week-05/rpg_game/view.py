@@ -10,6 +10,7 @@ class View(object):
                              "hero-left": tkinter.PhotoImage(file="assets/hero-left.png"),
                              "hero-right": tkinter.PhotoImage(file="assets/hero-right.png"),
                              "skeleton": tkinter.PhotoImage(file="assets/skeleton.png"),
+                             "boss": tkinter.PhotoImage(file="assets/boss.png"),
                              }
         self.draw_map(game_map)
         self.player_move_direction = ""

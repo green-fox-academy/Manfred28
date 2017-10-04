@@ -4,7 +4,12 @@ class GameMap(object):
     def __init__(self):
         self.game_map = []
         self.read_map_from_file()
-        self.entities = [entities.Hero(0, 0), entities.Skeleton(9, 0, "skeleton"), entities.Skeleton(5, 8, "skeleton")]
+        self.entities = [entities.Hero(0, 0), 
+                        entities.Skeleton(9, 0), 
+                        entities.Skeleton(5, 8),
+                        entities.Skeleton(2, 2),
+                        entities.Boss(5, 5)
+                        ]
 
     def read_map_from_file(self):
         with open("map.txt", "r") as map_file:
