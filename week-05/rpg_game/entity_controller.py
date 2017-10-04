@@ -13,6 +13,7 @@ class EntityController(object):
     def entity_lifecycle(self):
         self.move_player()
         self.player_strike()
+        self.game_map.enemy_strike()
         self.view.delete_entities()
         self.view.draw_entities(self.game_map.entities)
         self.view.root.after(1, self.entity_lifecycle)
@@ -27,6 +28,6 @@ class EntityController(object):
         self.view.root.after(500, self.move_enemies)
 
     def player_strike(self):
-        if self.view.player_strike and self.game_map.entities[0].fighting_enemy:
+        if self.view.player_strike and self.game_map.entities[0].fighting_enemy and self.game_map.entities[0].can_strike:
             self.game_map.entities[0].strike()
         self.view.player_strike = False

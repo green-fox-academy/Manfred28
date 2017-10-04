@@ -21,8 +21,9 @@ class GameMap(object):
     def is_occupied(self, moving_entity, pos_x, pos_y):
         for entity in self.entities:
             if entity.pos_x == pos_x and entity.pos_y == pos_y and entity != moving_entity:
-                if not entity.evil == moving_entity.evil:
+                if not entity.evil == moving_entity.evil and not entity.fighting_enemy and not moving_entity.fighting_enemy:
                     moving_entity.fighting_enemy = entity
+                    moving_entity.can_strike = True
                     entity.fighting_enemy = moving_entity
                 return True
         return False
@@ -59,6 +60,11 @@ class GameMap(object):
         for i in range(3):
             self.entities.append(entities.Skeleton(self.get_random_tile()))
         self.entities.append(entities.Boss(self.get_random_tile()))
+
+    def enemy_strike(self):
+        for enemy in self.entities[1:]:
+            if enemy.can_strike:
+                enemy.strike()
 
     def get_random_tile(self):
         pos_x = randint(0, 9)

@@ -4,16 +4,19 @@ class Entity(object):
     def __init__(self, position):
         self.pos_x, self.pos_y = position
         self.fighting_enemy = None
+        self.can_strike = False
         self.max_hp = 0
         self.dp = 0
         self.sp = 0
 
     def strike(self):
+        self.can_strike = False
         sv = self.sp + 2 * d6()
         if self.fighting_enemy.dp < sv:
             self.fighting_enemy.current_hp -= sv - self.fighting_enemy.dp
         if self.fighting_enemy.current_hp <= 0:
             self.fighting_enemy.die()
+            self.fighting_enemy.can_strike = False
             self.fighting_enemy = None
 
     def die(self):
