@@ -3,12 +3,12 @@ import tkinter
 class View(object):
     def __init__(self, game_map, hero):
         self.create_canvas()
-        self.photo_images = {"floor": tkinter.PhotoImage(file="floor.png"),
-                             "wall": tkinter.PhotoImage(file="wall.png"),
-                             "hero-down": tkinter.PhotoImage(file="hero-down.png"),
-                             "hero-up": tkinter.PhotoImage(file="hero-up.png"),
-                             "hero-left": tkinter.PhotoImage(file="hero-left.png"),
-                             "hero-right": tkinter.PhotoImage(file="hero-right.png"),
+        self.photo_images = {"floor": tkinter.PhotoImage(file="assets/floor.png"),
+                             "wall": tkinter.PhotoImage(file="assets/wall.png"),
+                             "hero-down": tkinter.PhotoImage(file="assets/hero-down.png"),
+                             "hero-up": tkinter.PhotoImage(file="assets/hero-up.png"),
+                             "hero-left": tkinter.PhotoImage(file="assets/hero-left.png"),
+                             "hero-right": tkinter.PhotoImage(file="assets/hero-right.png"),
                              }
         self.draw_map(game_map)
         self.player_move_direction = ""
