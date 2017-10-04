@@ -5,7 +5,11 @@ class View(object):
         self.create_canvas()
         self.photo_images = {"floor": tkinter.PhotoImage(file="floor.png"),
                              "wall": tkinter.PhotoImage(file="wall.png"),
-                             "hero": tkinter.PhotoImage(file="hero-down.png")}
+                             "hero-down": tkinter.PhotoImage(file="hero-down.png"),
+                             "hero-up": tkinter.PhotoImage(file="hero-up.png"),
+                             "hero-left": tkinter.PhotoImage(file="hero-left.png"),
+                             "hero-right": tkinter.PhotoImage(file="hero-right.png"),
+                             }
         self.draw_map(game_map)
         self.player_move_direction = ""
 
@@ -39,7 +43,7 @@ class View(object):
     def create_entity(self, entity):
         pos_x = self.pos_to_pixel(entity.pos_x)
         pos_y = self.pos_to_pixel(entity.pos_y)
-        return self.canvas.create_image(pos_x, pos_y, image=self.photo_images[entity.image])
+        return self.canvas.create_image(pos_x, pos_y, image=self.photo_images[entity.current_image])
 
     def pos_to_pixel(self, position):
         return 36 + 71 * position

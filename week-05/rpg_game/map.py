@@ -1,10 +1,10 @@
-from entities import Entity
+import entities
 
 class GameMap(object):
     def __init__(self):
         self.game_map = []
         self.read_map_from_file()
-        self.hero = Entity(0, 0, "hero")
+        self.hero = entities.Hero(0, 0)
 
     def read_map_from_file(self):
         with open("map.txt", "r") as map_file:
