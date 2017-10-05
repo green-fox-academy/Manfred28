@@ -82,3 +82,9 @@ class View(object):
         for hud_element in self.hud:
             self.canvas.delete(hud_element)
         self.hud = []   
+
+    def clear_view(self):
+        self.canvas.delete("all")
+
+    def write_level_info(self, level):
+        self.canvas.create_text(450, 350, font=("Purisa", 40), text="Level: " + str(level))
