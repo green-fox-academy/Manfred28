@@ -16,10 +16,11 @@ class View(object):
         self.player_move_direction = None
         self.player_strike = False
         self.entity_ids = []
+        self.hud = None
 
     def create_canvas(self):
         self.root = tkinter.Tk()
-        self.canvas = tkinter.Canvas(self.root, width=700, height=700)
+        self.canvas = tkinter.Canvas(self.root, width=900, height=700)
         self.root.bind("<KeyPress>", self.player_keypress)
         self.canvas.pack()
 
@@ -63,3 +64,12 @@ class View(object):
         for entity in self.entity_ids:
             self.canvas.delete(entity)
             
+    def draw_HUD(self, hero):
+        self.hud = self.canvas.create_text(800, 50, text=(
+                                                    "Hero: \n" + 
+                                                    "HP: " + str(hero.current_hp) + "/" + str(hero.max_hp)) + "\n" +
+                                                    "Defense points: " + str(hero.dp) + "\n" +
+                                                    "Attack points: " + str(hero.sp))
+
+    def delete_hud(self):
+        self.canvas.delete(self.hud)            

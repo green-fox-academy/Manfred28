@@ -8,14 +8,20 @@ class App(object):
         self.game_logic = GameLogic(self.game_map)
         self.view = View(self.game_map.game_map)   
 
-        self.entity_render()
+        self.render_entities()
         self.enemy_actions()
         self.player_actions()
+        self.render_hud()
 
-    def entity_render(self):
+    def render_entities(self):
         self.view.delete_entities()
         self.view.draw_entities(self.game_logic.entities)
-        self.view.root.after(60, self.entity_render)
+        self.view.root.after(60, self.render_entities)
+
+    def render_hud(self):
+        self.view.delete_hud()
+        self.view.draw_HUD(self.game_logic.hero)
+        self.view.root.after(1000, self.render_hud)
 
     def enemy_actions(self):
         self.game_logic.move_enemies()
@@ -36,6 +42,7 @@ class App(object):
         if self.view.player_strike and self.game_logic.hero.can_strike:
             self.game_logic.hero.strike()
         self.view.player_strike = False
+
 
 
 app = App()
