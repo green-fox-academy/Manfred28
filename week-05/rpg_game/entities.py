@@ -44,6 +44,7 @@ class Skeleton(Entity):
         super().__init__(position)
         self.current_image = "skeleton"
         self.evil = True
+        self.has_key = False
         self.level = 1
         self.max_hp = 2 * self.level * d6()
         self.dp = self.level / 2 * d6()
@@ -66,4 +67,4 @@ class Boss(Skeleton):
         self.current_hp = self.max_hp
 
 def d6():
-    return randint(0,6)
+    return randint(1,6)

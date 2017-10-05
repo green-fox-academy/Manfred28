@@ -3,14 +3,23 @@ import entities
 class GameLogic(object):
     def __init__(self, game_map):
         self.game_map = game_map
+        self.key_found = False
+        self.boss_dead = False
         self.entities = [entities.Hero([0, 0])]
         self.hero = self.entities[0]
-        self.generate_enemies()
 
+
+    def level_setup(self):
+        self.key_found = False
+        self.boss_dead = False
+        self.hero.pos_x, self.hero.pos_y = self.game_map.get_random_tile()
+        self.entities = self.entities[0:1]
+        self.generate_enemies()
 
     def generate_enemies(self):
         for i in range(3):
             self.entities.append(entities.Skeleton(self.game_map.get_random_tile()))
+        self.entities[1].has_key = True
         self.entities.append(entities.Boss(self.game_map.get_random_tile()))
 
     def move_entity(self, entity, direction):
@@ -51,11 +60,17 @@ class GameLogic(object):
             attacker.can_strike = True
             defender.fighting_enemy = attacker
 
-    def enemy_strike(self):
-        for enemy in self.entities[1:]:
-            if enemy.can_strike:
-                enemy.strike()
+    def enemy_strike(self, enemy):
+        if enemy.can_strike:
+            enemy.strike()
 
-    def move_enemies(self):
-        for enemy in self.entities[1:]:
-            self.move_entity(enemy, enemy.get_move_direction())
+    def remove_dead_entities(self, entity):
+        if entity.current_hp <= 0:
+            del self.entities[self.entities.index(entity)]
+            if isinstance(entity, entities.Boss):
+                self.boss_dead = True
+            if entity.has_key:
+                self.key_found = True
+
+    def is_level_over(self):
+        return self.boss_dead and self.key_found
