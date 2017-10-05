@@ -55,7 +55,7 @@ class Hero(Entity):
         elif roll > 5:
             self.current_hp += self.max_hp // 10
         if self.current_hp > self.max_hp:
-            self.current_hp -= self.max_hp - self.current_hp
+            self.current_hp -= self.current_hp - self.max_hp
 
 
 class Skeleton(Entity):
