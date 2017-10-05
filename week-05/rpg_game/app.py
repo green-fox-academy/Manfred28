@@ -8,7 +8,7 @@ class App(object):
         self.game_logic = GameLogic(self.game_map)
         self.view = View(self.game_map.game_map)   
 
-        self.game_logic.level_setup()
+        self.game_logic.start_level()
         self.render_entities()
         self.enemy_actions()
         self.player_actions()
@@ -50,7 +50,7 @@ class App(object):
 
     def check_game_status(self):
         if self.game_logic.is_level_over():
-            self.game_logic.level_setup()
+            self.game_logic.start_level()
         self.view.root.after(1000, self.check_game_status)
 
 

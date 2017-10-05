@@ -67,6 +67,7 @@ class View(object):
     def draw_HUD(self, hero):
         self.hud = self.canvas.create_text(800, 50, text=(
                                                     "Hero: \n" + 
+                                                    "Level: " + str(hero.level) + "\n" +
                                                     "HP: " + str(hero.current_hp) + "/" + str(hero.max_hp)) + "\n" +
                                                     "Defense points: " + str(hero.dp) + "\n" +
                                                     "Attack points: " + str(hero.sp))

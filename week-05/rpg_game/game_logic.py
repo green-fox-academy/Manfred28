@@ -3,13 +3,16 @@ import entities
 class GameLogic(object):
     def __init__(self, game_map):
         self.game_map = game_map
+        self.current_level = 0
         self.key_found = False
         self.boss_dead = False
         self.entities = [entities.Hero([0, 0])]
         self.hero = self.entities[0]
 
 
-    def level_setup(self):
+    def start_level(self):
+        self.hero.chance_to_heal()
+        self.current_level += 1
         self.key_found = False
         self.boss_dead = False
         self.hero.pos_x, self.hero.pos_y = self.game_map.get_random_tile()
@@ -18,9 +21,9 @@ class GameLogic(object):
 
     def generate_enemies(self):
         for i in range(3):
-            self.entities.append(entities.Skeleton(self.game_map.get_random_tile()))
+            self.entities.append(entities.Skeleton(self.game_map.get_random_tile(), self.current_level))
         self.entities[1].has_key = True
-        self.entities.append(entities.Boss(self.game_map.get_random_tile()))
+        self.entities.append(entities.Boss(self.game_map.get_random_tile(), self.current_level))
 
     def move_entity(self, entity, direction):
         pos_x, pos_y = self.get_new_pos_from_direction(entity.pos_x, entity.pos_y, direction)
