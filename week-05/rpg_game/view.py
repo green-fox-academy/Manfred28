@@ -16,7 +16,7 @@ class View(object):
         self.player_move_direction = None
         self.player_strike = False
         self.entity_ids = []
-        self.hud = None
+        self.hud = []
 
     def create_canvas(self):
         self.root = tkinter.Tk()
@@ -63,14 +63,22 @@ class View(object):
     def delete_entities(self):
         for entity in self.entity_ids:
             self.canvas.delete(entity)
+        self.entity_ids = []
             
     def draw_HUD(self, hero):
-        self.hud = self.canvas.create_text(800, 50, text=(
-                                                    "Hero: \n" + 
-                                                    "Level: " + str(hero.level) + "\n" +
-                                                    "HP: " + str(hero.current_hp) + "/" + str(hero.max_hp)) + "\n" +
-                                                    "Defense points: " + str(hero.dp) + "\n" +
-                                                    "Attack points: " + str(hero.sp))
-
+        player_info = ("Hero: \n" + "Level: " + str(hero.level) + "\n" +
+                       "HP: " + str(hero.current_hp) + "/" + str(hero.max_hp) + "\n" +
+                       "Defense points: " + str(hero.dp) + "\n" +
+                       "Attack points: " + str(hero.sp))
+        self.hud.append(self.canvas.create_text(800, 50, text=player_info))
+        if hero.fighting_enemy:
+            enemy_info = ("Fighting Monster: \n" + "Level: " + str(hero.fighting_enemy.level) + "\n" +
+                          "HP: " + str(hero.fighting_enemy.current_hp) + "/" + str(hero.fighting_enemy.max_hp) + "\n" +
+                          "Defense points: " + str(hero.fighting_enemy.dp) + "\n" +
+                          "Attack points: " + str(hero.fighting_enemy.sp))
+            self.hud.append(self.canvas.create_text(800, 150, text=enemy_info))
+                                                    
     def delete_hud(self):
-        self.canvas.delete(self.hud)            
+        for hud_element in self.hud:
+            self.canvas.delete(hud_element)
+        self.hud = []   

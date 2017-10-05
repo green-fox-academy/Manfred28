@@ -24,7 +24,7 @@ class App(object):
     def render_hud(self):
         self.view.delete_hud()
         self.view.draw_HUD(self.game_logic.hero)
-        self.view.root.after(1000, self.render_hud)
+        self.view.root.after(60, self.render_hud)
 
     def enemy_actions(self):
         for enemy in self.game_logic.entities[1:]:
