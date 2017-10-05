@@ -88,3 +88,6 @@ class View(object):
 
     def write_level_info(self, level):
         self.canvas.create_text(450, 350, font=("Purisa", 40), text="Level: " + str(level))
+
+    def game_over_screen(self):
+        self.canvas.create_text(450, 350, font=("Purisa", 40), text="You Be Dead")

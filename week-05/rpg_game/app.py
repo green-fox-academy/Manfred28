@@ -1,6 +1,7 @@
 from map import GameMap
 from game_logic import GameLogic
 from view import View
+from sys import exit
 
 class App(object):
     def __init__(self):
@@ -60,6 +61,11 @@ class App(object):
             self.view.root.after(1100, self.game_logic.start_level)
             self.view.root.after(1200, lambda: self.view.draw_map(self.game_map.game_map))
             self.view.root.after(1200, self.start_render)
+        elif self.game_logic.hero.current_hp <= 0:
+            self.stop_render()
+            self.view.clear_view()
+            self.view.game_over_screen()
+            self.view.root.after(1500, exit)
         self.view.root.after(2000, self.check_game_status)
 
     def show_game_level(self):
@@ -67,12 +73,6 @@ class App(object):
         self.view.write_level_info(self.game_logic.current_level + 1)
         self.view.root.after(1000, self.view.clear_view)
         
-    def start_level(self):
-        self.stop_render()
-        self.show_game_level()
-        self.view.root.after(1100, lambda: self.view.draw_map(self.game_map.game_map))
-        self.view.root.after(1200, self.game_logic.start_level)
-        self.view.root.after(1200, self.start_render)
 
 app = App()
 app.view.start()
