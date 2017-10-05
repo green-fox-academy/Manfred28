@@ -68,7 +68,7 @@ class GameLogic(object):
         if enemy.can_strike:
             enemy.strike()
 
-    def remove_dead_entities(self, entity):
+    def remove_dead_entity(self, entity):
         if entity.current_hp <= 0:
             del self.entities[self.entities.index(entity)]
             if isinstance(entity, entities.Boss):

@@ -7,13 +7,11 @@ class App(object):
     def __init__(self):
         self.game_map = GameMap()
         self.game_logic = GameLogic(self.game_map)
-        self.game_logic.start_level()
-        self.view = View(self.game_map.game_map)   
+        self.view = View()   
 
-        self.render = self.start_render()
+        self.level_start()
         self.enemy_actions()
         self.player_actions()
-        
         self.check_game_status()
 
     def start_render(self):
@@ -36,7 +34,7 @@ class App(object):
         for enemy in self.game_logic.entities[1:]:
             self.game_logic.move_entity(enemy, enemy.get_move_direction())
             self.game_logic.enemy_strike(enemy)
-            self.game_logic.remove_dead_entities(enemy)
+            self.game_logic.remove_dead_entity(enemy)
         self.view.root.after(500, self.enemy_actions)
 
     def player_actions(self):
@@ -57,10 +55,7 @@ class App(object):
     def check_game_status(self):
         if self.game_logic.is_level_over():
             self.stop_render()
-            self.show_game_level()
-            self.view.root.after(1100, self.game_logic.start_level)
-            self.view.root.after(1200, lambda: self.view.draw_map(self.game_map.game_map))
-            self.view.root.after(1200, self.start_render)
+            self.level_start()
         elif self.game_logic.hero.current_hp <= 0:
             self.stop_render()
             self.view.clear_view()
@@ -73,6 +68,11 @@ class App(object):
         self.view.write_level_info(self.game_logic.current_level + 1)
         self.view.root.after(1000, self.view.clear_view)
         
+    def level_start(self):
+        self.show_game_level()
+        self.view.root.after(1100, self.game_logic.start_level)
+        self.view.root.after(1200, lambda: self.view.draw_map(self.game_map.game_map))
+        self.view.root.after(1200, self.start_render)
 
 app = App()
 app.view.start()

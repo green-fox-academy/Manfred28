@@ -1,7 +1,7 @@
 import tkinter
 
 class View(object):
-    def __init__(self, game_map):
+    def __init__(self):
         self.create_canvas()
         self.photo_images = {"floor": tkinter.PhotoImage(file="assets/floor.png"),
                              "wall": tkinter.PhotoImage(file="assets/wall.png"),
@@ -12,7 +12,6 @@ class View(object):
                              "skeleton": tkinter.PhotoImage(file="assets/skeleton.png"),
                              "boss": tkinter.PhotoImage(file="assets/boss.png"),
                              }
-        self.draw_map(game_map)
         self.player_move_direction = None
         self.player_strike = False
         self.entity_ids = []
