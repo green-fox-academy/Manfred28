@@ -6,9 +6,9 @@ class App(object):
     def __init__(self):
         self.game_map = GameMap()
         self.game_logic = GameLogic(self.game_map)
+        self.game_logic.start_level()
         self.view = View(self.game_map.game_map)   
 
-        self.game_logic.start_level()
         self.render = self.start_render()
         self.enemy_actions()
         self.player_actions()
@@ -57,10 +57,9 @@ class App(object):
         if self.game_logic.is_level_over():
             self.stop_render()
             self.show_game_level()
-            self.view.root.after(1100, lambda: self.view.draw_map(self.game_map.game_map))
-            self.view.root.after(1200, self.game_logic.start_level)
+            self.view.root.after(1100, self.game_logic.start_level)
+            self.view.root.after(1200, lambda: self.view.draw_map(self.game_map.game_map))
             self.view.root.after(1200, self.start_render)
-            
         self.view.root.after(2000, self.check_game_status)
 
     def show_game_level(self):
@@ -68,6 +67,12 @@ class App(object):
         self.view.write_level_info(self.game_logic.current_level + 1)
         self.view.root.after(1000, self.view.clear_view)
         
+    def start_level(self):
+        self.stop_render()
+        self.show_game_level()
+        self.view.root.after(1100, lambda: self.view.draw_map(self.game_map.game_map))
+        self.view.root.after(1200, self.game_logic.start_level)
+        self.view.root.after(1200, self.start_render)
 
 app = App()
 app.view.start()

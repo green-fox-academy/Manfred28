@@ -11,6 +11,7 @@ class GameLogic(object):
 
 
     def start_level(self):
+        self.game_map.choose_map()
         self.hero.chance_to_heal()
         self.current_level += 1
         self.key_found = False

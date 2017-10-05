@@ -3,10 +3,14 @@ from random import randint
 class GameMap(object):
     def __init__(self):
         self.game_map = []
-        self.read_map_from_file()
+        self.choose_map()
 
-    def read_map_from_file(self):
-        with open("map.txt", "r") as map_file:
+    def choose_map(self):
+        file_name = "map" + str(randint(1,4)) + ".txt"
+        self.read_map_from_file(file_name)
+
+    def read_map_from_file(self, file_name):
+        with open("maps/" + file_name, "r") as map_file:
             map_file = map_file.read().split("\n")
             for i in range(len(map_file)):
                 map_file[i] = map_file[i].split(",")
