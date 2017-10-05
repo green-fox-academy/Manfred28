@@ -17,6 +17,8 @@ class GameLogic(object):
         self.key_found = False
         self.boss_dead = False
         self.hero.pos_x, self.hero.pos_y = self.game_map.get_random_tile()
+        self.hero.can_strike = False
+        self.hero.fighting_enemy = None
         self.entities = self.entities[0:1]
         self.generate_enemies()
 
