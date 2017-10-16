@@ -27,7 +27,7 @@ nav > ul > li {
     background-color: #2AEAFF;
 }
 
-nav > ul > li:nth-child(1) {
+nav > ul > li:nth-child(1), li:nth-child(4) {
     width: 95px;    
 }
 
@@ -39,13 +39,8 @@ nav > ul > li:nth-child(3) {
     width: 85px;    
 }
 
-nav > ul > li:nth-child(4) {
-    width: 95px;    
-}
-
 .container {
     display: flex;
-    width: 100%;
     margin-top: 80px;
     justify-content: center;
     flex-wrap: wrap;
@@ -54,6 +49,7 @@ nav > ul > li:nth-child(4) {
 main, aside {
     height: 500px;
     margin-bottom: 10px;
+    display: inline-block;
 }
 
 main {
