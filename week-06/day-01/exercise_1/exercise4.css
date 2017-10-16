@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    width: 430px;
+    padding: 50px;
+    flex-direction: column;
+}
+
+.item {
+    flex: 1 1 120px;
+}
+
+.green {
+    background-color: #51D400;
+    order: 0;
+}
+
+.yellow {
+    background-color: #FFD62A;   
+    flex: 1 1 240px; 
+    order: 2;
+}
+
+.purple {
+    order: 1;
+    background-color: #B02AFF
+}
+
