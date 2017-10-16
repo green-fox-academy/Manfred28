@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    padding: 50px;
+}
+
+.item {
+    flex: 0 0 190px;
+    height: 190px;
+}
+
+.green {
+    background-color: #51D400;
+}
+
+.yellow {
+    display: flex;
+    flex: 0 0 750px;
+    height: 280px;
+    background-color: #FFD62A;  
+    justify-content: center;
+    align-items: center;  
+}
+
+.purple {
+    flex: 0 0 100px;
+    height: 100px;
+    background-color: #B02AFF
+}
+
