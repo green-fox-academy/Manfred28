@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+}
+
+label{
+    display: block;
+    margin: 20px;
+}
+
+span {
+    display: inline-block;
+    padding: 8px;
+}
+
+.icon {
+    position: relative;
+    background-color: #1C242B;
+    color: white;
+    width: 29px;
+}
+
+.icon::after {
+    position: absolute;
+    right: -5px;
+    top: 12px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 5px solid #000;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.delete {
+    background-color: #F34541;
+}
+
+.sure {
+    background-color: #38BA7D;
+}
+
+.sure, .delete {
+    width: 100px; 
+    display: none;
+    text-align: center;
+    color: #fff;
+}
+
+.fa-check {
+    display: none;
+}
+
+
+.icon:hover {
+    color: #F34541;
+}
+
+.icon:hover ~ .delete {
+    display: inline-block;
+}
+
+.icon:active {
+    color: #38BA7D;
+}
+
+.icon:active ~ .sure, .icon:active > .fa-check {
+    display: inline-block;
+}
+
+.icon:active ~ .delete, .icon:active > .fa-trash-o {
+    display: none;
+}
+
