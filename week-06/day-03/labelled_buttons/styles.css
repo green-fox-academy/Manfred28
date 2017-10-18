@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 label{
@@ -9,26 +11,26 @@ label{
 
 span {
     display: inline-block;
-    padding: 8px;
 }
 
 .icon {
-    position: relative;
+    width: 29px;
+    padding: 8px;    
     background-color: #1C242B;
     color: white;
-    width: 29px;
 }
 
-.icon::after {
+.delete::after, .sure::after {
     position: absolute;
-    right: -5px;
+    left: 0;
     top: 12px;
     content: "";
     width: 0;
     height: 0;
-    border-left: 5px solid #000;
+    border-left: 0px solid #000;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
+    transition: border-width 1s;
 }
 
 .delete {
@@ -40,9 +42,10 @@ span {
 }
 
 .sure, .delete {
-    width: 100px; 
     display: none;
-    text-align: center;
+    position: relative;
+    width: 0px;
+    padding: 8px 0;
     color: #fff;
 }
 
@@ -50,20 +53,26 @@ span {
     display: none;
 }
 
-
 .icon:hover {
     color: #F34541;
-}
-
-.icon:hover ~ .delete {
-    display: inline-block;
 }
 
 .icon:active {
     color: #38BA7D;
 }
 
-.icon:active ~ .sure, .icon:active > .fa-check {
+.icon:active ~ .sure, .icon:hover ~ .delete {
+    display: inline-block;
+    animation: slide-out 0.5s linear;
+    animation-fill-mode: forwards;
+}
+
+.icon:active ~ .sure::after, .icon:hover ~ .delete::after {
+    animation: slide-out-triangle 0.1s linear;
+    animation-fill-mode: forwards;
+}
+
+.icon:active > .fa-check {
     display: inline-block;
 }
 
@@ -71,3 +80,12 @@ span {
     display: none;
 }
 
+@keyframes slide-out {
+    0% {width: 0px; text-indent: 0}
+    100% {width: 100px; text-indent: 25px}
+}
+
+@keyframes slide-out-triangle {
+    0% {border-left: 0px solid #000;}
+    100% {border-left: 5px solid #000;}
+}
