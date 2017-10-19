@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 2px 2px;
+    width: 700px;
+    height: 600px;
+    background-color: black;
+    border: 2px solid black
+}
+
+.tile {
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.start-tile {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.pub-tile {
+    grid-column: 7 / 8;
+    grid-row: 6 / 7;
+}
+
+.start-tile div, .pub-tile div {
+    transform: rotate(315deg);
+    font-size: 1.5em;
+}
+
+.game-middle {
+    grid-column: 2 / 7;
+    grid-row: 2 / 6;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: green;
+}
+
+.game-middle div {
+    height: 50%;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */ /* justify-content only works on one div,text-align on the other */ 
+    color: white;
+    font-size: 2em;
+}
+
+.cards {
+    background-color: purple;
+}
