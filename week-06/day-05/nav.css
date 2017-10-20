@@ -1,0 +1,39 @@
+nav.navbar-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    height: 50px;
+}
+
+nav.navbar-top ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+nav.navbar-top ul li {
+    padding: 12px;
+}
+
+.logo {
+    padding: 5px;
+    border-right: 1px solid gray;
+}
+
+.logo img {
+    height: 40px;
+}
+
+
+.cart {
+    padding: 10px 35px;
+    border-left: 1px solid gray;
+    background-color: #cccccc;
+}
+
+.cart img {
+    position: relative;
+    top: 4px;
+    width: 1.2em;
+    margin-left: 5px;
+}
