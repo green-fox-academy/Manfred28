@@ -1,0 +1,89 @@
+.featured {
+    display: flex;
+    width: 100%;
+    height: 800px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.featured section {
+    position: relative;
+    width: 400px;
+    height: 100%;
+    background-color: #1f1f1f;
+    padding: 45px 75px 45px 60px; 
+}
+
+.featured section span {
+    color: #707070;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.2em
+}
+
+.featured section h2 {
+    width: 170px;
+    font-size: 3em;
+    color: white;   
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 40px; 
+    border-bottom: 6px solid white;
+    letter-spacing: 3px;
+    line-height: 1.1em;
+}
+
+
+.featured div {
+    flex-grow: 1;
+}
+
+.featured .featured-image {
+    background: url(assets/feature_image.png) no-repeat top center;
+    background-size: cover;
+}
+
+.featured section p {
+    margin-bottom: 40px;
+}
+
+.featured section a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: white;    
+}
+
+.featured section a::after {
+    content: "→";
+    margin-left: 30px;
+    font-size: 1.2em;
+}
+
+.featured section nav {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    width: 400px;
+    background-color: white;
+}
+
+.featured section nav button {
+    width: 50%;
+    height: 100%;
+    border: none;
+    border-bottom: 1px solid #a5a5a5;
+    background-color: white;
+    color: #707070;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.featured section nav button span {
+    margin: 15px;
+}
+
+.featured section nav button:nth-child(1) {
+    border-right: 1px solid #a5a5a5;
+}
+
