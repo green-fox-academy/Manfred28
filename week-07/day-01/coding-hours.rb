@@ -7,17 +7,17 @@
 # // Print the percentage of the coding hours in the semester if the average
 # // work hours weekly is 52
 
-$avg_coding_hour = 6
-$semester_length = 17
+AVG_CODING_HOURS = 6
+SEMESTER_LENGTH = 17
+DAYS_SPENT_CODING = 5
+WEEKLY_WORKING_HOURS = 52
 
 def time_spent_coding_per_semester
-    days_spent_coding = 5
-    days_spent_coding * $avg_coding_hour * $semester_length
+    DAYS_SPENT_CODING * AVG_CODING_HOURS * SEMESTER_LENGTH
 end
 
 def percentage_of_coding_hours 
-    weekly_working_hour = 52
-    time_spent_coding_per_semester.to_f / ( weekly_working_hour * $semester_length ) * 100
+    time_spent_coding_per_semester.to_f / ( WEEKLY_WORKING_HOURS * SEMESTER_LENGTH ) * 100
 end
 
 
