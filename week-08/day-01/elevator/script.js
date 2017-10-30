@@ -10,7 +10,6 @@ class ElevatorController {
     }
 
     addControlEventListener (buttons, fn) {
-        let changeActiveFloor = this.changeActiveFloor.bind(this)
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 fn(parseInt(button.value))
@@ -72,7 +71,6 @@ class ElevatorView {
             floor.classList.remove('current-elevator')
         })
         this.$floors[index].classList.add('current-elevator')
-        console.log(this.$floors);
     }
 }
 
