@@ -32,6 +32,10 @@ body {
     background-color: green;
 }
 
+.elevator-levels div.full {
+    background-color: #888;
+}
+
 .elevator-buttons {
     display: flex;
     flex-flow: column;

@@ -13,7 +13,9 @@ class ElevatorController {
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 fn(parseInt(button.value))
-                this.view.update(this.model.position, this.model.people)
+                this.model.isFull() ? 
+                    this.view.update(this.model.position, this.model.people, true) :
+                    this.view.update(this.model.position, this.model.people)
             })
         })
     }
@@ -40,6 +42,10 @@ class ElevatorModel {
             this.people += num;
         }
     }
+
+    isFull () {
+        return this.people === this.maxPeople
+    }
 }
 
 
@@ -58,12 +64,14 @@ class ElevatorView {
         }
     }
 
-    update (index, people) {
+    update (index, people, full=false) {
         this.$floors.forEach(function(floor) {
-            floor.classList.remove('current-elevator')
+            floor.classList = ""
             floor.textContent = ""
         })
-        this.$floors[index].classList.add('current-elevator')
+        full ? 
+            this.$floors[index].classList.add('full') : 
+            this.$floors[index].classList.add('current-elevator')
         this.$floors[index].textContent = people;
     }
 }
