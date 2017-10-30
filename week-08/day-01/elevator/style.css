@@ -19,9 +19,13 @@ body {
 
 .elevator-levels > div {
     width: 200px;
-    height: 50px;
+    height: 50px;    
+    padding-top: 5px;    
     background-color: #fff;
     border: 1px solid #000;
+    color: #fff;
+    font-size: 2em;
+    text-align: center;
 }
 
 .elevator-levels div.current-elevator {

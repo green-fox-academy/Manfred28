@@ -6,14 +6,14 @@ class ElevatorController {
         this.view = new ElevatorView(this.model.maxFloor)
         this.addControlEventListener(this.view.peopleControlButtons, this.model.addPeople.bind(this.model));
         this.addControlEventListener(this.view.floorControlButtons, this.model.moveElevator.bind(this.model));
-        this.view.update(this.model.position)
+        this.view.update(this.model.position, this.model.people)
     }
 
     addControlEventListener (buttons, fn) {
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 fn(parseInt(button.value))
-                this.view.update(this.model.position)
+                this.view.update(this.model.position, this.model.people)
             })
         })
     }
@@ -30,23 +30,15 @@ class ElevatorModel {
     }
 
     moveElevator (num) {
-        if (this.position + num >= 0 && this.position + num <= 9) {
+        if (this.position + num >= 0 && this.position + num <= this.maxFloor - 1) {
             this.position += num;
         }
     }
 
     addPeople (num) {
-        if (this.people + num >= 0 && !this.isPeopleBeyondMax()) {
+        if (this.people + num >= 0 && this.people + num <= this.maxPeople) {
             this.people += num;
         }
-    }
-
-    isFloorBeyondMax () {
-        return this.position > this.maxFloor - 1;
-    }
-
-    isPeopleBeyondMax () {
-        return this.people > this.maxPeople - 1;
     }
 }
 
@@ -66,11 +58,13 @@ class ElevatorView {
         }
     }
 
-    update (index) {
+    update (index, people) {
         this.$floors.forEach(function(floor) {
             floor.classList.remove('current-elevator')
+            floor.textContent = ""
         })
         this.$floors[index].classList.add('current-elevator')
+        this.$floors[index].textContent = people;
     }
 }
 
