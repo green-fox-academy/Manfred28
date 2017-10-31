@@ -24,6 +24,18 @@ Pavo cristatus;5860;Violet
 Corythornis cristata;5358;Khaki
 Loris tardigratus;725;Orange`;
 
+const uniqueBy = function(array, fn) {
+    uniqueArray = []
+    return array.filter(function(elem) {
+        newElem = fn(elem)
+        if (!uniqueArray.includes(newElem)) {
+            uniqueArray.push(newElem);
+            return true;
+        }
+        return false
+    })
+}
+
 const CsvToJson = function(data) {
     const columNames = ['name', 'id', 'color_code']
     const json = data.split('\n')
@@ -34,20 +46,10 @@ const CsvToJson = function(data) {
                 return acc;
             }, {})
         )
-        .filter(function(v, index, a) {
-            let valid = true;
-            a.forEach(function(elem, innerIndex) {
-                if (elem['name'] === v['name'] && index < innerIndex) {
-                    console.log(elem['name'])
-                    valid = false;
-                }
-            })
-            return valid;
-        })
-    return json;
+    return json
 }
 
-console.log(CsvToJson(data));
+console.log(uniqueBy(CsvToJson(data), (x) => x.name));
 
 
 // Convert the above string (which is in CSV format) to an array of objects
