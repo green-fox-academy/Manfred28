@@ -11,9 +11,7 @@ const getGifData = function() {
 
 const eventListenerToThumbnail = function(gif) {
     gif.addEventListener('click', function() {
-        const temp = this.getAttribute('data-alt')
-        this.setAttribute('data-alt', this.src)
-        this.setAttribute('src', temp)
+        [this.src, this.dataset.alt] = [this.dataset.alt, this.src]
     })
 }
 
