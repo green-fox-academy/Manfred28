@@ -9,20 +9,20 @@ const getGifData = function() {
     }
 }
 
-const eventListenerToThumbnail = function(elem, gifData) {
-    console.log(elem)
-    elem.addEventListener('click', function() {
-        const gifNode = this.cloneNode(true)
-        gifNode.setAttribute('src', gifData.embed_url)
-        this.parentNode.replaceChild(gifNode, this)
+const eventListenerToThumbnail = function(gif) {
+    gif.addEventListener('click', function() {
+        const temp = this.getAttribute('data-alt')
+        this.setAttribute('data-alt', this.src)
+        this.setAttribute('src', temp)
     })
 }
 
 const createGifThumbnail = function(gifData) {
-    const elem = document.createElement('embed')
-    elem.setAttribute('src', gifData.images.fixed_height_still.url)
-    document.body.appendChild(elem)
-    eventListenerToThumbnail(elem, gifData)
+    const gif = document.createElement('img')
+    gif.setAttribute('src', gifData.images.fixed_height_still.url)
+    gif.setAttribute('data-alt', gifData.images.fixed_height.url)
+    document.body.appendChild(gif)
+    eventListenerToThumbnail(gif)
 }
 
 
