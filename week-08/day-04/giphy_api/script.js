@@ -11,14 +11,21 @@ const getGifData = function() {
 
 const eventListenerToThumbnail = function(gif) {
     gif.addEventListener('click', function() {
-        [this.src, this.dataset.alt] = [this.dataset.alt, this.src]
+        [this.dataset.current, this.dataset.alt] = [this.dataset.alt, this.dataset.current]
+        let img = new Image();
+        img.onload = function() {
+            gif.style.backgroundImage = `url(${img.src})`    
+        }
+        img.src = this.dataset.current
     })
 }
 
 const createGifThumbnail = function(gifData) {
     const gif = document.createElement('img')
-    gif.setAttribute('src', gifData.images.fixed_height_still.url)
-    gif.setAttribute('data-alt', gifData.images.fixed_height.url)
+    gif.dataset.current = gifData.images.fixed_height_still.url
+    gif.dataset.alt = gifData.images.fixed_height.url
+    gif.style.backgroundImage = `url(${gif.dataset.current})`
+    console.log(gif)
     document.body.appendChild(gif)
     eventListenerToThumbnail(gif)
 }
