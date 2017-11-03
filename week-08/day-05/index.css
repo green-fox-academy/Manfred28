@@ -51,8 +51,12 @@ main > aside {
 }
 
 .post h2 {
-    margin-bottom: 10px;
     width: 80%;
+}
+
+.post a {
+    text-decoration: none;
+    color: #000;
 }
 
 .post .rating {
@@ -65,5 +69,13 @@ main > aside {
 
 .post-info {
     width: 100%;
+}
+
+.post-actions {
+    display: flex;
+}
+
+.post-actions a {
+    margin-right: 5px;
 }
 
