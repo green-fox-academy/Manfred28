@@ -1,5 +1,6 @@
 'use strict';
 
+
 const getTimeSincePost = function(timestamp) {
     const gmt2Offset = 3600 * 1
     const secondsPassed = Math.floor((Date.now() + gmt2Offset - timestamp) / 1000) + gmt2Offset;
@@ -42,17 +43,24 @@ const createPosts = function(postData){
 
 
 
-const ajaxRequest = function(url, callback) {
-    const request = new XMLHttpRequest();
-    request.open('GET', url);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.onreadystatechange = function() {
-        if (request.readyState === 4 && request.status === 200) {
-            createPosts(request.responseText);
-        }
-    }
-    request.send();
+// const ajaxRequest = function(url, callback) {
+//     const request = new XMLHttpRequest();
+//     request.open('GET', url);
+//     request.setRequestHeader('Content-Type', 'application/json');
+//     request.onreadystatechange = function() {
+//         if (request.readyState === 4 && request.status === 200) {
+//             createPosts(request.responseText);
+//         }
+//     }
+//     request.send();
+// }
+
+const Config = {
+    url: 'http://secure-reddit.herokuapp.com/simple/posts',
+    method: 'GET',
+    callback: createPosts,
+    data: null
 }
 
-ajaxRequest('http://secure-reddit.herokuapp.com/simple/posts', createPosts);
+ajaxRequest(Config);
 
