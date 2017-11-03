@@ -1,0 +1,33 @@
+main {
+    padding: 30px 5px;
+}
+
+article > form {
+    width: 59%;
+    min-height: 200px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+article > form input {
+    height: 30px;
+}
+
+article > form textarea {
+    height: 50px;
+}
+
+article > form > label { 
+    font-weight: 1000;
+}
+
+article > form > label > span { 
+    color: red;
+}
+
+
+article > form > input, article > form > textarea {
+    width: 100%;
+    margin: 10px 0;
+    background-color: #ddd;
+}
