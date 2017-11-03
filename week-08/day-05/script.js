@@ -1,22 +1,28 @@
 'use strict';
 
 const getTimeSincePost = function(timestamp) {
-    const secondsPassed = Date.now() - timestamp;
-    if (Math.floor(secondsPassed / 60 / 60 / 24)) {
+    const gmt2Offset = 3600 * 1
+    const secondsPassed = Math.floor((Date.now() + gmt2Offset - timestamp) / 1000) + gmt2Offset;
+    if (Math.floor(secondsPassed / 60 / 60 / 24) > 0) {
         return Math.floor(secondsPassed / 60 / 60 / 24) + " day(s)"
-    } else if (Math.floor(secondsPassed / 60 / 60)) {
-        return Math.floor(secondsPassed / 60 / 60) + " minute(s)"        
+    } else if (Math.floor(secondsPassed / 60 / 60) > 0) {
+        return Math.floor(secondsPassed / 60 / 60) + " hour(s)"        
     } else {
-        return Math.floor(secondsPassed / 60) + " second(s)"                
+        return Math.floor(secondsPassed / 60) + " minute(s)"                
     }
 }
+
 
 const createPosts = function(postData){
     const $postContainer = document.querySelector('main > article')    
     postData.forEach(function(postData) {
         const $post = document.createElement('section');
         $post.innerHTML = `
-            <section class="rating">${postData.score}</section>
+            <section class="rating">
+                <button><img src="assets/images/upvote.png"/></button>
+                ${postData.score}
+                <button><img src="assets/images/downvote.png"/></button>
+            </section>
             <div>
                 <h2><a href="${postData.url}">${postData.title}</a></h2>
                 <section class="post-info">
