@@ -14,6 +14,7 @@ const getTimeSincePost = function(timestamp) {
 
 
 const createPosts = function(postData){
+    postData = JSON.parse(postData).posts
     const $postContainer = document.querySelector('main > article')    
     postData.forEach(function(postData) {
         const $post = document.createElement('section');
@@ -47,9 +48,7 @@ const ajaxRequest = function(url, callback) {
     request.setRequestHeader('Content-Type', 'application/json');
     request.onreadystatechange = function() {
         if (request.readyState === 4 && request.status === 200) {
-            const data = JSON.parse(request.responseText).posts
-            console.log(data);
-            createPosts(data);
+            createPosts(request.responseText);
         }
     }
     request.send();
