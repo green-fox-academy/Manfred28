@@ -8,8 +8,10 @@ const getTimeSincePost = function(timestamp) {
         return Math.floor(secondsPassed / 60 / 60 / 24) + " day(s)"
     } else if (Math.floor(secondsPassed / 60 / 60) > 0) {
         return Math.floor(secondsPassed / 60 / 60) + " hour(s)"        
-    } else {
+    } else if (Math.floor(secondsPassed / 60)) {
         return Math.floor(secondsPassed / 60) + " minute(s)"                
+    } else {
+        return secondsPassed + " second(s)"
     }
 }
 
