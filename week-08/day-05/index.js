@@ -43,20 +43,6 @@ const createPosts = function(postData){
     })
 }
 
-
-
-// const ajaxRequest = function(url, callback) {
-//     const request = new XMLHttpRequest();
-//     request.open('GET', url);
-//     request.setRequestHeader('Content-Type', 'application/json');
-//     request.onreadystatechange = function() {
-//         if (request.readyState === 4 && request.status === 200) {
-//             createPosts(request.responseText);
-//         }
-//     }
-//     request.send();
-// }
-
 const Config = {
     url: 'http://secure-reddit.herokuapp.com/simple/posts',
     method: 'GET',
