@@ -82,6 +82,29 @@ app.post('/dountil/:operation', function(req, res) {
     }
 });
 
+app.post('/arrays', function(req, res) {
+    if (req.body.what == "sum") {
+        res.json({
+            result: req.body.numbers.reduce((acc, cur) => acc += cur, 0)
+        })
+    }
+    else if (req.body.what == "multiply") {
+        res.json({
+            result: req.body.numbers.reduce((acc, cur) => acc *= cur, 1)
+        })
+    }
+    else if (req.body.what == "double") {
+        res.json({
+            result: req.body.numbers.map((num) => num * 2)
+        })
+    }
+    else if (!req.body.what || !req.body.numbers) {
+        res.json({
+            error: "Please provide what to do with the numbers!"
+        })
+    }
+});
+
 app.listen(8080);
 
 
