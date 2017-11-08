@@ -105,6 +105,48 @@ app.post('/arrays', function(req, res) {
     }
 });
 
+const insertRandomWords = function(sentence) {
+    const randomWords =  [" Hm.", " Uhm.", " Err..", " Err"];
+    const randomWordCount = Math.round(Math.random() * 5) + 1;
+    const randomWordIndex = () => Math.round(Math.random() * (randomWords.length -1));
+    for (let i=0; i < randomWordCount; i++) {
+        sentence += randomWords[randomWordIndex()]
+    }
+    return sentence + " ";
+}
+
+const simplifiedYodaSpeak = function(stringOfWords) {
+    if (stringOfWords[0] === " ") {
+        stringOfWords = stringOfWords.substring(1);
+    }
+    let yodaSentence = stringOfWords.split(" ");
+    yodaSentence[0] = yodaSentence[0].toLowerCase();
+    for (let i = 0; i < yodaSentence.length; i += 2) {
+        if (i + 1 !== yodaSentence.length) {
+            [yodaSentence[i], yodaSentence[i + 1]] = [yodaSentence[i + 1], yodaSentence[i]]
+        }
+    }
+    yodaSentence[0] = yodaSentence[0][0].toUpperCase() + yodaSentence[0].substring(1);    
+    yodaSentence = yodaSentence.join(" ")
+    return insertRandomWords(yodaSentence)
+}
+
+app.post('/sith', function(req, res) {
+    if (req.body.text) {
+        const inputSentence = req.body.text.split(".");
+        inputSentence.splice(-1, 1);
+        res.json({
+            sith_text: inputSentence.map(simplifiedYodaSpeak).join("")
+        })
+    }
+    else {
+        res.json(
+        {
+            "sith_text": "Feed me some text you have to, padawan young you are. Hmmm."
+        })
+    }
+})
+
 app.listen(8080);
 
 
