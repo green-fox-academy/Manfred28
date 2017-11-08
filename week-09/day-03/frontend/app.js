@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 app.use('/assets', express.static('assets'))
+app.use(bodyParser.json())
+
 express.json.type = "application/json";
 
 app.get('/', function(req, res){
@@ -36,7 +39,47 @@ app.get('/greeter', function(req, res) {
             "error": "Please provide a title!"
         })
     }   
+});
 
+app.get('/appenda/:appendable', function(req, res) {
+    res.json({
+        "appended": req.params.appendable + "a",
+    }) 
+});
+
+const sum1 = function (num) {
+    sum = 0;
+    for (let i = 0; i <= num; i++) {
+        sum += i;
+    }
+    return sum;
+}
+
+const factorial1 = function (num) {
+    console.log(num)
+    if (num <= 1) {
+        return 1;
+    }
+    return num * factorial1(num - 1)
+}
+
+app.post('/dountil/:operation', function(req, res) {
+    if (req.params.operation == "sum") {
+        res.json({
+            result: sum1(req.body.until)
+        })
+    }
+    else if (req.params.operation == "factor") {
+        console.log("ay")
+        res.json({
+            result: factorial1(req.body.until)
+        })
+    }
+    else {
+        res.json({
+            error: "noluckfren"
+        })
+    }
 });
 
 app.listen(8080);
