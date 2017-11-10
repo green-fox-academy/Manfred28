@@ -15,6 +15,16 @@ const getTimeSincePost = function(timestamp) {
     }
 }
 
+const addVoteEventListener = function(button, postId, vote) {
+    button.addEventListener('click', function() {
+        ajaxRequest({
+            url: `http://localhost:3000/posts/${postId}/${vote}`,
+            method: 'PUT',
+            callback: () => this.querySelector('img').src=`assets/images/${vote}d.png`,
+            data: null
+        });
+    })
+}
 
 const createPosts = function(postData){
     postData = JSON.parse(postData).posts
@@ -38,6 +48,9 @@ const createPosts = function(postData){
                 </section>
             </div>
         `
+        const $voteButtons = $post.querySelectorAll('.rating button');
+        addVoteEventListener($voteButtons[0], postData.id, 'upvote')
+        addVoteEventListener($voteButtons[1], postData.id, 'downvote')
         $post.setAttribute('class', 'post');
         $postContainer.appendChild($post);
     })
@@ -48,6 +61,10 @@ const Config = {
     method: 'GET',
     callback: createPosts,
     data: null
+}
+
+const upVoteConfig = {
+
 }
 
 ajaxRequest(Config);
