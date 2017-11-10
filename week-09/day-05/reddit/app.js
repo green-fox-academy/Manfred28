@@ -6,7 +6,6 @@ const mysql = require('mysql');
 const app = express();
 app.use('/assets', express.static('assets'))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}));
 
 const conn = mysql.createConnection({
     host: 'localhost',
@@ -41,17 +40,23 @@ app.get('/posts', function(req, res) {
     })
 });
 
-app.get('/posts/:postId', function(req, res) {
-    conn.query(`
+const getPostInfo = function(id) {
+    return new Promise(function (resolve, reject) {
+        conn.query(`
         SELECT * FROM posts
-        WHERE id = ${req.params.postId}
+        WHERE id = ${id}
         `, function(err, results) {
             if (err) {
-                res.send(err);
+                 reject(err);
             } else{
-                res.json(results);
+                resolve(results);
             }
+        })
     })
+}
+
+app.get('/posts/:postId', function(req, res) {
+    res.json(getPostInfo(req.param.postId))
 })
 
 app.post('/posts', function(req, res) {
@@ -84,8 +89,8 @@ app.put('/posts/:postId/:vote', function(req, res) {
         if (err) {
             res.send(err)
         } else {
-            console.log(results)
-            res.json(results)
+            getPostInfo(req.params.postId)
+            .then((result) => res.json(result));    
         }
     })
 })
