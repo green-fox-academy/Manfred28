@@ -66,12 +66,13 @@ app.put('/posts/:postId/:vote', function(req, res) {
         UPDATE posts SET 
         score = score ${req.params.vote === 'upvote' ? '+1' : '-1'} 
         WHERE id = ${req.params.postId}    
-    `, function(err, results) {
-            if (err) {
-                res.send(err)
-            } else {
-                res.json(results)
-            }
+    `, 
+    function(err, results) {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json(results)
+        }
     })
 })
 
