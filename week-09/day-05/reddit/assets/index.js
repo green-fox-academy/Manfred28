@@ -65,16 +65,12 @@ const createPosts = function(postData){
     })
 }
 
-const Config = {
+const getPostsConfig = {
     url: 'http://localhost:3000/posts',
     method: 'GET',
     callback: createPosts,
     data: null
 }
 
-const upVoteConfig = {
-
-}
-
-ajaxRequest(Config);
+ajaxRequest(getPostsConfig);
 
