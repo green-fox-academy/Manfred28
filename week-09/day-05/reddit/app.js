@@ -41,6 +41,19 @@ app.get('/posts', function(req, res) {
     })
 });
 
+app.get('/posts/:postId', function(req, res) {
+    conn.query(`
+        SELECT * FROM posts
+        WHERE id = ${req.params.postId}
+        `, function(err, results) {
+            if (err) {
+                res.send(err);
+            } else{
+                res.json(results);
+            }
+    })
+})
+
 app.post('/posts', function(req, res) {
     if (!req.body['title']) {
         res.send('Post title expected');
@@ -71,6 +84,7 @@ app.put('/posts/:postId/:vote', function(req, res) {
         if (err) {
             res.send(err)
         } else {
+            console.log(results)
             res.json(results)
         }
     })
