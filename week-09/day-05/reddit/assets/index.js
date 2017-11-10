@@ -18,8 +18,8 @@ const getTimeSincePost = function(timestamp) {
 const voteCallback = function ($button, vote) {
     $button.querySelector('img').src=`assets/images/${vote}d.png`
     return function(postData) {
+        console.log(postData)
         postData = JSON.parse(postData);
-        console.log($button.parentNode.textContent)
         $button.parentNode.querySelector('span').textContent = postData[0].score;
     }
 }

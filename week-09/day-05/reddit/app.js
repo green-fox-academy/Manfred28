@@ -1,26 +1,13 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const db = require('./db.js')
 
 const app = express();
 app.use('/assets', express.static('assets'))
 app.use(bodyParser.json())
 
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'reddit'
-});
 
-conn.connect(function(err) {
-    if (err) {
-        console.log(err);
-        return
-    }
-    console.log('MYSQL connection established');
-})
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
@@ -31,68 +18,26 @@ app.get('/submit', function(req, res) {
 })
 
 app.get('/posts', function(req, res) {
-    conn.query('SELECT * FROM posts', function(err, results) {
-        if (err) {
-            res.send(err);
-        } else{
-            res.json({posts: results});
-        }
-    })
-});
-
-const getPostInfo = function(id) {
-    return new Promise(function (resolve, reject) {
-        conn.query(`
-        SELECT * FROM posts
-        WHERE id = ${id}
-        `, function(err, results) {
-            if (err) {
-                 reject(err);
-            } else{
-                resolve(results);
-            }
-        })
-    })
-}
-
-app.get('/posts/:postId', function(req, res) {
-    res.json(getPostInfo(req.param.postId))
-})
+    db.getPostInfoAll()
+        .then(result => res.json({posts: result}))
+    });
 
 app.post('/posts', function(req, res) {
     if (!req.body['title']) {
         res.send('Post title expected');
         return;
     }
-    conn.query(`
-        INSERT INTO posts (title, url, timestamp) VALUES (
-        ${mysql.escape(req.body['title'])}, 
-        ${mysql.escape(req.body['href'])}, 
-        ${Date.now()})
-        `, 
-        function(err, results) {
-            if (err) {
-                res.send(err);
-            } else{
-                res.json({posts: results});
-            }
-    })
+    db.createNewPost(req.body['title'], req.body['href'])
+        .then((result) =>  res.json({posts: result}));
 });
 
 app.put('/posts/:postId/:vote', function(req, res) {
-    conn.query(`
-        UPDATE posts SET 
-        score = score ${req.params.vote === 'upvote' ? '+1' : '-1'} 
-        WHERE id = ${req.params.postId}    
-    `, 
-    function(err, results) {
-        if (err) {
-            res.send(err)
-        } else {
-            getPostInfo(req.params.postId)
-            .then((result) => res.json(result));    
-        }
-    })
+    db.changePostVote(req.params.vote, req.params.postId)
+        .then(db.getPostInfo(req.params.postId)
+            .then((result) => res.json(result))
+        )
+        .catch((e) => console.log(e))
 })
+
 
 app.listen(3000);
