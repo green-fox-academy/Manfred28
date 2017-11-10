@@ -15,12 +15,21 @@ const getTimeSincePost = function(timestamp) {
     }
 }
 
+const voteCallback = function ($button, vote) {
+    $button.querySelector('img').src=`assets/images/${vote}d.png`
+    return function(postData) {
+        postData = JSON.parse(postData);
+        console.log($button.parentNode.textContent)
+        $button.parentNode.querySelector('span').textContent = postData[0].score;
+    }
+}
+
 const addVoteEventListener = function(button, postId, vote) {
     button.addEventListener('click', function() {
         ajaxRequest({
             url: `http://localhost:3000/posts/${postId}/${vote}`,
             method: 'PUT',
-            callback: () => this.querySelector('img').src=`assets/images/${vote}d.png`,
+            callback: voteCallback(this, vote),
             data: null
         });
     })
@@ -34,7 +43,7 @@ const createPosts = function(postData){
         $post.innerHTML = `
             <section class="rating">
                 <button><img src="assets/images/upvote.png"/></button>
-                ${postData.score}
+                <span>${postData.score}</span>
                 <button><img src="assets/images/downvote.png"/></button>
             </section>
             <div>
