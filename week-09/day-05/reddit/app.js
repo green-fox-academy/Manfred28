@@ -42,6 +42,10 @@ app.get('/posts', function(req, res) {
 });
 
 app.post('/posts', function(req, res) {
+    if (!req.body['title']) {
+        res.send('Post title expected');
+        return;
+    }
     conn.query(`
         INSERT INTO posts (title, url, timestamp) VALUES (
         ${mysql.escape(req.body['title'])}, 
@@ -49,8 +53,6 @@ app.post('/posts', function(req, res) {
         ${Date.now()})
         `, 
         function(err, results) {
-            console.log(err)
-            console.log(results)
             if (err) {
                 res.send(err);
             } else{
