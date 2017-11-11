@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #bbb;    
+    background-color: #ddd;    
 }
 
 a {
@@ -28,7 +28,8 @@ header article h1 {
     font-size: 3em;
     letter-spacing: 40px;
     text-transform: uppercase;
-    color: #fff;
+    color: #ddd;
+    text-shadow: 2px 2px #000;
 }
 
 .submit-button {
