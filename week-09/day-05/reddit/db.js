@@ -15,11 +15,9 @@ conn.connect(function(err) {
     console.log('MYSQL connection established');
 })
 
-const getPostInfo = function(id) {
+const mysqlPromise = function(query) {
     return new Promise(function (resolve, reject) {
-        conn.query(`
-        SELECT * FROM posts
-        WHERE id = ${mysql.escape(id)}`, 
+        conn.query(query, 
         function(err, results) {
             if (err) {
                  reject(err);
@@ -28,38 +26,25 @@ const getPostInfo = function(id) {
             }
         })
     })
+}
+
+const getPostInfo = function(id) {
+    return mysqlPromise(`
+        SELECT * FROM posts
+        WHERE id = ${mysql.escape(id)}`
+    )
 }
 
 const getPostInfoAll = function() {
-    return new Promise(function (resolve, reject) {
-        conn.query(`
-        SELECT * FROM posts`, 
-        function(err, results) {
-            if (err) {
-                 reject(err);
-            } else{
-                resolve(results);
-            }
-        })
-    })
+    return mysqlPromise(`SELECT * FROM posts`)
 }
 
 const createNewPost = function(title, href) {
-    return new Promise(function(resolve, reject){
-        conn.query(`
-            INSERT INTO posts (title, url, timestamp) VALUES (
-            ${mysql.escape(title)}, 
-            ${mysql.escape(href)}, 
-            ${Date.now()})`, 
-            function(err, results) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(results)
-                }
-            }
-        )
-    })
+    return mysqlPromise(`
+        INSERT INTO posts (title, url, timestamp) VALUES (
+        ${mysql.escape(title)}, 
+        ${mysql.escape(href)}, 
+        ${Date.now()})`)
 }
 
 const changePostVote = function(vote, id) {
@@ -69,24 +54,24 @@ const changePostVote = function(vote, id) {
     } else if (vote === 'downvote') {
         changeScoreBy--
     }
-    return new Promise(function(resolve, reject) {
-        conn.query(`
-            UPDATE posts SET 
-            score = score ${vote === 'upvote' ? '+1' : '-1'} 
-            WHERE id = ${mysql.escape(id)}`, 
-            function(err, results) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(results);
-                }
-        })
-    })
+    return mysqlPromise(`
+        UPDATE posts SET 
+        score = score ${vote === 'upvote' ? '+1' : '-1'} 
+        WHERE id = ${mysql.escape(id)}`
+    )
+}
+
+const deletePost = function(id) {
+    return mysqlPromise(`
+        DELETE FROM posts
+        WHERE id = ${mysql.escape(id)}`
+    )
 }
 
 module.exports = {
     getPostInfo,
     getPostInfoAll,
     createNewPost,
-    changePostVote
+    changePostVote,
+    deletePost
 }
