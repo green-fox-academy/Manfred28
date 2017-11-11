@@ -28,7 +28,7 @@ app.post('/posts', function(req, res) {
         return;
     }
     db.createNewPost(req.body['title'], req.body['href'])
-        .then((result) =>  res.json({posts: result}));
+        .then((result) => res.json({id: result.insertId}));
 });
 
 // In it's current form delete must be called before vote,
