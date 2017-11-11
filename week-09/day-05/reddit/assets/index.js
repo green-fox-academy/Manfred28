@@ -35,6 +35,17 @@ const addVoteEventListener = function(button, postId, vote) {
     })
 }
 
+const addPostRemoveEventListener = function($link, $post, postId) {
+    $link.addEventListener('click', function() {
+        ajaxRequest({
+            url: `http://localhost:3000/posts/${postId}/delete`,
+            method: 'PUT',
+            callback: () => $post.remove(),
+            data: null
+        });
+    })
+}
+
 const createPosts = function(postData){
     postData = JSON.parse(postData).posts
     const $postContainer = document.querySelector('main > article')    
@@ -52,14 +63,16 @@ const createPosts = function(postData){
                     submitted ${getTimeSincePost(postData.timestamp)} ago by ${postData.user ? postData.user : 'Anonymus'}
                 </section>
                 <section class="post-actions">
-                    <a href="_blank">Modify</a>
-                    <a href="_blank">Remove</a>
+                    <a href="">Modify</a>
+                    <a href="">Remove</a>
                 </section>
             </div>
         `
         const $voteButtons = $post.querySelectorAll('.rating button');
         addVoteEventListener($voteButtons[0], postData.id, 'upvote')
         addVoteEventListener($voteButtons[1], postData.id, 'downvote')
+        const $removeLink = $post.querySelectorAll('.post-actions > a')[1];
+        addPostRemoveEventListener($removeLink, $post, postData.id);
         $post.setAttribute('class', 'post');
         $postContainer.appendChild($post);
     })
