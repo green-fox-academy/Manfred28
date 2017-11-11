@@ -31,6 +31,13 @@ app.post('/posts', function(req, res) {
         .then((result) =>  res.json({posts: result}));
 });
 
+// In it's current form delete must be called before vote,
+// Otherwise vote will be called in all cases
+app.put('/posts/:postId/delete', function(req, res) {
+    db.deletePost(req.params.postId)
+        .then(result => res.json(result))
+})
+
 app.put('/posts/:postId/:vote', function(req, res) {
     db.changePostVote(req.params.vote, req.params.postId)
         .then(db.getPostInfo(req.params.postId)
