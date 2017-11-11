@@ -48,15 +48,15 @@ const createNewPost = function(title, href) {
 }
 
 const changePostVote = function(vote, id) {
-    let changeScoreBy = 0;
+    let changeScoreBy = '';
     if (vote === 'upvote') {
-        changeScoreBy++;
+        changeScoreBy = '+1';
     } else if (vote === 'downvote') {
-        changeScoreBy--
+        changeScoreBy = '-1'
     }
     return mysqlPromise(`
         UPDATE posts SET 
-        score = score ${vote === 'upvote' ? '+1' : '-1'} 
+        score = score ${changeScoreBy.toString()} 
         WHERE id = ${mysql.escape(id)}`
     )
 }
