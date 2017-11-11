@@ -18,7 +18,6 @@ const getTimeSincePost = function(timestamp) {
 const voteCallback = function ($button, vote) {
     $button.querySelector('img').src=`assets/images/${vote}d.png`
     return function(postData) {
-        console.log(postData)
         postData = JSON.parse(postData);
         $button.parentNode.querySelector('span').textContent = postData[0].score;
     }
@@ -35,10 +34,17 @@ const addVoteEventListener = function(button, postId, vote) {
     })
 }
 
-const addPostRemoveEventListener = function($link, $post, postId) {
-    $link.addEventListener('click', function() {
+const addVoteButtonFunctionality = function($post, postData) {
+    const $voteButtons = $post.querySelectorAll('.rating button');
+    addVoteEventListener($voteButtons[0], postData.id, 'upvote');
+    addVoteEventListener($voteButtons[1], postData.id, 'downvote');
+}
+
+const addPostRemoveFunctionality = function($post, postData) {
+    const $removeLink = $post.querySelectorAll('.post-actions > a')[1];
+    $removeLink.addEventListener('click', function() {
         ajaxRequest({
-            url: `http://localhost:3000/posts/${postId}/delete`,
+            url: `http://localhost:3000/posts/${postData.id}/delete`,
             method: 'PUT',
             callback: () => $post.remove(),
             data: null
@@ -51,6 +57,8 @@ const createPosts = function(postData){
     const $postContainer = document.querySelector('main > article')    
     postData.forEach(function(postData) {
         const $post = document.createElement('section');
+        $post.setAttribute('class', 'post');
+        
         $post.innerHTML = `
             <section class="rating">
                 <button><img src="assets/images/upvote.png"/></button>
@@ -68,12 +76,8 @@ const createPosts = function(postData){
                 </section>
             </div>
         `
-        const $voteButtons = $post.querySelectorAll('.rating button');
-        addVoteEventListener($voteButtons[0], postData.id, 'upvote')
-        addVoteEventListener($voteButtons[1], postData.id, 'downvote')
-        const $removeLink = $post.querySelectorAll('.post-actions > a')[1];
-        addPostRemoveEventListener($removeLink, $post, postData.id);
-        $post.setAttribute('class', 'post');
+        addVoteButtonFunctionality($post, postData);
+        addPostRemoveFunctionality($post, postData);
         $postContainer.appendChild($post);
     })
 }
