@@ -4,7 +4,11 @@
     box-sizing: border-box;
 }
 
-button {
+main {
+    margin-top: 20px;
+}
+
+.media-player button {
     border: none;
     background-color: transparent;
 }
