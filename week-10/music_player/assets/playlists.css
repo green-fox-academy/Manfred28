@@ -1,6 +1,3 @@
-.playlists {
-}
-
 .playlists > div {
     height: 35px;
     padding: 0 10px 0 20px;        
@@ -16,7 +13,7 @@
 }
 
 .playlists .playlist-adder {
-    width: 60%;
+    margin-right: 130px;
     margin-top: 24px;
     font-size: 18px;
     color: #383837;
