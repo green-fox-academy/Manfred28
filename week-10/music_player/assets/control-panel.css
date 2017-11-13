@@ -1,0 +1,70 @@
+.control-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #FFF;
+}
+
+.control-panel .track-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 8%;
+}
+
+.control-panel .track-control button {
+    width: 20px;
+    height: 20px;
+}
+
+.control-panel .track-length-control {
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.control-panel .track-length-control span {
+    display: inline-block;
+}
+
+.control-panel .volume-control {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.control-panel .slider input[type="range"] {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 5px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+}
+
+.control-panel .slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%; 
+    background: #3912e4;
+    border: 3px solid #FFF;
+    cursor: pointer;
+    box-shadow: 1px 0px 0px 2px #DBDBDB, -1px 0px 0px 2px #DBDBDB, 0px 1px 0px 2px #DBDBDB, 0px -1px 0px 2px #DBDBDB;
+}
+
+.control-panel .slider input[type="range"]::-moz-range-thumb {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%; 
+    background: #3912e4;
+    border: 3px solid #FFF;
+    cursor: pointer;
+    box-shadow: 1px 0px 0px 2px #DBDBDB, -1px 0px 0px 2px #DBDBDB, 0px 1px 0px 2px #DBDBDB, 0px -1px 0px 2px #DBDBDB;    
+}
