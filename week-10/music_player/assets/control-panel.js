@@ -35,6 +35,15 @@ const convertSecondsToMMSSFormat = function(seconds) {
 }
 
 
+// Need to prevent default, otherwise when the play button is already
+// focused, the togglePlay event fires twice
+document.addEventListener('keyup', function(e) {
+    if (e.keyCode === 32 || e.code === 'Space') {
+        e.preventDefault();
+        togglePlay();    
+    }
+})
+
 $playButton.addEventListener('click', togglePlay);
 
 $trackLengthSlider.addEventListener('input', function() {
