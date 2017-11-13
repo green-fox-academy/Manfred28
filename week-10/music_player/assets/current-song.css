@@ -11,8 +11,8 @@
 
 .current-song .album-cover {
     position: absolute;
-    left: -160px;
-    top: -6px;
+    left: -130px;
+    top: -1px;
     width: 135px;
     height: 135px;
 }
