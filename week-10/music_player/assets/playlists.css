@@ -1,0 +1,32 @@
+.playlists {
+}
+
+.playlists > div {
+    height: 35px;
+    padding: 0 10px 0 20px;        
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F5F5F5;
+}
+
+.playlists > div:nth-child(even) {
+    background-color: #EAEAEA;
+}
+
+.playlists .playlist-adder {
+    width: 60%;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.playlists button {
+    height: 35px;
+    width: 35px;
+    font-size: 20px;
+}
+
+.playlists .playlist-adder button {
+    font-size: 30px;
+}

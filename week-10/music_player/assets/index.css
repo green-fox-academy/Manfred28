@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+button {
+    border: none;
+    background-color: transparent;
+}
+
 
 .media-player {
     display: flex;
@@ -18,8 +23,12 @@
     width: 50%;
 }
 
+.logo {
+    padding: 0 10px 0 20px;        
+}
+
 .logo img {
-    width: 120px;
-    height: 120px;
+    width: 85px;
+    height: 75px;
 }
 

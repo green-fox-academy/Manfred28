@@ -2,16 +2,18 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    height: 60px;
     padding: 5px 10px 0px 20px;    
-    
+    margin-bottom: 4px;
 }
 
 
 .current-song .album-cover {
     position: absolute;
-    left: -200px;
-    width: 180px;
-    height: 180px;
+    left: -160px;
+    top: -6px;
+    width: 135px;
+    height: 135px;
 }
 
 .current-song .song-info {
