@@ -22,6 +22,14 @@
     font-size: 20px;
 }
 
-.current-song .song-info span {
+.current-song .song-info span, .current-song .song-favourite-control button {
     color: #999;
+}
+
+.current-song .song-favourite-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 35px;
+    font-size: 30px;
 }
