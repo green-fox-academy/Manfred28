@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.media-player {
+    display: flex;
+    width: 80%;
+    height: 450px;
+    margin: 0 auto;
+    background-color: #F5F5F5;
+    color: #585858;;
+}
+
+.media-player > div {
+    width: 50%;
+}
+
+.logo img {
+    width: 120px;
+    height: 120px;
+}
+

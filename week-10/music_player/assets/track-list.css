@@ -1,0 +1,27 @@
+.track-list ol {
+    width: 100%;
+    height: 320px;
+    margin-top: 10px;
+    overflow-y: auto;
+}
+
+.track-list li {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    background-color: #F5F5F5; 
+    padding: 0 10px 0 20px;    
+}
+
+.track-list li:nth-child(odd) {
+    background-color: #EAEAEA;
+}
+
+.track-list .index {
+    margin-right: 10px;
+    color: #999;    
+}
+
+.track-list .track-length {
+    margin-left: auto;
+}

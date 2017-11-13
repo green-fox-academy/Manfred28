@@ -1,0 +1,25 @@
+.current-song {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px 0px 20px;    
+    
+}
+
+
+.current-song .album-cover {
+    position: absolute;
+    left: -200px;
+    width: 180px;
+    height: 180px;
+}
+
+.current-song .song-info {
+    display: inline-block;
+    width: 50%;
+    font-size: 20px;
+}
+
+.current-song .song-info span {
+    color: #999;
+}
