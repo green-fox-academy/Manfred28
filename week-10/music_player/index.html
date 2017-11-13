@@ -62,14 +62,15 @@
                 </section>
             </div>
             <section class="control-panel">
+                <audio src="assets/music/test.mp3"></audio>
                 <section class="track-control">
                     <button><img src="assets/images/rewing.svg" alt="rewind"></button>
-                    <button><img src="assets/images/play.svg" alt="play"></button>
+                    <button><img src="assets/images/play.svg" alt="play/pause" data-alt-src="assets/images/pause.svg"></button>
                     <button><img src="assets/images/forward.svg" alt="forward"></button>
                 </section>
                 <section class="slider track-length-control">
                     <span class="current-time">0:00</span>
-                    <input type="range">
+                    <input type="range" value="0">
                     <span class="track-length">2:00</span>
                 </section>
                 <section class="track-control">
@@ -77,11 +78,12 @@
                 </section>
                 <section class="slider volume-control">
                     <img src="assets/images/volume.svg" alt="volume">
-                    <input type="range">
+                    <input type="range" value="50">
                 </section>
             </section>
         </article>
     </main>
     <script src="https://use.fontawesome.com/d626de491e.js"></script>
+    <script src="assets/control-panel.js"></script>
 </body>
 </html>
