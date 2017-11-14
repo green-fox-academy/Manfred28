@@ -7,7 +7,6 @@ const playlists = function() {
 
     const getPlaylists = function(playlistData) {
         playlists = playlistData;
-        console.log(playlists);
         createPlaylistElements();
     }
 
@@ -24,10 +23,26 @@ const playlists = function() {
             `        
             $playlists.appendChild($playlistElement);
         });
-        // $playlistElements = $playlists.querySelectorAll()
+        $playlistElements = $playlists.querySelectorAll('li')
     }
 
+    const addPlaylistElementEventListener = function(callback) {
+        $playlistElements.forEach(function($playlist, index) {
+            if (index === 0) {
+                $playlist.addEventListener('click', function() {
+                    callback('all')
+                })
+             } else {
+                $playlist.addEventListener('click', function() {
+                    callback(playlists[index - 1].id)
+                })
+            }
+        })
+    }
+    
+
     return {
-        getPlaylists
+        getPlaylists,
+        playlistOnClickAction: addPlaylistElementEventListener
     }
 }

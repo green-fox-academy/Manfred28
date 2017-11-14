@@ -17,6 +17,13 @@ app.get('/playlist-tracks', function(req, res) {
     res.json(data)
 })
 
+app.get('/playlist-tracks/1', function(req, res) {
+    const data = [
+        { "id": 21, "title": "Never Give Up", "artist": "Ars Sonor", "duration": 135, "path": "assets/music/Ars_Sonor_-_02_-_Never_Give_Up.mp3" },
+    ]
+    res.json(data)
+})
+
 app.get('/playlists', function(req, res) {
     const data = [
         { "id": 1, "title": "Favorites", "system": 1},

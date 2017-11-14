@@ -7,7 +7,7 @@ const trackList = function() {
     let currentlyPlayingIndex = null;
     let tracks = null;
 
-    const getTracks = function(tracklist) {
+    const parseTracklist = function(tracklist) {
         tracks = tracklist;
         createTracklistElements();
     }
@@ -68,9 +68,9 @@ const trackList = function() {
     }
 
     return {
-        trackOnClick: addTracklistElementEventListener,
+        trackOnClickAction: addTracklistElementEventListener,
         getCurrentTrack: getCurrentTrackInfo,
-        getTracks,
+        parseTracklist,
         nextTrack,
         previousTrack
     }
