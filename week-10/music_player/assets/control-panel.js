@@ -1,14 +1,30 @@
 'use strict';
 (function() {
     
-const $audioFile = document.querySelector('audio');
-const $playButton = document.querySelector('.track-control button:nth-child(2)');
+const $controlPanel = document.querySelector('.media-player .control-panel') 
+const $audioFile = $controlPanel.querySelector('audio');
+const $playButton = $controlPanel.querySelector('.track-control button:nth-child(2)');
 const $playButtonImg = $playButton.querySelector('img');
-const $volumeSlider = document.querySelector('.volume-control input[type="range"]')
-const $trackLengthSlider = document.querySelector('.track-length-control input[type="range"]')
-const $currentTime = document.querySelector('.track-length-control .current-time');
-const $trackLength = document.querySelector('.track-length-control .track-length');
+const $volumeSlider = $controlPanel.querySelector('.volume-control input[type="range"]')
+const $trackLengthSlider = $controlPanel.querySelector('.track-length-control input[type="range"]')
+const $currentTime = $controlPanel.querySelector('.track-length-control .current-time');
+const $trackLength = $controlPanel.querySelector('.track-length-control .track-length');
 
+
+const initiateTrack = function(src) {
+    $audioFile.src = src;
+    $audioFile.addEventListener('canplay', function() {
+        $trackLength.textContent = convertSecondsToMMSSFormat($audioFile.duration)
+        updateVolume();
+        if ($audioFile.paused) {
+            togglePlay();
+        } else {
+            $audioFile.play();
+            window.requestAnimationFrame(updateTrackProgress)
+        }
+    })
+    
+}
 
 const togglePlay = function() {
     [$playButtonImg.src, $playButtonImg.dataset.altImg] = [$playButtonImg.dataset.altImg, $playButtonImg.src];   
@@ -26,6 +42,8 @@ const updateTrackProgress = function() {
     $currentTime.textContent = convertSecondsToMMSSFormat($audioFile.currentTime);
     if ($audioFile.currentTime < $audioFile.duration) {
         window.requestAnimationFrame(updateTrackProgress)
+    } else {
+        window.cancelAnimationFrame(updateTrackProgress)        
     }
 }
 
@@ -34,6 +52,10 @@ const convertSecondsToMMSSFormat = function(seconds) {
     seconds = Math.floor(seconds % 60);
     seconds = seconds < 10 ? '0' + seconds : seconds;
     return minutes + ':' + seconds
+}
+
+const updateVolume = function(percentage) {
+    $audioFile.volume = $volumeSlider.value / 100;
 }
 
 
@@ -48,14 +70,10 @@ document.addEventListener('keyup', function(e) {
 
 $playButton.addEventListener('click', togglePlay);
 
-
 $trackLengthSlider.addEventListener('input', function() {
     $audioFile.currentTime = $audioFile.duration * (this.value / 100);
 })
 
-$volumeSlider.addEventListener('input', function() {
-    $audioFile.volume = this.value / 100;
-})
-
+$volumeSlider.addEventListener('input', updateVolume);
 
 })();
