@@ -5,10 +5,16 @@
     const TrackList = trackList();
     const CurrentSong = currentSong();
     const Utilities = utilities();
+    const Playlists = playlists();
     
     const configGetTrack = {
         method: 'GET',
         url: 'http://localhost:3000/playlist-tracks'
+    }
+
+    const configGetPlaylists = {
+        method: 'GET',
+        url: 'http://localhost:3000/playlists'
     }
 
     Utilities.ajaxCall(configGetTrack).then((trackList) => {
@@ -19,6 +25,7 @@
         })
     })
 
+    Utilities.ajaxCall(configGetPlaylists).then(Playlists.getPlaylists)
     
 
     ControlPanel.forwardOnClick(() => {

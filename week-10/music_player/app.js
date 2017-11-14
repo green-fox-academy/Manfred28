@@ -17,5 +17,15 @@ app.get('/playlist-tracks', function(req, res) {
     res.json(data)
 })
 
+app.get('/playlists', function(req, res) {
+    const data = [
+        { "id": 1, "title": "Favorites", "system": 1},
+        { "id": 2, "title": "Music for programming", "system": 0},
+        { "id": 3, "title": "Driving", "system": 0},
+        { "id": 5, "title": "Fox house", "system": 0},
+    ]
+    res.json(data)
+})
+
 
 app.listen(3000);
