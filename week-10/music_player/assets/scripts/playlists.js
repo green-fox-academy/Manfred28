@@ -1,7 +1,7 @@
 'use strict';
 
 const playlists = function() {
-    const $playlists = document.querySelector('.playlists');
+    const $playlists = document.querySelector('.playlists ul');
     let $playlistElements = null;
     let playlists = null;
 
@@ -13,7 +13,7 @@ const playlists = function() {
 
     const createPlaylistElements= function() {
         playlists.forEach(function(playlist) {
-            const $playlistElement = document.createElement('div');
+            const $playlistElement = document.createElement('li');
             $playlistElement.innerHTML = `
                 ${playlist.title}
                 ${playlist.system ? "" : 

@@ -1,4 +1,4 @@
-.playlists > div {
+.playlists > div, .playlists li {
     height: 35px;
     padding: 0 10px 0 20px;        
     font-size: 20px;
@@ -8,7 +8,7 @@
     background-color: #F5F5F5;
 }
 
-.playlists > div:nth-child(even) {
+.playlists li:nth-child(odd) {
     background-color: #EAEAEA;
 }
 
