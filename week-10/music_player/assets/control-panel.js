@@ -13,15 +13,15 @@ const controlPanel = function() {
 
     const loadTrack = function(start = false) {
         return function(track) {
+            resetTrackProgress();
             $audioFile.src = track.url;
             $playButtonImg.src = $playButtonImg.dataset.playSrc;
-            resetTrackProgress();
             $audioFile.addEventListener('canplay', function() {
                 $trackLength.textContent = convertSecondsToMMSSFormat($audioFile.duration)
                 updateVolume();
                 if (start) {
-                    $audioFile.play();
-                    window.requestAnimationFrame(updateTrackProgress);
+                    $audioFile.pause();
+                    togglePlay();
                 } 
             })
         }
@@ -30,11 +30,11 @@ const controlPanel = function() {
     const togglePlay = function() {
         if ($audioFile.paused) {
             $audioFile.play();
-            $playButtonImg.src = $playButtonImg.dataset.playSrc;
+            $playButtonImg.src = $playButtonImg.dataset.pauseSrc;
             window.requestAnimationFrame(updateTrackProgress);
         } else {
             $audioFile.pause();
-            $playButtonImg.src = $playButtonImg.dataset.pauseSrc;            
+            $playButtonImg.src = $playButtonImg.dataset.playSrc;            
             window.cancelAnimationFrame(updateTrackProgress);
         } 
     }
