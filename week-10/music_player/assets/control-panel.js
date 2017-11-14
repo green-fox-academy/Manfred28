@@ -5,26 +5,21 @@ const controlPanel = function() {
     const $audioFile = $controlPanel.querySelector('audio');
     const $playButton = $controlPanel.querySelector('.track-control button:nth-child(2)');
     const $playButtonImg = $playButton.querySelector('img');
+    const $rewind = $controlPanel.querySelector('.track-control button:nth-child(1)')
+    const $forward = $controlPanel.querySelector('.track-control button:nth-child(3)')
     const $volumeSlider = $controlPanel.querySelector('.volume-control input[type="range"]')
     const $trackLengthSlider = $controlPanel.querySelector('.track-length-control input[type="range"]')
     const $currentTime = $controlPanel.querySelector('.track-length-control .current-time');
     const $trackLength = $controlPanel.querySelector('.track-length-control .track-length');
 
-
-    const loadTrack = function(start = false) {
-        return function(track) {
-            resetTrackProgress();
-            $audioFile.src = track.url;
-            $playButtonImg.src = $playButtonImg.dataset.playSrc;
-            $audioFile.addEventListener('canplay', function() {
+    const loadTrack = function(track) {
+        $audioFile.src = track.url;
+        $playButtonImg.src = $playButtonImg.dataset.playSrc;
+        $audioFile.addEventListener('canplay', function() {
+                resetTrackProgress();
                 $trackLength.textContent = convertSecondsToMMSSFormat($audioFile.duration)
                 updateVolume();
-                if (start) {
-                    $audioFile.pause();
-                    togglePlay();
-                } 
-            })
-        }
+        })
     }
 
     const togglePlay = function() {
@@ -50,7 +45,7 @@ const controlPanel = function() {
     }
 
     const resetTrackProgress = function() {
-        $trackLengthSlider.value = 0;
+        $trackLengthSlider.valueAsNumber = 0;
         $currentTime.textContent = '0:00';    
     }
 
@@ -75,6 +70,15 @@ const controlPanel = function() {
         }
     })
 
+    
+    const rewindButtonOnClick = function(callback) {
+        $rewind.addEventListener('click', callback)
+    }
+    
+    const forwardButtonOnClick = function(callback) {
+        $forward.addEventListener('click', callback)
+    }
+
     $playButton.addEventListener('click', togglePlay);
 
     $trackLengthSlider.addEventListener('input', function() {
@@ -83,8 +87,11 @@ const controlPanel = function() {
 
     $volumeSlider.addEventListener('input', updateVolume);
 
+
     return {
         loadTrack: loadTrack,
+        rewindOnClick: rewindButtonOnClick,
+        forwardOnClick: forwardButtonOnClick
     }
 
 };
