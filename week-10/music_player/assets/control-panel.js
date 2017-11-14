@@ -11,20 +11,22 @@ const $trackLength = document.querySelector('.track-length-control .track-length
 
 
 const togglePlay = function() {
-    let sliderUpdateInterval = null;
     [$playButtonImg.src, $playButtonImg.dataset.altImg] = [$playButtonImg.dataset.altImg, $playButtonImg.src];   
     if ($audioFile.paused) {
         $audioFile.play();
-        sliderUpdateInterval = setInterval(updateTrackProgress, 200)
+        window.requestAnimationFrame(updateTrackProgress)
     } else {
         $audioFile.pause();
-        clearInterval(sliderUpdateInterval);
+        window.cancelAnimationFrame(updateTrackProgress)
     } 
 }
 
 const updateTrackProgress = function() {
     $trackLengthSlider.value = $audioFile.currentTime / $audioFile.duration * 100;
     $currentTime.textContent = convertSecondsToMMSSFormat($audioFile.currentTime);
+    if ($audioFile.currentTime < $audioFile.duration) {
+        window.requestAnimationFrame(updateTrackProgress)
+    }
 }
 
 const convertSecondsToMMSSFormat = function(seconds) {
@@ -46,6 +48,7 @@ document.addEventListener('keyup', function(e) {
 
 $playButton.addEventListener('click', togglePlay);
 
+
 $trackLengthSlider.addEventListener('input', function() {
     $audioFile.currentTime = $audioFile.duration * (this.value / 100);
 })
@@ -53,5 +56,6 @@ $trackLengthSlider.addEventListener('input', function() {
 $volumeSlider.addEventListener('input', function() {
     $audioFile.volume = this.value / 100;
 })
+
 
 })();
