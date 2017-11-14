@@ -71,6 +71,10 @@ const controlPanel = function() {
     })
 
     
+    const trackOver = function(callback) {
+        $audioFile.addEventListener('ended', callback)
+    }
+
     const rewindButtonOnClick = function(callback) {
         $rewind.addEventListener('click', callback)
     }
@@ -87,11 +91,10 @@ const controlPanel = function() {
 
     $volumeSlider.addEventListener('input', updateVolume);
 
-
     return {
-        loadTrack: loadTrack,
+        loadTrack,
+        trackOver,
         rewindOnClick: rewindButtonOnClick,
         forwardOnClick: forwardButtonOnClick
     }
-
 };

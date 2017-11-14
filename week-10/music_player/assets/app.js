@@ -7,5 +7,5 @@
     TrackList.trackOnClick(ControlPanel.loadTrack);
     ControlPanel.forwardOnClick(() => ControlPanel.loadTrack(TrackList.nextTrack()));
     ControlPanel.rewindOnClick(() => ControlPanel.loadTrack(TrackList.previousTrack()));
-
+    ControlPanel.trackOver(() => ControlPanel.loadTrack(TrackList.nextTrack()))
 })();
