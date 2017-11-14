@@ -4,39 +4,24 @@ const trackList = function() {
     const $tracklist = document.querySelector('.track-list ol');
     let $trackElements = null;
     let currentlyPlayingIndex = null;
-    
-    const tracks = [
-        {
-        title: 'ayy',
-        band: 'god knows',
-        url: 'file:///C:/GreenFox/Manfred28/week-10/music_player/assets/music/test.mp3',
-        length: '120'
-    },
-    {
-        title: 'party',
-        band: 'I needed that',
-        url: 'file:///C:/GreenFox/Manfred28/week-10/music_player/assets/music/test.mp3',
-        length: '150'
-    },
-    {
-        title: 'hey',
-        band: 'coffee',
-        url: 'file:///C:/GreenFox/Manfred28/week-10/music_player/assets/music/test.mp3',
-        length: '100'
+    let tracks = null;
+
+    const getTracks = function(tracklist) {
+        tracks = tracklist;
+        createTracklistElements();
     }
-    ]
 
     const createTracklistElements = function() {
-        tracks.forEach(function(elem, i) {
+        tracks.forEach(function(track, i) {
             const $li = document.createElement('li');
             $li.innerHTML = `<span class="index">${i+1}</span>
-                            ${elem.title}
-                            <span class="track-length">${elem.length}</span>`
+                            ${track.title}
+                            <span class="track-length">${track.duration}</span>`
             $tracklist.appendChild($li);
         })
         $trackElements = $tracklist.querySelectorAll('li')
     }
-
+    
     const addTracklistElementEventListener = function(callback) {
         $trackElements.forEach(function(track) {
             const index = track.querySelector('.index').textContent
@@ -81,11 +66,10 @@ const trackList = function() {
         })
     }
 
-    createTracklistElements();
-
     return {
         trackOnClick: addTracklistElementEventListener,
         getCurrentTrack: getCurrentTrackInfo,
+        getTracks,
         nextTrack,
         previousTrack
     }

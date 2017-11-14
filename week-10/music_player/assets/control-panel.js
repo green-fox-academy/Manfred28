@@ -13,7 +13,7 @@ const controlPanel = function() {
     const $trackLength = $controlPanel.querySelector('.track-length-control .track-length');
 
     const loadTrack = function(track) {
-        $audioFile.src = track.url;
+        $audioFile.src = track.path;
         $playButtonImg.src = $playButtonImg.dataset.playSrc;
         $audioFile.addEventListener('canplay', function() {
                 resetTrackProgress();

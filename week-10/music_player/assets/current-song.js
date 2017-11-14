@@ -7,7 +7,7 @@ const currentSong = function() {
 
     const updateSong = function(track) {
         $title.textContent = track.title;
-        $band.textContent = track.band
+        $band.textContent = track.artist
     }
 
     return {
