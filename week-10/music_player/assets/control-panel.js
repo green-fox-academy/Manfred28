@@ -11,8 +11,8 @@ const controlPanel = function() {
     const $trackLength = $controlPanel.querySelector('.track-length-control .track-length');
 
 
-    const loadTrack = function(src, start) {
-        $audioFile.src = src;
+    const loadTrack = function(track, start) {
+        $audioFile.src = track.url;
         $playButtonImg.src = $playButtonImg.dataset.playSrc;
         $audioFile.addEventListener('canplay', function() {
             $trackLength.textContent = convertSecondsToMMSSFormat($audioFile.duration)
