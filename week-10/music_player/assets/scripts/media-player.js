@@ -4,14 +4,14 @@
     const ControlPanel = controlPanel();
     const TrackList = trackList();
     const CurrentSong = currentSong();
-    const AjaxHelper = ajaxHelper();
+    const Utilities = utilities();
     
     const configGetTrack = {
         method: 'GET',
         url: 'http://localhost:3000/playlist-tracks'
     }
 
-    AjaxHelper.ajaxCall(configGetTrack).then((trackList) => {
+    Utilities.ajaxCall(configGetTrack).then((trackList) => {
         TrackList.getTracks(trackList);
         TrackList.trackOnClick(track => {
             ControlPanel.loadTrack(track);

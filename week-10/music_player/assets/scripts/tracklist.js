@@ -1,6 +1,7 @@
 'use strict';
 
 const trackList = function() {
+    const Utilities = utilities();
     const $tracklist = document.querySelector('.track-list ol');
     let $trackElements = null;
     let currentlyPlayingIndex = null;
@@ -16,7 +17,7 @@ const trackList = function() {
             const $li = document.createElement('li');
             $li.innerHTML = `<span class="index">${i+1}</span>
                             ${track.title}
-                            <span class="track-length">${track.duration}</span>`
+                            <span class="track-length">${Utilities.secondsToMMSS(track.duration)}</span>`
             $tracklist.appendChild($li);
         })
         $trackElements = $tracklist.querySelectorAll('li')
