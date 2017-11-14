@@ -56,7 +56,7 @@ const trackList = function() {
     }
 
     const previousTrack = function() {
-        if (currentlyPlayingIndex < 0) {
+        if (currentlyPlayingIndex > 0) {
             currentlyPlayingIndex -= 1    
         } else {
             currentlyPlayingIndex = tracks.length - 1;
