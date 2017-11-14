@@ -11,17 +11,20 @@ const controlPanel = function() {
     const $trackLength = $controlPanel.querySelector('.track-length-control .track-length');
 
 
-    const loadTrack = function(track, start) {
-        $audioFile.src = track.url;
-        $playButtonImg.src = $playButtonImg.dataset.playSrc;
-        $audioFile.addEventListener('canplay', function() {
-            $trackLength.textContent = convertSecondsToMMSSFormat($audioFile.duration)
-            updateVolume();
-            if (start) {
-                $audioFile.play();
-                window.requestAnimationFrame(updateTrackProgress);
-            } 
-        })
+    const loadTrack = function(start = false) {
+        return function(track) {
+            $audioFile.src = track.url;
+            $playButtonImg.src = $playButtonImg.dataset.playSrc;
+            resetTrackProgress();
+            $audioFile.addEventListener('canplay', function() {
+                $trackLength.textContent = convertSecondsToMMSSFormat($audioFile.duration)
+                updateVolume();
+                if (start) {
+                    $audioFile.play();
+                    window.requestAnimationFrame(updateTrackProgress);
+                } 
+            })
+        }
     }
 
     const togglePlay = function() {
@@ -44,6 +47,11 @@ const controlPanel = function() {
         } else {
             window.cancelAnimationFrame(updateTrackProgress)        
         }
+    }
+
+    const resetTrackProgress = function() {
+        $trackLengthSlider.value = 0;
+        $currentTime.textContent = '0:00';    
     }
 
     const convertSecondsToMMSSFormat = function(seconds) {

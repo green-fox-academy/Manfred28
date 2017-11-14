@@ -4,6 +4,6 @@
     const ControlPanel = controlPanel();
     const TrackList = trackList();
     
-    TrackList.trackOnClick(ControlPanel.loadTrack);
+    TrackList.trackOnClick(ControlPanel.loadTrack(true));
 
 })();
