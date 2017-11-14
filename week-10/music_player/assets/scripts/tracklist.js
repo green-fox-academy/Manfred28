@@ -9,6 +9,7 @@ const trackList = function() {
 
     const parseTracklist = function(tracklist) {
         tracks = tracklist;
+        $tracklist.innerHTML = "";
         createTracklistElements();
     }
 
