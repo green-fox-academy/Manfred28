@@ -39,6 +39,7 @@ const trackList = function() {
             const index = track.querySelector('.index').textContent
             track.addEventListener('click', function() {
                 currentlyPlayingIndex = parseInt(index) - 1;
+                styleActiveElement();
                 callback(tracks[currentlyPlayingIndex]);
             })
         })
@@ -50,7 +51,7 @@ const trackList = function() {
         } else {
             currentlyPlayingIndex = 0;
         }
-        console.log(currentlyPlayingIndex);
+        styleActiveElement();
         return tracks[currentlyPlayingIndex]
     }
 
@@ -60,7 +61,17 @@ const trackList = function() {
         } else {
             currentlyPlayingIndex = tracks.length - 1;
         }
+        styleActiveElement();
         return tracks[currentlyPlayingIndex]
+    }
+
+    const styleActiveElement = function() {
+        $trackElements.forEach(function($track, i) {
+            $track.classList.remove('active')
+            if (i === currentlyPlayingIndex) {
+                $track.classList.add('active')
+            }    
+        })
     }
 
     createTracklistElements();

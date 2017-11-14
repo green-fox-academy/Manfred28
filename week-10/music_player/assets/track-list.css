@@ -37,3 +37,7 @@
 .track-list .track-length {
     margin-left: auto;
 }
+
+.track-list li.active {
+    background-color: #ABE7E5;
+}
