@@ -8,16 +8,19 @@ const trackList = function() {
     const tracks = [
         {
         title: 'ayy',
+        band: 'god knows',
         url: 'file:///C:/GreenFox/Manfred28/week-10/music_player/assets/music/test.mp3',
         length: '120'
     },
     {
         title: 'party',
+        band: 'I needed that',
         url: 'file:///C:/GreenFox/Manfred28/week-10/music_player/assets/music/test.mp3',
         length: '150'
     },
     {
         title: 'hey',
+        band: 'coffee',
         url: 'file:///C:/GreenFox/Manfred28/week-10/music_player/assets/music/test.mp3',
         length: '100'
     }
@@ -43,6 +46,10 @@ const trackList = function() {
                 callback(tracks[currentlyPlayingIndex]);
             })
         })
+    }
+
+    const getCurrentTrackInfo = function() {
+        return tracks[currentlyPlayingIndex]
     }
 
     const nextTrack = function() {
@@ -78,6 +85,7 @@ const trackList = function() {
 
     return {
         trackOnClick: addTracklistElementEventListener,
+        getCurrentTrack: getCurrentTrackInfo,
         nextTrack,
         previousTrack
     }
