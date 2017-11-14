@@ -4,6 +4,8 @@
     const ControlPanel = controlPanel();
     const TrackList = trackList();
     
-    TrackList.trackOnClick(ControlPanel.loadTrack(true));
+    TrackList.trackOnClick(ControlPanel.loadTrack);
+    ControlPanel.forwardOnClick(() => ControlPanel.loadTrack(TrackList.nextTrack()));
+    ControlPanel.rewindOnClick(() => ControlPanel.loadTrack(TrackList.previousTrack()));
 
 })();

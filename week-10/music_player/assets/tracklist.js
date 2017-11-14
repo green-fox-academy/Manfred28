@@ -3,8 +3,8 @@
 const trackList = function() {
     const $tracklist = document.querySelector('.track-list ol');
     let $trackElements = null;
-    console.log($tracklist);
-        
+    let currentlyPlayingIndex = null;
+    
     const tracks = [
         {
         title: 'ayy',
@@ -34,19 +34,41 @@ const trackList = function() {
         $trackElements = $tracklist.querySelectorAll('li')
     }
 
-    const addTracklistElementEventListener = function (callback) {
+    const addTracklistElementEventListener = function(callback) {
         $trackElements.forEach(function(track) {
             const index = track.querySelector('.index').textContent
             track.addEventListener('click', function() {
-                callback(tracks[parseInt(index) - 1]);
+                currentlyPlayingIndex = parseInt(index) - 1;
+                callback(tracks[currentlyPlayingIndex]);
             })
         })
+    }
+
+    const nextTrack = function() {
+        if (currentlyPlayingIndex < tracks.length - 1) {
+            currentlyPlayingIndex += 1    
+        } else {
+            currentlyPlayingIndex = 0;
+        }
+        console.log(currentlyPlayingIndex);
+        return tracks[currentlyPlayingIndex]
+    }
+
+    const previousTrack = function() {
+        if (currentlyPlayingIndex < 0) {
+            currentlyPlayingIndex -= 1    
+        } else {
+            currentlyPlayingIndex = tracks.length - 1;
+        }
+        return tracks[currentlyPlayingIndex]
     }
 
     createTracklistElements();
 
     return {
-        trackOnClick: addTracklistElementEventListener
+        trackOnClick: addTracklistElementEventListener,
+        nextTrack,
+        previousTrack
     }
 } 
 
