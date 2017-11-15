@@ -5,11 +5,21 @@ const trackList = function(Utilities) {
     let $trackElements = null;
     let currentlyPlayingIndex = null;
     let tracks = null;
+    let onClickAction = null;
 
-    const parseTracklist = function(tracklist) {
-        tracks = tracklist;
-        $tracklist.innerHTML = "";
-        createTracklistElements();
+    const getTracklist = function(playlistId) {
+        const config = {
+            method: 'GET',
+            url: 'http://localhost:3000/playlist-tracks'
+        }
+        if (playlistId !== 'all') {
+            config.url += `/${playlistId}`
+        }
+        Utilities.ajaxCall(config).then(trackData => {
+            tracks = trackData;
+            $tracklist.innerHTML = ""; 
+            createTracklistElements();
+        })
     }
 
     const createTracklistElements = function() {
@@ -19,19 +29,18 @@ const trackList = function(Utilities) {
                             ${track.title}
                             <span class="track-length">${Utilities.secondsToMMSS(track.duration)}</span>`
             $tracklist.appendChild($li);
+            trackClickEvent($li);
         })
         $trackElements = $tracklist.querySelectorAll('li')
     }
     
-    const addTracklistElementEventListener = function(callback) {
-        $trackElements.forEach(function(track) {
-            const index = track.querySelector('.index').textContent
-            track.addEventListener('click', function() {
+    const trackClickEvent = function($track) {
+            const index = $track.querySelector('.index').textContent
+            $track.addEventListener('click', function() {
                 currentlyPlayingIndex = parseInt(index) - 1;
-        Utilities.toggleActiveElementByIndex($trackElements, currentlyPlayingIndex);
-                callback(tracks[currentlyPlayingIndex]);
+                Utilities.toggleActiveElementByIndex($trackElements, currentlyPlayingIndex);
+                onClickAction(tracks[currentlyPlayingIndex]);
             })
-        })
     }
 
     const getCurrentTrackInfo = function() {
@@ -58,12 +67,14 @@ const trackList = function(Utilities) {
         return tracks[currentlyPlayingIndex]
     }
 
-    
+    const getOnClickAction = function(fn) {
+        onClickAction = fn;
+    }
 
     return {
-        trackOnClickAction: addTracklistElementEventListener,
+        getTracklist,
+        getOnClickAction,
         getCurrentTrack: getCurrentTrackInfo,
-        parseTracklist,
         nextTrack,
         previousTrack
     }
