@@ -30,3 +30,7 @@
     font-size: 30px;
     color: #383837;    
 }
+
+.playlists li.active {
+    background-color: #ABE7E5;
+}

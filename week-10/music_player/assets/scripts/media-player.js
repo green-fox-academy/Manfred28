@@ -1,16 +1,12 @@
 'use strict';
 
 (function() {
-    const ControlPanel = controlPanel();
-    const TrackList = trackList();
-    const CurrentSong = currentSong();
     const Utilities = utilities();
-    const Playlists = playlists();
+    const ControlPanel = controlPanel(Utilities);
+    const TrackList = trackList(Utilities);
+    const CurrentSong = currentSong();
+    const Playlists = playlists(Utilities);
     
-    // const configGetTrack = {
-    //     method: 'GET',
-    //     url: 'http://localhost:3000/playlist-tracks'
-    // }
 
     const configGetPlaylists = {
         method: 'GET',

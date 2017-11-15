@@ -24,8 +24,26 @@ const utilities = function() {
         return minutes + ':' + seconds
     }
 
+    const toggleActiveElementByIndex = function($domElements, toActiveIndex) {
+        $domElements.forEach(function($element, index) {
+            $element.classList.remove('active')
+            if (index === toActiveIndex) {
+                $element.classList.add('active')
+            }    
+        })
+    }
+
+    const toggleActiveElementOnClick = function($domElements, elementToActivate) {
+        $domElements.forEach(function($element, i) {
+            $element.classList.remove('active')
+        })
+        elementToActivate.classList.add('active')
+    }
+
     return {
         ajaxCall,
-        secondsToMMSS: convertSecondsToMMSSFormat
+        secondsToMMSS: convertSecondsToMMSSFormat,
+        toggleActiveElementByIndex,
+        toggleActiveElementOnClick
     }
 }

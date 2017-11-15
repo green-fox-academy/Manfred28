@@ -1,7 +1,6 @@
 'use strict';
 
-const trackList = function() {
-    const Utilities = utilities();
+const trackList = function(Utilities) {
     const $tracklist = document.querySelector('.track-list ol');
     let $trackElements = null;
     let currentlyPlayingIndex = null;
@@ -29,7 +28,7 @@ const trackList = function() {
             const index = track.querySelector('.index').textContent
             track.addEventListener('click', function() {
                 currentlyPlayingIndex = parseInt(index) - 1;
-                styleActiveElement();
+        Utilities.toggleActiveElementByIndex($trackElements, currentlyPlayingIndex);
                 callback(tracks[currentlyPlayingIndex]);
             })
         })
@@ -45,7 +44,7 @@ const trackList = function() {
         } else {
             currentlyPlayingIndex = 0;
         }
-        styleActiveElement();
+        Utilities.toggleActiveElementByIndex($trackElements, currentlyPlayingIndex);        
         return tracks[currentlyPlayingIndex]
     }
 
@@ -55,18 +54,11 @@ const trackList = function() {
         } else {
             currentlyPlayingIndex = tracks.length - 1;
         }
-        styleActiveElement();
+        Utilities.toggleActiveElementByIndex($trackElements, currentlyPlayingIndex);
         return tracks[currentlyPlayingIndex]
     }
 
-    const styleActiveElement = function() {
-        $trackElements.forEach(function($track, i) {
-            $track.classList.remove('active')
-            if (i === currentlyPlayingIndex) {
-                $track.classList.add('active')
-            }    
-        })
-    }
+    
 
     return {
         trackOnClickAction: addTracklistElementEventListener,

@@ -1,7 +1,5 @@
 'use strict';
-const controlPanel = function() {
-    
-    const Utilities = utilities();
+const controlPanel = function(Utilities) {    
     const $controlPanel = document.querySelector('.media-player .control-panel') 
     const $audioFile = $controlPanel.querySelector('audio');
     const $playButton = $controlPanel.querySelector('.track-control button:nth-child(2)');

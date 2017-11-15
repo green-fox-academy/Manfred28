@@ -40,3 +40,7 @@ main {
     height: 75px;
 }
 
+li.active {
+    background-color: #ABE7E5;
+}
+
