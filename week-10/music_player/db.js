@@ -62,8 +62,11 @@ const getAllTracks = function() {
 
 const getTracksFromPlaylist = function(id) {
     return mysqlPromise(`
-        SELECT * FROM tracks 
-        JOIN playlistTracks ON tracks.id = playlistTracks.trackID
+        SELECT tracks.*,
+        IF(playlisttracks.trackID IS NOT NULL AND 
+        playlisttracks.playlistID = 1, TRUE, FALSE) as isFavourite
+        FROM tracks
+        LEFT JOIN playlisttracks ON playlisttracks.trackID = tracks.id 
         WHERE playlistID = ${mysql.escape(id)} AND 
         tracks.id = playlistTracks.trackID;
     `)
