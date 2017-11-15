@@ -1,0 +1,22 @@
+.dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: #ddd;
+    z-index: 1;
+    padding: 30px;
+}
+
+.dialog button {
+    width: 100px;
+    height: 30px;
+    margin-top: 15px;
+    background-color: #8989e6;
+    color: #fff;
+}
