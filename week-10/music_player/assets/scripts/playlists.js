@@ -29,7 +29,7 @@ const playlists = function(Utilities) {
 
     const getPlaylists = function() {
         Utilities.ajaxCall(getPlaylistsConfig).then(playlistData => {
-            $playlists.innerHTML = "";
+            $playlists.innerHTML = "<li>All tracks</li>";
             playlists = playlistData;
             createPlaylistElements();
         })
@@ -38,19 +38,31 @@ const playlists = function(Utilities) {
     const createPlaylistElements= function() {
         playlists.forEach(function(playlist) {
             const $playlistElement = document.createElement('li');
-            $playlistElement.innerHTML = `
-                ${playlist.title}
-                ${playlist.system ? "" : 
-                    `<button>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </button>`
-                }
-            `        
+            $playlistElement.textContent = playlist.title
+            if (!playlist.system) {
+                $playlistElement.appendChild(createDeleteButton($playlistElement, playlist.id))
+            }
             $playlists.appendChild($playlistElement);
         });
         $playlistElements = $playlists.querySelectorAll('li')
         addPlaylistElementEventListener();
         onClickAction('all'); // display All playlist by default
+    }
+
+    const createDeleteButton = function($parent, playlistId) {
+        // $parent.remove seems to remove the list item from DOM
+        // even if the db operation failed
+        const $button = document.createElement('button');
+        $button.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+        $button.addEventListener('click', function() {
+            const deletePlaylistConfig = {
+                method: 'DELETE',
+                url: `http://localhost:3000/playlists/${playlistId}`,
+                body: {}
+            }
+            Utilities.ajaxCall(deletePlaylistConfig).then($parent.remove());
+        })
+        return $button;
     }
 
     const addPlaylistElementEventListener = function(callback) {

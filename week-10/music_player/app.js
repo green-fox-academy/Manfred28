@@ -25,7 +25,15 @@ app.get('/playlists', function(req, res) {
 })
 
 app.post('/playlists', function(req, res) {
-    db.addPlaylist(req.body.playlist).then(res.send({}));
+    if (!req.body.playlist) {
+        res.send({Error: 'Title can\'t be empty'});
+    } else {
+        db.addPlaylist(req.body.playlist).then(res.send({}));
+    }
+})
+
+app.delete('/playlists/:id', function(req, res) {
+    db.deletePlaylist(req.params.id).then(res.send({}));
 })
 
 

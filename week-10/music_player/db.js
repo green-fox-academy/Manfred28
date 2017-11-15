@@ -43,6 +43,13 @@ const addPlaylist = function(title) {
     `)
 }
 
+const deletePlaylist = function(id) {
+    return mysqlPromise(`
+        DELETE FROM playlists 
+        WHERE id = ${mysql.escape(id)}
+    `)
+}
+
 const getAllTracks = function() {
     return mysqlPromise(`
         SELECT * FROM tracks;    
@@ -61,6 +68,7 @@ const getTracksFromPlaylist = function(id) {
 module.exports = {
     getAllPlaylists,
     addPlaylist,
+    deletePlaylist,
     getAllTracks,
     getTracksFromPlaylist
 }
