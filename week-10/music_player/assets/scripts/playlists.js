@@ -1,17 +1,35 @@
 'use strict';
 
 const playlists = function(Utilities) {
-    const $playlists = document.querySelector('.playlists ul');
+    const $playlistContainer = document.querySelector('.playlists')
+    const $playlists = $playlistContainer.querySelector('ul');
+    const $playlistAdder = $playlistContainer.querySelector('.playlist-adder button');
     let $playlistElements = null;
     let playlists = null;
     let onClickAction = null
     const getPlaylistsConfig = {
         method: 'GET',
-        url: 'http://localhost:3000/playlists'
+        url: 'http://localhost:3000/playlists',
+        body: ''
+    }
+    
+    
+    $playlistAdder.addEventListener('click', function() {
+        Utilities.createDialog($playlistContainer, addPlaylist);
+    })
+    
+    const addPlaylist = function(title) {
+        const postPlaylistConfig = {
+            method: 'POST',
+            url: 'http://localhost:3000/playlists',
+            body: {playlist: title}
+        }
+        Utilities.ajaxCall(postPlaylistConfig).then(getPlaylists);
     }
 
-    const getPlaylists = function(playlistData) {
+    const getPlaylists = function() {
         Utilities.ajaxCall(getPlaylistsConfig).then(playlistData => {
+            $playlists.innerHTML = "";
             playlists = playlistData;
             createPlaylistElements();
         })
@@ -54,7 +72,7 @@ const playlists = function(Utilities) {
     const getOnClickAction = function(fn) {
         onClickAction = fn;
     }
-    
+
     return {
         getPlaylists,
         getOnClickAction

@@ -8,6 +8,11 @@
     background-color: #F5F5F5;
 }
 
+.playlists ul {
+    overflow: auto;
+    height: 220px;
+}
+
 .playlists li:nth-child(odd) {
     background-color: #EAEAEA;
 }

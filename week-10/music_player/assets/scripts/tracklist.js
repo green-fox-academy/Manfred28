@@ -10,7 +10,8 @@ const trackList = function(Utilities) {
     const getTracklist = function(playlistId) {
         const config = {
             method: 'GET',
-            url: 'http://localhost:3000/playlist-tracks'
+            url: 'http://localhost:3000/playlist-tracks',
+            body: ''
         }
         if (playlistId !== 'all') {
             config.url += `/${playlistId}`

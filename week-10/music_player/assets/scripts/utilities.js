@@ -5,7 +5,7 @@ const utilities = function() {
         return new Promise(function(resolve, reject) {
             const xhr = new XMLHttpRequest();
             xhr.open(Config.method, Config.url);
-            xhr.setRequestHeader('Accept', 'application/json')
+            xhr.setRequestHeader('Content-Type', 'application/json')
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     resolve(JSON.parse(xhr.responseText));
@@ -49,7 +49,8 @@ const utilities = function() {
             <button>Submit</button>`
         $container.querySelector('button').addEventListener('click', 
             function() {
-                onActionCallback($container.querySelector('input').textContent)
+                onActionCallback($container.querySelector('input').value)
+                $container.remove();
             }
         );
         $parent.appendChild($container);
