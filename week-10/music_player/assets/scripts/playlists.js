@@ -40,7 +40,7 @@ const playlists = function(Utilities) {
             const $playlistElement = document.createElement('li');
             $playlistElement.textContent = playlist.title
             if (!playlist.system) {
-                $playlistElement.appendChild(createDeleteButton($playlistElement, playlist.id))
+                $playlistElement.appendChild(createDeleteButton(playlist.id))
             }
             $playlists.appendChild($playlistElement);
         });
@@ -49,8 +49,8 @@ const playlists = function(Utilities) {
         onClickAction('all'); // display All playlist by default
     }
 
-    const createDeleteButton = function($parent, playlistId) {
-        // $parent.remove seems to remove the list item from DOM
+    const createDeleteButton = function(playlistId) {
+        // $button.parentElement.remove seems to remove the list item from DOM
         // even if the db operation failed
         const $button = document.createElement('button');
         $button.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
@@ -60,7 +60,7 @@ const playlists = function(Utilities) {
                 url: `http://localhost:3000/playlists/${playlistId}`,
                 body: {}
             }
-            Utilities.ajaxCall(deletePlaylistConfig).then($parent.remove());
+            Utilities.ajaxCall(deletePlaylistConfig).then($button.parentElement.remove());
         })
         return $button;
     }
