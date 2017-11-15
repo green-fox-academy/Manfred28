@@ -77,11 +77,19 @@ const addTrackToPlaylist = function(playlistId, trackId) {
     `)
 }
 
+const removeTrackFromPlaylist = function(playlistId, trackId) {
+    return mysqlPromise(`
+        DELETE FROM playlistTracks WHERE
+        playlistID = ${playlistId} AND trackID = ${trackId}
+    `)
+}
+
 module.exports = {
     getAllPlaylists,
     addPlaylist,
     deletePlaylist,
     getAllTracks,
     getTracksFromPlaylist,
-    addTrackToPlaylist
+    addTrackToPlaylist,
+    removeTrackFromPlaylist
 }

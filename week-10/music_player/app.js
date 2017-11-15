@@ -40,4 +40,8 @@ app.post('/playlists/:playlistId/:trackId', function(req, res) {
     db.addTrackToPlaylist(req.params.playlistId, req.params.trackId).then(res.send({}));
 })
 
+app.delete('/playlists/:playlistId/:trackId', function(req, res) {
+    db.removeTrackFromPlaylist(req.params.playlistId, req.params.trackId).then(res.send({}));
+})
+
 app.listen(3000);

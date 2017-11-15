@@ -19,6 +19,10 @@ const currentSong = function(Utilities) {
     $favButton.addEventListener('click', function() {
         if (!trackInfo.isFavourite) {
             addToFavourite(trackInfo.id);
+            trackInfo.isFavourite = 1;
+        } else {
+            deleteFromFavourite(trackInfo.id);
+            trackInfo.isFavourite = 0;
         }
     })    
 
@@ -30,6 +34,17 @@ const currentSong = function(Utilities) {
         }
         Utilities.ajaxCall(addToFavConfig).then(() => 
             $starIcon.style.fill = '#5b9aff'
+        )
+    }
+
+    const deleteFromFavourite = function(trackId) {
+        const deleteFromFavConfig = {
+            method: 'DELETE',
+            url: `http://localhost:3000/playlists/1/${trackInfo.id}`,
+            body: {}
+        }
+        Utilities.ajaxCall(deleteFromFavConfig).then(() => 
+            $starIcon.style.fill = '#b4b4b4'
         )
     }
 
