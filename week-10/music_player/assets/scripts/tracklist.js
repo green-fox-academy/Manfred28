@@ -19,6 +19,7 @@ const trackList = function(Utilities) {
         Utilities.ajaxCall(config).then(trackData => {
             tracks = trackData;
             $tracklist.innerHTML = ""; 
+            onClickAction(tracks[0])
             createTracklistElements();
         })
     }
