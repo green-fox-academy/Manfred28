@@ -4,19 +4,6 @@
     overflow-y: auto;
 }
 
-.track-list ol::-webkit-scrollbar {
-    width: 10px;
-    background: transparent;
-    
-}
- 
-.track-list ol::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    background: rgba(68,68,68,0.3); 
-}
-
-
 .track-list li {
     display: flex;
     align-items: center;

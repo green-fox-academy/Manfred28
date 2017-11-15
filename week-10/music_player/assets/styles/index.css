@@ -30,17 +30,25 @@ main {
     width: 50%;
 }
 
-.logo {
+.media-player .logo {
     padding: 0 10px 0 20px;  
     height: 75px;      
 }
 
-.logo img {
+.media-player .logo img {
     width: 85px;
     height: 75px;
 }
 
-li.active {
-    background-color: #ABE7E5;
+.media-player *::-webkit-scrollbar  {
+    width: 10px;
+    background: transparent;
+    
+}
+ 
+.media-player *::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: rgba(68,68,68,0.3); 
 }
 
