@@ -52,7 +52,11 @@ const deletePlaylist = function(id) {
 
 const getAllTracks = function() {
     return mysqlPromise(`
-        SELECT * FROM tracks;    
+        SELECT tracks.*,
+        IF(playlisttracks.trackID IS NOT NULL AND 
+        playlisttracks.playlistID = 1, TRUE, FALSE) as isFavourite
+        FROM tracks
+        LEFT JOIN playlisttracks ON playlisttracks.trackID = tracks.id;   
     `)
 }
 
