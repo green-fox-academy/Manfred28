@@ -5,23 +5,33 @@ const currentSong = function(Utilities) {
     const $title = $currentSong.querySelector('.song-info h3');
     const $band =  $currentSong.querySelector('.song-info span');
     const $favButton = $currentSong.querySelector('.song-favourite-control button:nth-child(2)');
-    let songInfo = null;
-
-
+    const $starIcon = $currentSong.querySelector('.song-favourite-control button:nth-child(2) svg')
+    let trackInfo = null;
+    
+    
     const updateSong = function(track) {
-        songInfo = track;
+        trackInfo = track;
         $title.textContent = track.title;
-        $band.textContent = track.artist
+        $band.textContent = track.artist;
+        $starIcon.style.fill = trackInfo.isFavourite ? '#5b9aff' : '#b4b4b4';
     }
-
+    
     $favButton.addEventListener('click', function() {
+        if (!trackInfo.isFavourite) {
+            addToFavourite(trackInfo.id);
+        }
+    })    
+
+    const addToFavourite = function(trackId) {
         const addToFavConfig = {
             method: 'POST',
-            url: `http://localhost:3000/playlists/1/${songInfo.id}`,
+            url: `http://localhost:3000/playlists/1/${trackInfo.id}`,
             body: {}
         }
-        Utilities.ajaxCall(addToFavConfig).then()
-    })    
+        Utilities.ajaxCall(addToFavConfig).then(() => 
+            $starIcon.style.fill = '#5b9aff'
+        )
+    }
 
     return {
         updateSong
