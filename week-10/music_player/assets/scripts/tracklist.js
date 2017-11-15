@@ -34,6 +34,7 @@ const trackList = function(Utilities) {
             trackClickEvent($li);
         })
         $trackElements = $tracklist.querySelectorAll('li')
+        Utilities.toggleActiveElementByIndex($trackElements, 0)
     }
     
     const trackClickEvent = function($track) {

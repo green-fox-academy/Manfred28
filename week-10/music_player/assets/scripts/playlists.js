@@ -34,7 +34,7 @@ const playlists = function(Utilities) {
             createPlaylistElements();
         })
     }
-
+    
     const createPlaylistElements= function() {
         playlists.forEach(function(playlist) {
             const $playlistElement = document.createElement('li');
@@ -47,6 +47,7 @@ const playlists = function(Utilities) {
         $playlistElements = $playlists.querySelectorAll('li')
         addPlaylistElementEventListener();
         onClickAction('all'); // display All playlist by default
+        Utilities.toggleActiveElementByIndex($playlistElements, 0)
     }
 
     const createDeleteButton = function(playlistId) {
