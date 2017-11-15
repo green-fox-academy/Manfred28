@@ -65,10 +65,19 @@ const getTracksFromPlaylist = function(id) {
     `)
 }
 
+const addTrackToPlaylist = function(playlistId, trackId) {
+    return mysqlPromise(`
+        INSERT INTO playlistTracks (playlistID, trackID) 
+        VALUES ((SELECT id FROM playlists WHERE id = ${playlistId}), 
+        (SELECT id FROM tracks WHERE id = ${trackId}));
+    `)
+}
+
 module.exports = {
     getAllPlaylists,
     addPlaylist,
     deletePlaylist,
     getAllTracks,
-    getTracksFromPlaylist
+    getTracksFromPlaylist,
+    addTrackToPlaylist
 }

@@ -36,5 +36,8 @@ app.delete('/playlists/:id', function(req, res) {
     db.deletePlaylist(req.params.id).then(res.send({}));
 })
 
+app.post('/playlists/:playlistId/:trackId', function(req, res) {
+    db.addTrackToPlaylist(req.params.playlistId, req.params.trackId).then(res.send({}));
+})
 
 app.listen(3000);

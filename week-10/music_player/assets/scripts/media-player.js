@@ -4,7 +4,7 @@
     const Utilities = utilities();
     const ControlPanel = controlPanel(Utilities);
     const TrackList = trackList(Utilities);
-    const CurrentSong = currentSong();
+    const CurrentSong = currentSong(Utilities);
     const Playlists = playlists(Utilities);
 
 
