@@ -36,6 +36,13 @@ const getAllPlaylists = function() {
     `)
 }
 
+const addPlaylist = function(title) {
+    return mysqlPromise(`
+        INSERT INTO playlists (title) 
+        VALUES (${mysql.escape(title)})
+    `)
+}
+
 const getAllTracks = function() {
     return mysqlPromise(`
         SELECT * FROM tracks;    
@@ -53,6 +60,7 @@ const getTracksFromPlaylist = function(id) {
 
 module.exports = {
     getAllPlaylists,
+    addPlaylist,
     getAllTracks,
     getTracksFromPlaylist
 }
