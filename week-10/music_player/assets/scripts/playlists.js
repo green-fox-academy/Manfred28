@@ -32,6 +32,7 @@ const playlists = function(Utilities) {
         });
         $playlistElements = $playlists.querySelectorAll('li')
         addPlaylistElementEventListener();
+        onClickAction('all'); // display All playlist by default
     }
 
     const addPlaylistElementEventListener = function(callback) {
