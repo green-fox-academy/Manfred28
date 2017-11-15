@@ -4,10 +4,17 @@ const playlists = function(Utilities) {
     const $playlists = document.querySelector('.playlists ul');
     let $playlistElements = null;
     let playlists = null;
+    let onClickAction = null
+    const getPlaylistsConfig = {
+        method: 'GET',
+        url: 'http://localhost:3000/playlists'
+    }
 
     const getPlaylists = function(playlistData) {
-        playlists = playlistData;
-        createPlaylistElements();
+        Utilities.ajaxCall(getPlaylistsConfig).then(playlistData => {
+            playlists = playlistData;
+            createPlaylistElements();
+        })
     }
 
     const createPlaylistElements= function() {
@@ -24,6 +31,7 @@ const playlists = function(Utilities) {
             $playlists.appendChild($playlistElement);
         });
         $playlistElements = $playlists.querySelectorAll('li')
+        addPlaylistElementEventListener();
     }
 
     const addPlaylistElementEventListener = function(callback) {
@@ -31,20 +39,23 @@ const playlists = function(Utilities) {
             if (index === 0) {
                 $playlist.addEventListener('click', function() {
                     Utilities.toggleActiveElementOnClick($playlistElements, this);
-                    callback('all')
+                    onClickAction('all')
                 })
              } else {
                 $playlist.addEventListener('click', function() {
                     Utilities.toggleActiveElementOnClick($playlistElements, this);                    
-                    callback(playlists[index - 1].id)
+                    onClickAction(playlists[index - 1].id)
                 })
             }
         })
     }
-    
 
+    const getOnClickAction = function(fn) {
+        onClickAction = fn;
+    }
+    
     return {
         getPlaylists,
-        playlistOnClickAction: addPlaylistElementEventListener
+        getOnClickAction
     }
 }

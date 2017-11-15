@@ -6,24 +6,15 @@
     const TrackList = trackList(Utilities);
     const CurrentSong = currentSong();
     const Playlists = playlists(Utilities);
-    
 
-    const configGetPlaylists = {
-        method: 'GET',
-        url: 'http://localhost:3000/playlists'
-    }
 
     TrackList.getOnClickAction((track) => {
         ControlPanel.loadTrack(track);
         CurrentSong.updateSong(track);
     })
 
-
-    Utilities.ajaxCall(configGetPlaylists).then(playlists => {
-        Playlists.getPlaylists(playlists);
-        Playlists.playlistOnClickAction(TrackList.getTracklist);
-    })
-    
+    Playlists.getOnClickAction(TrackList.getTracklist);
+    Playlists.getPlaylists();
 
     ControlPanel.forwardOnClick(() => {
         TrackList.nextTrack();
@@ -39,5 +30,4 @@
 
     ControlPanel.trackOver(() => ControlPanel.loadTrack(TrackList.nextTrack()));
     
-
 })();
