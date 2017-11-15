@@ -1,6 +1,6 @@
 'use strict';
 
-const playlists = function() {
+const playlists = function(Utilities) {
     const $playlists = document.querySelector('.playlists ul');
     let $playlistElements = null;
     let playlists = null;
@@ -30,10 +30,12 @@ const playlists = function() {
         $playlistElements.forEach(function($playlist, index) {
             if (index === 0) {
                 $playlist.addEventListener('click', function() {
+                    Utilities.toggleActiveElementOnClick($playlistElements, this);
                     callback('all')
                 })
              } else {
                 $playlist.addEventListener('click', function() {
+                    Utilities.toggleActiveElementOnClick($playlistElements, this);                    
                     callback(playlists[index - 1].id)
                 })
             }
