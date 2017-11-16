@@ -10,7 +10,6 @@ const trackList = function(Utilities) {
     const getTracklist = function(playlistId) {
         Utilities.AjaxCalls.getTracks(playlistId).then(trackData => {
             tracks = trackData;
-            onClickAction(tracks[0])
             createTracklistElements();
         })
     }
@@ -26,7 +25,6 @@ const trackList = function(Utilities) {
             trackClickEvent($li);
         })
         $trackElements = $tracklist.querySelectorAll('li')
-        Utilities.toggleActiveElementByIndex($trackElements, 0)
     }
     
     const trackClickEvent = function($track) {
