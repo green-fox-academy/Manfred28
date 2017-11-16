@@ -35,7 +35,8 @@ const playlists = function(Utilities) {
     $playlistAdder.addEventListener('click', function() {
         Utilities.Dialog.createTextDialog(function(title) {
             Utilities.AjaxCalls.addPlaylist(title)
-            .then(getPlaylists());
+            .then(getPlaylists())
+            .catch(e => alert(e));
         })
     })
     
