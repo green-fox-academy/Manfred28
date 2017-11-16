@@ -30,6 +30,10 @@
 
     ControlPanel.shuffleOnClick(TrackList.shuffleTracks)
 
-    ControlPanel.trackOver(() => ControlPanel.loadTrack(TrackList.nextTrack()));
+    ControlPanel.trackOver(() => {
+        TrackList.nextTrack();
+        ControlPanel.loadTrack(TrackList.getCurrentTrack());
+        CurrentSong.updateSong(TrackList.getCurrentTrack());
+    });
     
 })();

@@ -11,6 +11,8 @@ const controlPanel = function(Utilities) {
     const $trackLengthSlider = $controlPanel.querySelector('.track-length-control input[type="range"]')
     const $currentTime = $controlPanel.querySelector('.track-length-control .current-time');
     const $trackLength = $controlPanel.querySelector('.track-length-control .track-length');
+    
+
 
     const loadTrack = function(track) {
         $audioFile.src = track.path;
