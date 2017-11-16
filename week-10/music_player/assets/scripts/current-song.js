@@ -39,6 +39,13 @@ const currentSong = function(Utilities) {
         )
     }
 
+    $plusIcon.addEventListener('click', function() {
+        Utilities.AjaxCalls.getPlaylists().then(function(playlists) {
+            Utilities.Dialog.createSelectDialog(function(playlistId) {
+                Utilities.AjaxCalls.addTrackToPlaylist(playlistId, trackInfo.id)
+            }, playlists)
+        })
+    })
 
     return {
         updateSong
