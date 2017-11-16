@@ -11,7 +11,6 @@ const controlPanel = function(Utilities) {
     const $trackLengthSlider = $controlPanel.querySelector('.track-length-control input[type="range"]')
     const $currentTime = $controlPanel.querySelector('.track-length-control .current-time');
     const $trackLength = $controlPanel.querySelector('.track-length-control .track-length');
-    
 
 
     const loadTrack = function(track) {
@@ -74,6 +73,12 @@ const controlPanel = function(Utilities) {
         }
     })
 
+    const getChangeTrackCallback = function(callback) {
+        trackOver(()=> callback('forward'))
+        forwardButtonOnClick(()=> callback('forward'))
+        rewindButtonOnClick(()=> callback('backward'))
+    }
+
     
     const trackOver = function(callback) {
         $audioFile.addEventListener('ended', function() {
@@ -110,9 +115,7 @@ const controlPanel = function(Utilities) {
 
     return {
         loadTrack,
-        trackOver,
-        rewindOnClick: rewindButtonOnClick,
-        forwardOnClick: forwardButtonOnClick,
+        getChangeTrackCallback,
         shuffleOnClick: shuffleButtonOnClick
     }
 };

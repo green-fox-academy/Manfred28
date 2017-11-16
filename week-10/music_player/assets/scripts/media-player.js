@@ -16,24 +16,18 @@
     Playlists.getOnClickAction(TrackList.getTracklist);
     Playlists.getPlaylists();
 
-    ControlPanel.forwardOnClick(() => {
-        TrackList.nextTrack();
-        ControlPanel.loadTrack(TrackList.getCurrentTrack());
-        CurrentSong.updateSong(TrackList.getCurrentTrack());
-    });
-
-    ControlPanel.rewindOnClick(() => {
-        TrackList.previousTrack();
-        ControlPanel.loadTrack(TrackList.getCurrentTrack());
-        CurrentSong.updateSong(TrackList.getCurrentTrack());
+    ControlPanel.getChangeTrackCallback((direction) => {
+        if (direction = "forward") {
+            TrackList.nextTrack();
+            ControlPanel.loadTrack(TrackList.getCurrentTrack());
+            CurrentSong.updateSong(TrackList.getCurrentTrack());
+        } else if (direction = "backward") {
+            TrackList.previousTrack();
+            ControlPanel.loadTrack(TrackList.getCurrentTrack());
+            CurrentSong.updateSong(TrackList.getCurrentTrack());
+        }
     });
 
     ControlPanel.shuffleOnClick(TrackList.shuffleTracks)
 
-    ControlPanel.trackOver(() => {
-        TrackList.nextTrack();
-        ControlPanel.loadTrack(TrackList.getCurrentTrack());
-        CurrentSong.updateSong(TrackList.getCurrentTrack());
-    });
-    
 })();
