@@ -6,6 +6,7 @@ const controlPanel = function(Utilities) {
     const $playButtonImg = $playButton.querySelector('img');
     const $rewind = $controlPanel.querySelector('.track-control button:nth-child(1)')
     const $forward = $controlPanel.querySelector('.track-control button:nth-child(3)')
+    const $shuffle = $controlPanel.querySelector('.shuffle button');
     const $volumeSlider = $controlPanel.querySelector('.volume-control input[type="range"]')
     const $trackLengthSlider = $controlPanel.querySelector('.track-length-control input[type="range"]')
     const $currentTime = $controlPanel.querySelector('.track-length-control .current-time');
@@ -76,6 +77,10 @@ const controlPanel = function(Utilities) {
         $forward.addEventListener('click', callback)
     }
 
+    const shuffleButtonOnClick = function(callback) {
+        $shuffle.addEventListener('click', callback);
+    }
+
     $playButton.addEventListener('click', togglePlay);
 
     $trackLengthSlider.addEventListener('input', function() {
@@ -88,6 +93,7 @@ const controlPanel = function(Utilities) {
         loadTrack,
         trackOver,
         rewindOnClick: rewindButtonOnClick,
-        forwardOnClick: forwardButtonOnClick
+        forwardOnClick: forwardButtonOnClick,
+        shuffleOnClick: shuffleButtonOnClick
     }
 };

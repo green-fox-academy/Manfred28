@@ -28,6 +28,8 @@
         CurrentSong.updateSong(TrackList.getCurrentTrack());
     });
 
+    ControlPanel.shuffleOnClick(TrackList.shuffleTracks)
+
     ControlPanel.trackOver(() => ControlPanel.loadTrack(TrackList.nextTrack()));
     
 })();

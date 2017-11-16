@@ -18,13 +18,13 @@ const trackList = function(Utilities) {
         }
         Utilities.ajaxCall(config).then(trackData => {
             tracks = trackData;
-            $tracklist.innerHTML = ""; 
             onClickAction(tracks[0])
             createTracklistElements();
         })
     }
-
+    
     const createTracklistElements = function() {
+        $tracklist.innerHTML = ""; 
         tracks.forEach(function(track, i) {
             const $li = document.createElement('li');
             $li.innerHTML = `<span class="index">${i+1}</span>
@@ -70,6 +70,14 @@ const trackList = function(Utilities) {
         return tracks[currentlyPlayingIndex]
     }
 
+    const shuffleTracks = function() {
+        for (let i = tracks.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [tracks[i], tracks[j]] = [tracks[j], tracks[i]];
+        }
+        createTracklistElements();
+    }
+
     const getOnClickAction = function(fn) {
         onClickAction = fn;
     }
@@ -79,7 +87,8 @@ const trackList = function(Utilities) {
         getOnClickAction,
         getCurrentTrack: getCurrentTrackInfo,
         nextTrack,
-        previousTrack
+        previousTrack,
+        shuffleTracks
     }
 } 
 
