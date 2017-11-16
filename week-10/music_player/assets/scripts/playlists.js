@@ -15,7 +15,7 @@ const playlists = function(Utilities) {
     
     
     $playlistAdder.addEventListener('click', function() {
-        Utilities.createDialog($playlistContainer, addPlaylist);
+        Utilities.Dialog.createTextDialog(addPlaylist, playlists);
     })
     
     const addPlaylist = function(title) {

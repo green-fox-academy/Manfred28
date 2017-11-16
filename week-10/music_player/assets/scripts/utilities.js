@@ -41,26 +41,13 @@ const utilities = function() {
         elementToActivate.classList.add('active')
     }
 
-    const createDialog = function($parent, onActionCallback) {
-        const $container = document.createElement('section');
-        $container.classList.add('dialog');
-        $container.innerHTML = `
-            <input type="text">
-            <button>Submit</button>`
-        $container.querySelector('button').addEventListener('click', 
-            function() {
-                onActionCallback($container.querySelector('input').value)
-                $container.remove();
-            }
-        );
-        $parent.appendChild($container);
-    }
+    const Dialog = dialog();
 
     return {
         ajaxCall,
         secondsToMMSS: convertSecondsToMMSSFormat,
         toggleActiveElementByIndex,
         toggleActiveElementOnClick,
-        createDialog
+        Dialog
     }
 }
