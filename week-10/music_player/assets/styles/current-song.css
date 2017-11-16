@@ -19,7 +19,9 @@
 
 .current-song .song-info {
     display: inline-block;
-    width: 50%;
+    width: 85%;
+    max-height: 60px;
+    overflow: auto;
     font-size: 20px;
 }
 
