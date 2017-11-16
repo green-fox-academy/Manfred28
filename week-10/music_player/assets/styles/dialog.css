@@ -10,7 +10,7 @@
     height: 50%;
     background-color: #ddd;
     z-index: 1;
-    padding: 30px;
+    padding: 0 30px;
 }
 
 .dialog button {
@@ -19,4 +19,13 @@
     margin-top: 15px;
     background-color: #8989e6;
     color: #fff;
+    margin: auto 0;
+}
+
+.dialog .close-button {
+    width: 15px;
+    margin: 10px 10px auto auto;
+    background-color: transparent;
+    color: #383837;
+    font-size: 30px;
 }

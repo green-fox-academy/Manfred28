@@ -1,10 +1,24 @@
 
 const dialog = function() {
-    $dialogContainer = document.querySelector('.dialog')
+    $dialogContainer = document.querySelector('.dialog');
 
-    const addButton = function(onClickAction, $dataContainer) {
+
+    const addCloseButton = function() {
         const $button = document.createElement('button');
-        $button.textContent = 'Submit';
+        const $xIcon = document.createElement('i');
+        $xIcon.classList.add('fa', 'fa-times');
+        $button.classList.add('close-button');
+        $button.appendChild($xIcon);
+        $button.addEventListener('click', function() {
+            $dialogContainer.innerHTML = '';
+            $dialogContainer.style.display = 'none';
+        })
+        $dialogContainer.appendChild($button);
+    }
+
+    const addAddButton = function(onClickAction, $dataContainer) {
+        const $button = document.createElement('button');
+        $button.textContent = 'Add';
         $button.addEventListener('click', function() {
             onClickAction($dataContainer.value);
             $dialogContainer.style.display = 'none';
@@ -30,19 +44,22 @@ const dialog = function() {
         $dialogContainer.appendChild($select);
         return $select;
     }
+
     
     const createTextDialog = function(onActionCallback) {
         $dialogContainer.innerHTML = '';
-        $dialogContainer.style.display = 'flex';
+        $closeButton = addCloseButton();
         $dataContainer = addTextInput();
-        $button = addButton(onActionCallback, $dataContainer);
+        $button = addAddButton(onActionCallback, $dataContainer);
+        $dialogContainer.style.display = 'flex';
     }
     
     const createSelectDialog = function(onActionCallback, data) {
         $dialogContainer.innerHTML = '';
-        $dialogContainer.style.display = 'flex';
+        $closeButton = addCloseButton();
         $dataContainer = addSelect(data);
-        $button = addButton(onActionCallback, $dataContainer);
+        $button = addAddButton(onActionCallback, $dataContainer);
+        $dialogContainer.style.display = 'flex';
     }
    
 
