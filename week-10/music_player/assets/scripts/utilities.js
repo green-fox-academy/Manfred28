@@ -1,22 +1,8 @@
 'use strict';
 
 const utilities = function() {
-    const ajaxCall = function(Config) {
-        return new Promise(function(resolve, reject) {
-            const xhr = new XMLHttpRequest();
-            xhr.open(Config.method, Config.url);
-            xhr.setRequestHeader('Content-Type', 'application/json')
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    resolve(JSON.parse(xhr.responseText));
-                }
-                else if (xhr.readyState === 4 && xhr.status !== 200) {
-                    reject(xhr.statusText);
-                }
-            } 
-            xhr.send(JSON.stringify(Config.body));
-        })
-    }
+    const AjaxCalls = ajaxCalls(); 
+    const Dialog = dialog();
 
     const convertSecondsToMMSSFormat = function(seconds) {
         const minutes = Math.floor(seconds / 60);
@@ -41,13 +27,11 @@ const utilities = function() {
         elementToActivate.classList.add('active')
     }
 
-    const Dialog = dialog();
-
     return {
-        ajaxCall,
+        AjaxCalls,
+        Dialog,
         secondsToMMSS: convertSecondsToMMSSFormat,
         toggleActiveElementByIndex,
         toggleActiveElementOnClick,
-        Dialog
     }
 }

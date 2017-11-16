@@ -6,29 +6,11 @@ const playlists = function(Utilities) {
     const $playlistAdder = $playlistContainer.querySelector('.playlist-adder button');
     let $playlistElements = null;
     let playlists = null;
-    let onClickAction = null
-    const getPlaylistsConfig = {
-        method: 'GET',
-        url: 'http://localhost:3000/playlists',
-        body: ''
-    }
+    let onClickAction = null    
     
     
-    $playlistAdder.addEventListener('click', function() {
-        Utilities.Dialog.createTextDialog(addPlaylist, playlists);
-    })
-    
-    const addPlaylist = function(title) {
-        const postPlaylistConfig = {
-            method: 'POST',
-            url: 'http://localhost:3000/playlists',
-            body: {playlist: title}
-        }
-        Utilities.ajaxCall(postPlaylistConfig).then(getPlaylists);
-    }
-
     const getPlaylists = function() {
-        Utilities.ajaxCall(getPlaylistsConfig).then(playlistData => {
+        Utilities.AjaxCalls.getPlaylists().then(playlistData => {
             $playlists.innerHTML = "<li>All tracks</li>";
             playlists = playlistData;
             createPlaylistElements();
@@ -50,18 +32,20 @@ const playlists = function(Utilities) {
         Utilities.toggleActiveElementByIndex($playlistElements, 0)
     }
 
+    $playlistAdder.addEventListener('click', function() {
+        Utilities.Dialog.createTextDialog(function(title) {
+            Utilities.AjaxCalls.addPlaylist(title)
+            .then(getPlaylists());
+        })
+    })
+    
     const createDeleteButton = function(playlistId) {
         // $button.parentElement.remove seems to remove the list item from DOM
         // even if the db operation failed
         const $button = document.createElement('button');
         $button.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
         $button.addEventListener('click', function() {
-            const deletePlaylistConfig = {
-                method: 'DELETE',
-                url: `http://localhost:3000/playlists/${playlistId}`,
-                body: {}
-            }
-            Utilities.ajaxCall(deletePlaylistConfig).then($button.parentElement.remove());
+            Utilities.AjaxCalls.deletePlaylist(playlistId).then($button.parentElement.remove());
         })
         return $button;
     }

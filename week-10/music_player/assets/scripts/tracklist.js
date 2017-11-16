@@ -8,15 +8,7 @@ const trackList = function(Utilities) {
     let onClickAction = null;
 
     const getTracklist = function(playlistId) {
-        const config = {
-            method: 'GET',
-            url: 'http://localhost:3000/playlist-tracks',
-            body: ''
-        }
-        if (playlistId !== 'all') {
-            config.url += `/${playlistId}`
-        }
-        Utilities.ajaxCall(config).then(trackData => {
+        Utilities.AjaxCalls.getTracks(playlistId).then(trackData => {
             tracks = trackData;
             onClickAction(tracks[0])
             createTracklistElements();
