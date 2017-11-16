@@ -28,9 +28,9 @@ const currentSong = function(Utilities) {
     })    
 
     const addToFavourite = function(trackId) {
-        Utilities.AjaxCalls.addTrackToFavourites(trackId).then(() => 
-            $starIcon.style.fill = '#5b9aff'
-        )
+        Utilities.AjaxCalls.addTrackToFavourites(trackId)
+        .then(() => $starIcon.style.fill = '#5b9aff')
+        .catch(e => console.log(e))
     }
 
     const deleteFromFavourite = function(trackId) {
@@ -43,6 +43,7 @@ const currentSong = function(Utilities) {
         Utilities.AjaxCalls.getPlaylists().then(function(playlists) {
             Utilities.Dialog.createSelectDialog(function(playlistId) {
                 Utilities.AjaxCalls.addTrackToPlaylist(playlistId, trackInfo.id)
+                    .catch((e) => alert(e))
             }, playlists)
         })
     })

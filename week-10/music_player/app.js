@@ -37,7 +37,14 @@ app.delete('/playlists/:id', function(req, res) {
 })
 
 app.post('/playlists/:playlistId/:trackId', function(req, res) {
-    db.addTrackToPlaylist(req.params.playlistId, req.params.trackId).then(res.send({}));
+    db.addTrackToPlaylist(req.params.playlistId, req.params.trackId).then(() => res.send({}))
+    .catch(e => {
+        if (e.code === 'ER_DUP_ENTRY') {
+            res.status(500).send('Track is already in playlist');
+        } else {
+            res.status(500).send('Something went wrong.');
+        }        
+    });
 })
 
 app.delete('/playlists/:playlistId/:trackId', function(req, res) {
