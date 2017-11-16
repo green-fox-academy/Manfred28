@@ -83,11 +83,21 @@ const controlPanel = function(Utilities) {
         $rewind.addEventListener('click', function() {
             callback();
         })
+        document.addEventListener('keyup', function(e) {
+            if(e.key === 'p' || e.keyCode === 80) {
+                callback();
+            }
+        })
     }
     
     const forwardButtonOnClick = function(callback) {
         $forward.addEventListener('click', function() {
             callback();
+        })
+        document.addEventListener('keyup', function(e) {
+            if(e.key === 'n' || e.keyCode === 78) {
+                callback();
+            }
         })
     }
 
