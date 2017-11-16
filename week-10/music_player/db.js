@@ -45,9 +45,13 @@ const addPlaylist = function(title) {
 
 const deletePlaylist = function(id) {
     return mysqlPromise(`
-        DELETE FROM playlists 
-        WHERE id = ${mysql.escape(id)}
-    `)
+        DELETE FROM playlistTracks
+        WHERE playlistID = ${mysql.escape(id)};`)
+        .then(mysqlPromise(`
+            DELETE FROM playlists 
+            WHERE id = ${mysql.escape(id)};
+        `))
+       
 }
 
 const getAllTracks = function() {
@@ -56,7 +60,8 @@ const getAllTracks = function() {
         IF(playlisttracks.trackID IS NOT NULL AND 
         playlisttracks.playlistID = 1, TRUE, FALSE) as isFavourite
         FROM tracks
-        LEFT JOIN playlisttracks ON playlisttracks.trackID = tracks.id;   
+        LEFT JOIN playlisttracks ON playlisttracks.trackID = tracks.id
+        GROUP BY tracks.id;
     `)
 }
 
@@ -68,7 +73,8 @@ const getTracksFromPlaylist = function(id) {
         FROM tracks
         LEFT JOIN playlisttracks ON playlisttracks.trackID = tracks.id 
         WHERE playlistID = ${mysql.escape(id)} AND 
-        tracks.id = playlistTracks.trackID;
+        tracks.id = playlistTracks.trackID
+        GROUP BY tracks.id;
     `)
 }
 
