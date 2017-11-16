@@ -20,6 +20,8 @@ const controlPanel = function(Utilities) {
             resetTrackProgress();
             $trackLength.textContent = Utilities.secondsToMMSS($audioFile.duration)
             updateVolume();
+            $audioFile.pause();
+            togglePlay();
         })
     }
 
@@ -83,21 +85,18 @@ const controlPanel = function(Utilities) {
     const trackOver = function(callback) {
         $audioFile.addEventListener('ended', function() {
             callback();
-            playTrack();
         })
     }
 
     const rewindButtonOnClick = function(callback) {
         $rewind.addEventListener('click', function() {
             callback();
-            playTrack();
         })
     }
     
     const forwardButtonOnClick = function(callback) {
         $forward.addEventListener('click', function() {
             callback();
-            playTrack();
         })
     }
 
