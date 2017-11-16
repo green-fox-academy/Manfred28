@@ -18,9 +18,17 @@ const controlPanel = function(Utilities) {
         $audioFile.src = track.path;
         $playButtonImg.src = $playButtonImg.dataset.playSrc;
         $audioFile.addEventListener('canplay', function() {
-                resetTrackProgress();
-                $trackLength.textContent = Utilities.secondsToMMSS($audioFile.duration)
-                updateVolume();
+            resetTrackProgress();
+            $trackLength.textContent = Utilities.secondsToMMSS($audioFile.duration)
+            updateVolume();
+        })
+    }
+
+    const playTrack = function() {
+        $audioFile.addEventListener('canplay', function() {
+            $audioFile.play();
+            $playButtonImg.src = $playButtonImg.dataset.pauseSrc;
+            window.requestAnimationFrame(updateTrackProgress);
         })
     }
 
@@ -68,15 +76,24 @@ const controlPanel = function(Utilities) {
 
     
     const trackOver = function(callback) {
-        $audioFile.addEventListener('ended', callback)
+        $audioFile.addEventListener('ended', function() {
+            callback();
+            playTrack();
+        })
     }
 
     const rewindButtonOnClick = function(callback) {
-        $rewind.addEventListener('click', callback)
+        $rewind.addEventListener('click', function() {
+            callback();
+            playTrack();
+        })
     }
     
     const forwardButtonOnClick = function(callback) {
-        $forward.addEventListener('click', callback)
+        $forward.addEventListener('click', function() {
+            callback();
+            playTrack();
+        })
     }
 
     const shuffleButtonOnClick = function(callback) {
