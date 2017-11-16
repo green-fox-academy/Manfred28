@@ -12,7 +12,6 @@ const controlPanel = function(Utilities) {
     const $currentTime = $controlPanel.querySelector('.track-length-control .current-time');
     const $trackLength = $controlPanel.querySelector('.track-length-control .track-length');
 
-
     const loadTrack = function(track) {
         $audioFile.src = track.path;
         $playButtonImg.src = $playButtonImg.dataset.playSrc;
@@ -22,14 +21,6 @@ const controlPanel = function(Utilities) {
             updateVolume();
             $audioFile.pause();
             togglePlay();
-        })
-    }
-
-    const playTrack = function() {
-        $audioFile.addEventListener('canplay', function() {
-            $audioFile.play();
-            $playButtonImg.src = $playButtonImg.dataset.pauseSrc;
-            window.requestAnimationFrame(updateTrackProgress);
         })
     }
 

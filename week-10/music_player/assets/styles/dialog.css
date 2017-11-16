@@ -8,6 +8,7 @@
     left: 25%;
     width: 50%;
     height: 50%;
+    box-shadow: 1px 1px 4px #333;
     background-color: #ddd;
     z-index: 1;
     padding: 0 30px;
