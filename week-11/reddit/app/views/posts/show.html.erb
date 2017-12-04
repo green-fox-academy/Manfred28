@@ -1,0 +1,10 @@
+<main>
+  <h2><%= @post.title %></h2>
+  <article class="submit-post">
+    <%= render "comments/form" %>
+  </article>
+  <article class="post-comments">
+    <%= render @post.comments %>
+  </article>
+</main>
+

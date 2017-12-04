@@ -1,0 +1,13 @@
+<%= form_with model: [ @post, Comment.new ], local: true do |form| %>
+  <p>
+    <%= form.label :owner %>
+    <%= form.text_field :owner %>
+  </p>
+  <p>
+    <%= form.label :some_stuff %>
+    <%= form.text_area :some_stuff %>
+  </p>    
+  <p>
+    <%= form.submit class: "submit-button" %>
+  </p>    
+<% end %>

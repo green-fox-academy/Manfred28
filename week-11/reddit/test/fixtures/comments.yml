@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: MyString
+  some_stuff: 
+  score: 1
+
+two:
+  owner: MyString
+  some_stuff: 
+  score: 1

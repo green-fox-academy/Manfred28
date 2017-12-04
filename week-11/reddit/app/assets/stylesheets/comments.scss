@@ -1,0 +1,21 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables"; 
+
+.comment {
+  width: $submit_form_width;
+  background-color: #ffffff;
+  padding: 5px 10px 10px 10px;
+  margin-bottom: 5px;
+
+  .owner {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .comment-body {
+
+  }
+}

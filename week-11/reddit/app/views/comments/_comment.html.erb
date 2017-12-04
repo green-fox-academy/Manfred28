@@ -1,0 +1,5 @@
+<article class="comment">
+  <span class="owner">Commenter: <%= comment.owner %></span>
+  <p class="comment-body"><%= comment.some_stuff %></p>
+  <%= link_to "Delete", [comment.post, comment], method: :delete %>
+</article>
