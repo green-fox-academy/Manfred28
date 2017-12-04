@@ -1,0 +1,103 @@
+// Place all the styles related to the Post controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables"; 
+
+main.post-index {
+  article {
+    width: 69%;
+  }
+}
+
+.post {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #fff;
+    padding: 5px;
+    margin-bottom: 1px;
+    min-height: 90px;
+
+    h2 {
+        width: 100%;
+    }
+
+    .rating {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        height: 100%;
+
+        button {
+            border: none;
+            background-color: inherit;
+            &:first-child {
+                position: relative;
+                top: 2px;
+            }
+        }
+
+        img {
+            width: 15px;
+            background-color: none;
+        }
+    }
+}
+
+.post-info {
+    width: 100%;
+}
+
+.post-actions {
+    display: flex;
+
+    a {
+        margin-right: 5px;
+    }
+}
+
+.submit-post {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  
+
+  form {
+    width: 59%;
+    background-color: #fff;
+    padding: 20px 10px;
+
+    p {
+      display: flex;
+      align-items: center;
+    }
+
+    input {
+      height: 30px;
+    }
+
+    input[type="text"] {
+      flex-grow: 1;
+    }
+
+    textarea {
+      flex-grow: 1;
+      height: 70px;
+      margin: 10px 0;
+      background-color: #ddd;
+    }
+    
+    label {
+      display: inline-block;
+      font-weight: 1000;
+      width: 50px;
+    }
+  }
+}
+
+
+article > form > label > span {
+  color: red;
+}

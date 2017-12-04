@@ -1,0 +1,13 @@
+<main class="post-index space-around-container">
+  <article class="post-container">
+    <% @posts.each do |post| %>
+      <%= render partial: "post", locals: { post: post } %>
+    <% end %>
+  </article>
+  <aside>
+    <%= button_to "Submit a new post", new_post_path, method: :get, class: "submit-button" %>
+    <section>
+        About ayylmao
+    </section>
+  </aside>
+</main>

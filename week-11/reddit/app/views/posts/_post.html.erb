@@ -1,0 +1,20 @@
+<section class="post">
+  <section class="rating">
+    <button><%= image_tag("upvote") %></button>
+    <span><%= post.score %></span>
+    <button><%= image_tag("downvote") %></button>
+  </section>
+  <div>
+    <h2><%= link_to post.title, post.url %></h2>
+    <section class="post-info">
+      submitted <%= time_ago_in_words post.created_at %> ago by <%= post.owner ? post.owner : 'Anonymus' %>
+    </section>
+    <section class="post-actions">
+    <%= link_to "Comments", post %>
+    <%= link_to "Modify", edit_post_path(post) %>
+    <%= link_to "Remove", post, 
+                method: :delete, 
+                data: { confirm: "Are you sure?" } %>
+    </section>
+  </div>
+</section>
